@@ -1,0 +1,4 @@
+{
+    "port": "3001",
+    "mongoUri": "mongodb+srv://maxim:1a11A1@cluster0-sfi3x.mongodb.net/test?retryWrites=true&w=majority"
+}
