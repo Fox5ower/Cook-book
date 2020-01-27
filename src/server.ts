@@ -1,14 +1,14 @@
 import App from "./app";
 import bodyParser from "body-parser";
-import logger from "./middlewares/logger"
-import HomeController from "./controllers/home.controller"
+import logger from "./middlewares/logger";
+import AdminController from "./controllers/admin.controller";
 const config = require("config");
 
 const app = new App({
     port: config.get("port"),
     mongoUri: config.get("mongoUri"),
     controllers: [
-        new HomeController()
+        new AdminController()
     ],
 
     middlewares: [
