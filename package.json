@@ -2,10 +2,10 @@
   "name": "cook-book",
   "version": "1.0.0",
   "description": "Cook-book application web-site",
-  "main": "app.js",
+  "main": "./dist/src/server.js",
   "scripts": {
-    "start": "node app.js",
-    "server": "nodemon app.js",
+    "start": "node ./dist/src/server.js",
+    "server": "nodemon ./dist/src/server.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
