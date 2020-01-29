@@ -1,6 +1,8 @@
 import express from "express";
 import { Application } from 'express'
+const bcrypt = require("bcryptjs")
 const mongoose = require("mongoose");
+const Admin = require("./models/Admin");
 
 
 class App {
@@ -34,7 +36,28 @@ class App {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true
-        });
+        }).then(() => {
+            const admin = Admin.find();
+            if (admin) {
+                console.log("Admin already exists");
+                return;
+            } else {
+                const admin = new Admin({
+                    name: "admin",
+                    password: "admin",
+                    email: "admin@admin.com"
+                });
+
+                bcrypt.genSalt(10, (err: Error, salt: any) => {
+                    bcrypt.hash(admin.password, salt, (err: Error, hash: any) => {
+                        if (err) throw err;
+                        admin.password = hash;
+                        admin.save()
+                    })
+                })
+            }
+        })
+
         console.log(`Connected to Mongo DB with URI: ${this.mongoUri}`);
     }
 

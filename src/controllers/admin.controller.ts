@@ -1,11 +1,14 @@
 import * as express from "express";
 import { Request, Response } from "express";
 import IControllerBase from "../interfaces/IControllerBase";
+const bcrypt = require("bcryptjs");
 const Admin = require("../models/Admin");
+const validatePasswordInputData = require("../validation/adminChangePass");
+const validateInformationInputData = require("../validation/adminChangeInfo");
 
 
 class AdminController implements IControllerBase {
-    public path = "/admin";
+    public path = "/api/admin";
     public router = express.Router();
 
     constructor() {
@@ -13,31 +16,73 @@ class AdminController implements IControllerBase {
     }
 
     public initRoutes() {
-        this.router.get("/admin", this.index);
-        this.router.get("/admin/:adminId", this.specificAdmin);
-        this.router.post("/admin/add", this.addAdmin);
-        this.router.delete("/admin/remove/:adminId", this.deleteAdmin);
-        this.router.patch("/admin/update/:adminId", this.updateAdmin);
+        this.router.get(`${this.path}/`, this.index);
+        this.router.put(`${this.path}/password`, this.adminChangePassword);
+        this.router.put(`${this.path}/information`, this.adminChangeInfo);
     }
 
     index = async (req: Request, res: Response, next: any) => {
-        try {
-            const admins = await Admin.find();
-            res.json({ "All Admins: ": admins });
-        } catch (err) {
-            res.json({ message: err })
+        const admin = await Admin.find();
+        if (admin) {
+            res.json({ "All Admins: ": admin });
+        } else {
+            res.status(404).json({ message: "Admin Not found" })
+        }
+    }
+
+    adminChangePassword = async (req: Request, res: Response, next: any) => {
+        const { errors, isValid } = validatePasswordInputData(req.body);
+
+        if (!isValid) {
+            return res.status(401).json(errors);
+        }
+
+        bcrypt.genSalt(10, (err: Error, salt: any) => {
+            bcrypt.hash(req.body.password, salt, async (err: Error, hash: any) => {
+                if (err) throw err;
+                req.body.password = hash;
+                const updatedAdmin = await Admin.updateOne({}, {
+                    $set: {
+                        password: hash
+                    }
+                })
+                if (updatedAdmin) {
+                    res.send("Password changed");
+                } else {
+                    res.status(401).json({ message: "Something went wrong" })
+                }
+            })
+        })
+    }
+
+    adminChangeInfo = async (req: Request, res: Response, next: any) => {
+        const { errors, isValid } = validateInformationInputData(req.body);
+
+        if (!isValid) {
+            return res.status(401).json(errors);
+        }
+
+        const updatedAdmin = await Admin.updateOne({}, {
+            $set: {
+                name: req.body.name,
+                email: req.body.email
+            }
+        });
+        if (updatedAdmin) {
+            res.json({ "Updated Admin: ": updatedAdmin });
+        } else {
+            res.status(401).json({ message: "Something went wrong" })
         }
     }
 
 
     specificAdmin = async (req: Request, res: Response) => {
-        try {
-            const admin = await Admin.findById(req.params.adminId);
+        const admin = await Admin.findById(req.params.adminId);
+        if (admin) {
             res.json(admin);
-        } catch (err) {
-            res.json({ message: err })
+        } else {
+            res.status(404).json({ message: "Not found" })
         }
-
     }
 
     addAdmin = async (req: Request, res: Response) => {
@@ -45,36 +90,37 @@ class AdminController implements IControllerBase {
             name: req.body.name,
             password: req.body.password
         })
-        try {
-            const savedAdmin = await admin.save();
-            res.json(savedAdmin)
+        const savedAdmin = await admin.save();
+        if (savedAdmin) {
+            res.json(savedAdmin);
             console.log(`New Admin has been added to DB: ${savedAdmin}`);
-        } catch (err) {
-            res.json({ message: err })
+        } else {
+            res.status(401).json({ message: "Something went wrong" })
         }
     }
 
 
     deleteAdmin = async (req: Request, res: Response) => {
-        try {
-            const removedAdmin = await Admin.remove({ _id: req.params.adminId });
+        const removedAdmin = await Admin.remove({ _id: req.params.adminId });
+        if (removedAdmin) {
             res.json({ "Removed Admin: ": removedAdmin });
-        } catch (err) {
-            res.json({ message: err })
+        } else {
+            res.status(401).json({ message: "Something went wrong" })
         }
+
     }
 
     updateAdmin = async (req: Request, res: Response) => {
-        try {
-            const updatedAdmin = await Admin.update({ _id: req.params.adminId }, {
-                $set: {
-                    name: req.body.name,
-                    password: req.body.password
-                }
-            });
+        const updatedAdmin = await Admin.update({ _id: req.params.adminId }, {
+            $set: {
+                name: req.body.name,
+                password: req.body.password
+            }
+        });
+        if (updatedAdmin) {
             res.json({ "Updated Admin: ": updatedAdmin });
-        } catch (err) {
-            res.json({ message: err })
+        } else {
+            res.status(401).json({ message: "Something went wrong" })
         }
     }
 

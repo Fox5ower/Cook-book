@@ -1,22 +1,22 @@
 var { Schema, model } = require("mongoose");
 
-const AdminSchema = new Schema({
+const DishSchema = new Schema({
     name: {
         type: String,
         required: true
     },
-    email: {
+    method: {
         type: String,
         required: true
     },
-    password: {
+    description: {
         type: String,
         required: true
     },
-    date: {
-        type: Date,
-        default: Date.now
+    engreediants: {
+        type: Array,
+        required: true
     }
 })
 
-module.exports = model("Admin", AdminSchema);
+module.exports = model("Dish", DishSchema);
