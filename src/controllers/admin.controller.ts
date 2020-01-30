@@ -3,12 +3,13 @@ import { Request, Response } from "express";
 import IControllerBase from "../interfaces/IControllerBase";
 const bcrypt = require("bcryptjs");
 const Admin = require("../models/Admin");
+const adminTokenChecker = require("../middlewares/adminTokenChecker")
 const validatePasswordInputData = require("../validation/adminChangePass");
 const validateInformationInputData = require("../validation/adminChangeInfo");
 
 
 class AdminController implements IControllerBase {
-    public path = "/api/admin";
+    public path = "/admin";
     public router = express.Router();
 
     constructor() {
@@ -16,6 +17,7 @@ class AdminController implements IControllerBase {
     }
 
     public initRoutes() {
+        this.router.use(adminTokenChecker)
         this.router.get(`${this.path}/`, this.index);
         this.router.put(`${this.path}/password`, this.adminChangePassword);
         this.router.put(`${this.path}/information`, this.adminChangeInfo);

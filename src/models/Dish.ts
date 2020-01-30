@@ -5,6 +5,10 @@ const DishSchema = new Schema({
         type: String,
         required: true
     },
+    category: {
+        type: String,
+        required: true
+    },
     method: {
         type: String,
         required: true

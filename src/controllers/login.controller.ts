@@ -8,9 +8,9 @@ const User = require("../models/User");
 const validateLoginInput = require("../validation/login");
 
 class LoginController implements IControllerBase {
-    public path = "/api/login";
+    public path = "/login";
     public router = express.Router();
-
+    public name = "LoginController"
     constructor() {
         this.initRoutes();
     }
@@ -48,7 +48,7 @@ class LoginController implements IControllerBase {
                                 payload,
                                 config.get("secretOrKey"),
                                 {
-                                    expiresIn: 31556926
+                                    expiresIn: 1440
                                 },
                                 (err: Error, token: string) => {
                                     res.json({

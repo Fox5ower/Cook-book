@@ -6,8 +6,9 @@ const User = require("../models/User");
 const validateRegisterInput = require("../validation/register")
 
 class RegisterController implements IControllerBase {
-    public path = "/api/register";
+    public path = "/register";
     public router = express.Router();
+    public name = "RegisterController";
 
     constructor() {
         this.initRoutes();

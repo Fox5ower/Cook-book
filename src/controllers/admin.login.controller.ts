@@ -10,6 +10,7 @@ const validateLoginInput = require("../validation/login");
 class AdminLoginController implements IControllerBase {
     public path = "/admin/login";
     public router = express.Router();
+    public name = "AdminLoginController"
 
     constructor() {
         this.initRoutes();
@@ -46,9 +47,9 @@ class AdminLoginController implements IControllerBase {
 
                             jwt.sign(
                                 payload,
-                                config.get("secretOrKey"),
+                                config.get("adminSecretOrKey"),
                                 {
-                                    expiresIn: 31556926
+                                    expiresIn: 1440
                                 },
                                 (err: Error, token: string) => {
                                     res.json({

@@ -1,5 +1,6 @@
 import express from "express";
 import { Application } from 'express'
+import ApiController from "./controllers/apiProtectedRoutes.controller";
 const bcrypt = require("bcryptjs")
 const mongoose = require("mongoose");
 const Admin = require("./models/Admin");
@@ -21,7 +22,11 @@ class App {
 
     private routes(controllers: { forEach: (arg: (controller: any) => void) => void; }) {
         controllers.forEach(controller => {
-            this.app.use("/", controller.router)
+            if (controller.name == "AdminLoginController" || controller.name == "RegisterController" || controller.name == "LoginController") {
+                this.app.use("/", controller.router)
+            } else {
+                this.app.use("/api", controller.router)
+            }
         })
     }
 
@@ -36,10 +41,12 @@ class App {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true
-        }).then(() => {
-            const admin = Admin.find();
-            if (admin) {
-                console.log("Admin already exists");
+        }).then(async () => {
+            const admin = await Admin.find()
+            if (admin.length >= 1) {
+                console.log("Admin already exists")
+                console.log(admin);
+
                 return;
             } else {
                 const admin = new Admin({
