@@ -103,13 +103,12 @@ class AdminController implements IControllerBase {
 
 
     deleteAdmin = async (req: Request, res: Response) => {
-        const removedAdmin = await Admin.remove({ _id: req.params.adminId });
+        const removedAdmin = await Admin.deleteMany({ _id: req.params.adminId });
         if (removedAdmin) {
             res.json({ "Removed Admin: ": removedAdmin });
         } else {
             res.status(401).json({ message: "Something went wrong" })
         }
-
     }
 
     updateAdmin = async (req: Request, res: Response) => {

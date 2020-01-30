@@ -5,6 +5,7 @@ import AdminController from "./controllers/admin.controller";
 import RegisterController from "./controllers/register.controller";
 import LoginController from "./controllers/login.controller";
 import AdminLoginController from "./controllers/admin.login.controller";
+import AdminPannelController from "./controllers/admin.pannel.controller";
 const express = require("express")
 const config = require("config");
 
@@ -15,7 +16,8 @@ const app = new App({
         new AdminController(),
         new AdminLoginController(),
         new RegisterController(),
-        new LoginController()
+        new LoginController(),
+        new AdminPannelController()
     ],
 
     middlewares: [
@@ -25,6 +27,6 @@ const app = new App({
     ]
 })
 
-app.mongoConnect();
+app.dbConnect();
 
 app.listen();

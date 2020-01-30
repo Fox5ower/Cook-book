@@ -35,7 +35,7 @@ class App {
         })
     }
 
-    public async mongoConnect() {
+    public async dbConnect() {
         await mongoose.connect(this.mongoUri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,

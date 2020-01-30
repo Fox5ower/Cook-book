@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import IControllerBase from "../interfaces/IControllerBase";
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
-const validateRegisterInput = require("../validation/register")
+const validateRegisterInput = require("../validation/registerValidation");
 
 class RegisterController implements IControllerBase {
     public path = "/register";
