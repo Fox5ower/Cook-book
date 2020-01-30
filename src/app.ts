@@ -1,7 +1,6 @@
 import express from "express";
-import { Application } from 'express'
-import ApiController from "./controllers/apiProtectedRoutes.controller";
-const bcrypt = require("bcryptjs")
+import { Application } from 'express';
+const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const Admin = require("./models/Admin");
 
