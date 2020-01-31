@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Dish1",
+        "category": "category1",
+        "method": "method1",
+        "description": "description1",
+        "engreediants": "engreediants1",
+        "image": "image1"
+    },
+    {
+        "name": "Dish2",
+        "category": "category2",
+        "method": "method2",
+        "description": "description2",
+        "engreediants": "engreediants2",
+        "image": "image2"
+    },
+    {
+        "name": "Dish3",
+        "category": "category3",
+        "method": "method3",
+        "description": "description3",
+        "engreediants": "engreediants3",
+        "image": "image3"
+    },
+    {
+        "name": "Dish4",
+        "category": "category4",
+        "method": "method4",
+        "description": "description4",
+        "engreediants": "engreediants4",
+        "image": "image4"
+    }
+]

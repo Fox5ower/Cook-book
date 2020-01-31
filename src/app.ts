@@ -1,8 +1,12 @@
 import express from "express";
 import { Application } from 'express';
+import dishData from "../config/dish.json";
+import adminInitializer from "./db_scripts/admin.initialize";
+import dishInitializer from "./db_scripts/dish.initialize";
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const Admin = require("./models/Admin");
+const Dish = require("./models/Dish");
 
 
 class App {
@@ -21,7 +25,7 @@ class App {
 
     private routes(controllers: { forEach: (arg: (controller: any) => void) => void; }) {
         controllers.forEach(controller => {
-            if (controller.name == "AdminLoginController" || controller.name == "RegisterController" || controller.name == "LoginController") {
+            if (controller.name == "AdminLoginController" || controller.name == "DishController" /* || controller.name == "RegisterController" || controller.name == "LoginController" */) {
                 this.app.use("/", controller.router)
             } else {
                 this.app.use("/api", controller.router)
@@ -40,31 +44,9 @@ class App {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true
-        }).then(async () => {
-            const admin = await Admin.find()
-            if (admin.length >= 1) {
-                console.log("Admin already exists")
-                console.log(admin);
-
-                return;
-            } else {
-                const admin = new Admin({
-                    name: "admin",
-                    password: "admin",
-                    email: "admin@admin.com"
-                });
-
-                bcrypt.genSalt(10, (err: Error, salt: any) => {
-                    bcrypt.hash(admin.password, salt, (err: Error, hash: any) => {
-                        if (err) throw err;
-                        admin.password = hash;
-                        admin.save()
-                    })
-                })
-            }
-        })
-
-        console.log(`Connected to Mongo DB with URI: ${this.mongoUri}`);
+        }).then(adminInitializer)
+            .then(dishInitializer,
+                console.log(`Connected to Mongo DB with URI: ${this.mongoUri}`))
     }
 
     public listen() {

@@ -2,10 +2,11 @@ import App from "./app";
 import bodyParser from "body-parser";
 import logger from "./middlewares/logger";
 import AdminController from "./controllers/admin.controller";
-import RegisterController from "./controllers/register.controller";
-import LoginController from "./controllers/login.controller";
+// import RegisterController from "./controllers/register.controller";
+// import LoginController from "./controllers/login.controller";
 import AdminLoginController from "./controllers/admin.login.controller";
-import AdminPannelController from "./controllers/admin.pannel.controller";
+import AdminDishController from "./controllers/admin.dish.controller";
+import DishController from "./controllers/dish.controller";
 const express = require("express")
 const config = require("config");
 
@@ -15,9 +16,10 @@ const app = new App({
     controllers: [
         new AdminController(),
         new AdminLoginController(),
-        new RegisterController(),
-        new LoginController(),
-        new AdminPannelController()
+        // new RegisterController(),
+        // new LoginController(),
+        new AdminDishController(),
+        new DishController()
     ],
 
     middlewares: [

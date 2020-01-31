@@ -5,7 +5,7 @@ const Dish = require("../models/Dish");
 const adminTokenChecker = require("../middlewares/adminTokenChecker")
 
 
-class AdminPannelController implements IControllerBase {
+class AdminDishController implements IControllerBase {
     public path = "/admin/pannel";
     public router = express.Router();
 
@@ -14,8 +14,7 @@ class AdminPannelController implements IControllerBase {
     }
 
     public initRoutes() {
-        this.router.use(adminTokenChecker)
-        this.router.get(`${this.path}/`, this.index);
+        this.router.use(adminTokenChecker);
         this.router.post(`${this.path}/add`, this.addDish);
         this.router.delete(`${this.path}/remove/:dishId`, this.removeDish);
         this.router.put(`${this.path}/update/:dishId`, this.updateDish);
@@ -76,4 +75,4 @@ class AdminPannelController implements IControllerBase {
     }
 }
 
-export default AdminPannelController;
+export default AdminDishController;

@@ -21,6 +21,10 @@ const DishSchema = new Schema({
     engreediants: {
         type: Array,
         required: true
+    },
+    image: {
+        type: String,
+        required: true
     }
 })
 
