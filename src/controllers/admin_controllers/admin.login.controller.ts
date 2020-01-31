@@ -1,11 +1,11 @@
 import * as express from "express";
 import { Request, Response } from "express";
-import IControllerBase from "../interfaces/IControllerBase";
+import IControllerBase from "../../interfaces/IControllerBase";
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
-const Admin = require("../models/Admin");
-const validateLoginInput = require("../validation/loginValidation");
+const Admin = require("../../models/Admin");
+const validateLoginInput = require("../../validation/loginValidation");
 
 class AdminLoginController implements IControllerBase {
     public path = "/admin/login";

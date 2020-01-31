@@ -1,8 +1,8 @@
 import * as express from "express";
 import { Request, Response } from "express";
-import IControllerBase from "../interfaces/IControllerBase";
-const Dish = require("../models/Dish");
-const adminTokenChecker = require("../middlewares/adminTokenChecker")
+import IControllerBase from "../../interfaces/IControllerBase";
+const Dish = require("../../models/Dish");
+const adminTokenChecker = require("../../middlewares/adminTokenChecker")
 
 
 class AdminDishController implements IControllerBase {

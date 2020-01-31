@@ -1,11 +1,11 @@
 import App from "./app";
 import bodyParser from "body-parser";
 import logger from "./middlewares/logger";
-import AdminController from "./controllers/admin.controller";
+import AdminController from "./controllers/admin_controllers/admin.controller";
 // import RegisterController from "./controllers/register.controller";
 // import LoginController from "./controllers/login.controller";
-import AdminLoginController from "./controllers/admin.login.controller";
-import AdminDishController from "./controllers/admin.dish.controller";
+import AdminLoginController from "./controllers/admin_controllers/admin.login.controller";
+import AdminDishController from "./controllers/admin_controllers/admin.dish.controller";
 import DishController from "./controllers/dish.controller";
 const express = require("express")
 const config = require("config");
