@@ -6,13 +6,14 @@ const Dish = require("../models/Dish");
 class DishController implements IControllerBase {
     public path = "/dishes";
     public router = express.Router();
+    public name = "DishController"
 
     constructor() {
         this.initRoutes();
     }
 
     public initRoutes() {
-        this.router.get(`${this.path}/`, this.index);
+        this.router.get(`${this.path}`, this.index);
         this.router.get(`${this.path}/:dishId`, this.dishById);
     }
 
@@ -28,7 +29,7 @@ class DishController implements IControllerBase {
     dishById = async (req: Request, res: Response, next: any) => {
         const dish = await Dish.findOne({ _id: req.params.dishId });
 
-        if (dish.length >= 1) {
+        if (dish) {
             res.json({ "Found dish: ": dish });
         } else {
             res.status(404).json({ message: "Not Found" });

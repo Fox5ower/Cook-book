@@ -25,7 +25,8 @@ const app = new App({
     middlewares: [
         bodyParser.json(),
         bodyParser.urlencoded({ extended: true }),
-        logger
+        logger,
+        express.static("uploads")
     ]
 })
 

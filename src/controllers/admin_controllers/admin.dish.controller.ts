@@ -3,6 +3,32 @@ import { Request, Response } from "express";
 import IControllerBase from "../../interfaces/IControllerBase";
 const Dish = require("../../models/Dish");
 const adminTokenChecker = require("../../middlewares/adminTokenChecker")
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+    destination: function (req: Request, file: Express.Multer.File, cb: Function) {
+        cb(null, "uploads");
+    },
+    filename: function (req: Request, file: Express.Multer.File, cb: Function) {
+        cb(null, file.originalname)
+    }
+});
+
+const fileFilter = (req: Request, file: Express.Multer.File, cb: Function) => {
+    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+}
+
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 1024 * 1024 * 5
+    },
+    fileFilter: fileFilter
+});
 
 
 class AdminDishController implements IControllerBase {
@@ -15,27 +41,21 @@ class AdminDishController implements IControllerBase {
 
     public initRoutes() {
         this.router.use(adminTokenChecker);
-        this.router.post(`${this.path}/add`, this.addDish);
+        this.router.post(`${this.path}/add`, upload.single("image"), this.addDish);
         this.router.delete(`${this.path}/remove/:dishId`, this.removeDish);
         this.router.put(`${this.path}/update/:dishId`, this.updateDish);
     }
 
-    index = async (req: Request, res: Response, next: any) => {
-        const dish = await Dish.find();
-        if (dish) {
-            res.json({ "All Dishes: ": dish });
-        } else {
-            res.status(404).json({ message: "Dishes Not found" })
-        }
-    }
-
     addDish = async (req: Request, res: Response, next: any) => {
+        console.log(req.file);
+
         const dish = new Dish({
             name: req.body.name,
             category: req.body.category,
             method: req.body.method,
             description: req.body.description,
-            engreediants: req.body.engreediants
+            engreediants: req.body.engreediants,
+            image: req.file.path
         })
         const savedDish = await dish.save();
         if (savedDish) {
@@ -64,7 +84,8 @@ class AdminDishController implements IControllerBase {
                 category: req.body.category || oldDish.category,
                 method: req.body.method || oldDish.method,
                 description: req.body.description || oldDish.description,
-                engreediants: req.body.engreediants || oldDish.engreediants
+                engreediants: req.body.engreediants || oldDish.engreediants,
+                image: req.file.path || oldDish.image
             }
         });
         if (updatedDish) {

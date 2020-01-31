@@ -5,7 +5,7 @@
         "method": "method1",
         "description": "description1",
         "engreediants": "engreediants1",
-        "image": "image1"
+        "image": "uploads/logo.JPG"
     },
     {
         "name": "Dish2",
@@ -13,7 +13,7 @@
         "method": "method2",
         "description": "description2",
         "engreediants": "engreediants2",
-        "image": "image2"
+        "image": "uploads/logo.JPG"
     },
     {
         "name": "Dish3",
@@ -21,7 +21,7 @@
         "method": "method3",
         "description": "description3",
         "engreediants": "engreediants3",
-        "image": "image3"
+        "image": "uploads/logo.JPG"
     },
     {
         "name": "Dish4",
@@ -29,6 +29,6 @@
         "method": "method4",
         "description": "description4",
         "engreediants": "engreediants4",
-        "image": "image4"
+        "image": "uploads/logo.JPG"
     }
 ]
