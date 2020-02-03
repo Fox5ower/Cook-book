@@ -1,20 +1,29 @@
-const express = require("express");
+import express from "express";
 import { Request, Response } from "express";
-import IControllerBase from "../interfaces/IControllerBase";
+import TokenBlackList from "../models/Token"
 const jwt = require("jsonwebtoken")
-const bcrypt = require("bcryptjs");
 const config = require("config")
 
-const tokenChecker = (req: any, res: Response, next: any) => {
+const tokenChecker = async (req: any, res: Response, next: any) => {
     var token = req.headers['access-token'];
 
     if (token) {
-        jwt.verify(token, config.get("adminSecretOrKey"), (err: Error, decoded: string) => {
-            if (err) {
-                return res.json({ message: "invalid token" });
+        console.log(token);
+
+        TokenBlackList.findOne({ token: token }, function (err: Error, obj: Object) {
+            if (obj) {
+                res.send({
+                    message: "No token Provided"
+                })
             } else {
-                req.decoded = decoded;
-                next()
+                jwt.verify(token, config.get("adminSecretOrKey"), (err: Error, decoded: string) => {
+                    if (err) {
+                        return res.json({ message: "invalid token" });
+                    } else {
+                        req.decoded = decoded;
+                        next()
+                    }
+                })
             }
         })
     } else {
@@ -22,6 +31,7 @@ const tokenChecker = (req: any, res: Response, next: any) => {
             message: "No token Provided"
         })
     }
+
 }
 
 module.exports = tokenChecker

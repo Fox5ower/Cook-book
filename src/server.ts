@@ -7,6 +7,7 @@ import AdminController from "./controllers/admin_controllers/admin.controller";
 import AdminLoginController from "./controllers/admin_controllers/admin.login.controller";
 import AdminDishController from "./controllers/admin_controllers/admin.dish.controller";
 import DishController from "./controllers/dish.controller";
+import AdminLogoutController from "./controllers/admin_controllers/admin.logout.controller";
 const express = require("express")
 const config = require("config");
 
@@ -19,7 +20,8 @@ const app = new App({
         // new RegisterController(),
         // new LoginController(),
         new AdminDishController(),
-        new DishController()
+        new DishController(),
+        new AdminLogoutController()
     ],
 
     middlewares: [
