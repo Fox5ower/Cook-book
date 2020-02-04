@@ -20,7 +20,7 @@ class DishController implements IControllerBase {
     index = async (req: Request, res: Response, next: any) => {
         const dish = await Dish.find();
         if (dish) {
-            res.json({ "All Dishes: ": dish });
+            res.json({ dish });
         } else {
             res.status(404).json({ message: "Dishes Not found" })
         }

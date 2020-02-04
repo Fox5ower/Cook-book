@@ -54,10 +54,12 @@ class AdminLoginController implements IControllerBase {
                                 (err: Error, token: string) => {
                                     res.json({
                                         success: true,
-                                        token: "Token: " + token
+                                        token: token
                                     })
+                                    req.headers["access-token"] = token;
                                 }
-                            )
+                            );
+
                         } else {
                             return res.status(401).json({ passwordincorrect: "Auth Failed" });
                         }

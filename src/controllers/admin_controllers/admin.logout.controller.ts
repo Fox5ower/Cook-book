@@ -26,9 +26,12 @@ class AdminLogoutController implements IControllerBase {
             token: req.headers['access-token']
         })
 
-        const savedBadToken = await badToken.save()
+
+        const savedBadToken = await badToken.save();
+
 
         if (savedBadToken) {
+            req.headers['access-token'] = "";
             res.json({ "New Bad Token: ": savedBadToken });
         } else {
             res.status(401).json({ message: "Something went wrong" });

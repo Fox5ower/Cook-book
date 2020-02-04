@@ -1,6 +1,7 @@
 import App from "./app";
 import bodyParser from "body-parser";
 import logger from "./middlewares/logger";
+import headers from "./middlewares/headers"
 import AdminController from "./controllers/admin_controllers/admin.controller";
 // import RegisterController from "./controllers/register.controller";
 // import LoginController from "./controllers/login.controller";
@@ -28,7 +29,8 @@ const app = new App({
         bodyParser.json(),
         bodyParser.urlencoded({ extended: true }),
         logger,
-        express.static("uploads")
+        express.static("uploads"),
+        headers
     ]
 })
 

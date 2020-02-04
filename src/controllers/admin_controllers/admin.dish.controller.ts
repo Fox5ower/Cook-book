@@ -42,8 +42,8 @@ class AdminDishController implements IControllerBase {
     public initRoutes() {
         this.router.use(adminTokenChecker);
         this.router.post(`${this.path}/add`, upload.single("image"), this.addDish);
-        this.router.delete(`${this.path}/remove/:dishId`, this.removeDish);
-        this.router.put(`${this.path}/update/:dishId`, this.updateDish);
+        this.router.delete(`${this.path}/remove/:name`, this.removeDish);
+        this.router.put(`${this.path}/update/:name`, this.updateDish);
     }
 
     addDish = async (req: Request, res: Response, next: any) => {
@@ -66,7 +66,7 @@ class AdminDishController implements IControllerBase {
     }
 
     removeDish = async (req: Request, res: Response, next: any) => {
-        const removedDish = await Dish.deleteMany({ _id: req.params.dishId });
+        const removedDish = await Dish.deleteMany({ name: req.params.name });
 
         if (removedDish) {
             res.json({ "Removed dish: ": removedDish.name });
@@ -77,8 +77,8 @@ class AdminDishController implements IControllerBase {
 
 
     updateDish = async (req: Request, res: Response) => {
-        const oldDish = await Dish.findOne({ _id: req.params.dishId });
-        const updatedDish = await Dish.updateOne({ _id: req.params.dishId }, {
+        const oldDish = await Dish.findOne({ name: req.params.name });
+        const updatedDish = await Dish.updateOne({ name: req.params.name }, {
             $set: {
                 name: req.body.name || oldDish.name,
                 category: req.body.category || oldDish.category,

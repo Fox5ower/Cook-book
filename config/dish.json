@@ -1,34 +1,66 @@
 [
     {
-        "name": "Dish1",
-        "category": "category1",
+        "name": "Tasty Cocktail",
+        "category": "cocktails",
         "method": "method1",
-        "description": "description1",
+        "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": "engreediants1",
-        "image": "uploads/logo.JPG"
+        "image": "/logo.JPG"
     },
     {
-        "name": "Dish2",
-        "category": "category2",
+        "name": "Sea Treasure",
+        "category": "fishDishes",
         "method": "method2",
-        "description": "description2",
+        "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": "engreediants2",
-        "image": "uploads/logo.JPG"
+        "image": "/logo.JPG"
     },
     {
-        "name": "Dish3",
-        "category": "category3",
+        "name": "Home Pizza",
+        "category": "fastfood",
         "method": "method3",
-        "description": "description3",
+        "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": "engreediants3",
-        "image": "uploads/logo.JPG"
+        "image": "/logo.JPG"
     },
     {
-        "name": "Dish4",
-        "category": "category4",
+        "name": "Salad Lunch",
+        "category": "salads",
         "method": "method4",
-        "description": "description4",
+        "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": "engreediants4",
-        "image": "uploads/logo.JPG"
+        "image": "/logo.JPG"
+    },
+    {
+        "name": "Roasted Chicken",
+        "category": "meatDishes",
+        "method": "method5",
+        "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
+        "engreediants": "engreediants5",
+        "image": "/logo.JPG"
+    },
+    {
+        "name": "Chicken And Mushrooms",
+        "category": "meatDishes",
+        "method": "method6",
+        "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
+        "engreediants": "engreediants6",
+        "image": "/logo.JPG"
+    },
+    {
+        "name": "Christmas Salad",
+        "category": "salads",
+        "method": "method7",
+        "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
+        "engreediants": "engreediants7",
+        "image": "/logo.JPG"
+    },
+    {
+        "name": "Fam Meatballs",
+        "category": "meatDishes",
+        "method": "method8",
+        "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
+        "engreediants": "engreediants8",
+        "image": "/logo.JPG"
     }
 ]
