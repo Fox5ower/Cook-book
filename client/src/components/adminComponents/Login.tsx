@@ -47,9 +47,7 @@ class Login extends Component<MyProps, MyState> {
                 this.setState({ redirect: true })
 
             }).catch(err => {
-
                 console.log(err);
-
             })
 
     }
@@ -58,7 +56,7 @@ class Login extends Component<MyProps, MyState> {
         const { email, password, redirect } = this.state;
 
         if (redirect) {
-            return <Redirect to="/admin/pannel" />
+            return <Redirect to="/admin" />
         }
 
         return (

@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
+import { Link, Route, Switch, Router, BrowserRouter } from 'react-router-dom';
 
 interface MyProps {
+    _id: string,
     name: string,
-    image: string,
+    category: string,
+    method: string,
     description: string,
+    engreediants: string,
+    image: string,
     counter: number
 }
 
-interface MyState {
-    counter: number
-}
 
-class MenuItem extends Component<MyProps, MyState> {
+class MenuItem extends Component<MyProps> {
 
 
     render() {
         return (
-            <div className="menu__item">
+            <Link to={`/dishes/${this.props._id}`} className="menu__item">
                 <span className="menu__item__name">{this.props.name}</span>
                 <span className="menu__item__counter">{this.props.counter}</span>
                 <br />
-                <br />
                 <span className="menu__item__description">{this.props.description}</span>
-            </div>
+            </Link>
+
         )
     }
 }

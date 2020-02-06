@@ -3,6 +3,7 @@ import axios from "axios";
 import IDish from "../../../src/interfaces/IDish"
 import MenuItem from "./MenuItem";
 
+
 interface MyProps {
     dishes: Array<IDish>
 }
@@ -35,8 +36,20 @@ class Menu extends Component<MyProps, MyState> {
                 <div className="menu__container">
                     <span className="menu__header">Menu</span>
                     <div className="menu">
+
                         {this.state.dishes.map((dish, i) => (
-                            <MenuItem key={dish.name} name={dish.name} image={dish.image} description={dish.description} counter={i + 1} />
+
+                            <MenuItem key={dish._id}
+                                _id={dish._id}
+                                name={dish.name}
+                                category={dish.category}
+                                method={dish.method}
+                                description={dish.description}
+                                engreediants={dish.engreediants}
+                                image={dish.image}
+                                counter={i + 1} >
+                            </MenuItem>
+
                         ))}
                     </div>
                 </div>
