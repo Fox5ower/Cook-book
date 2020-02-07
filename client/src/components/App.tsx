@@ -5,7 +5,6 @@ import Menu from "./Menu";
 import Login from "./adminComponents/Login";
 import Pannel from "./adminComponents/Pannel";
 import DishPage from "./DishPage";
-import IDish from "../../../src/interfaces/IDish"
 
 
 

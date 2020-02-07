@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import Header from './Header';
 import Body from "./Body"
 const jwt = require("jsonwebtoken");

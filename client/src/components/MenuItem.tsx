@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Route, Switch, Router, BrowserRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 interface MyProps {
     _id: string,
@@ -7,7 +7,7 @@ interface MyProps {
     category: string,
     method: string,
     description: string,
-    engreediants: string,
+    engreediants: Array<string>,
     image: string,
     counter: number
 }

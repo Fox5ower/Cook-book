@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import { RouteComponentProps } from "react-router";
+import { Link } from "react-router-dom";
 import IDish from "../../../src/interfaces/IDish";
+import DishDetailed from './DishDetailed';
+
+interface IBackground {
+    backgroundImage: string
+}
 
 interface MyState {
     dish: IDish,
-    dynamicImage: any
+    dynamicImage: IBackground
 }
 
 class DishPage extends Component<RouteComponentProps<any>, MyState> {
@@ -24,7 +30,7 @@ class DishPage extends Component<RouteComponentProps<any>, MyState> {
                 category: "",
                 method: "",
                 description: "",
-                engreediants: "",
+                engreediants: [],
                 image: ""
             },
             dynamicImage: {
@@ -35,14 +41,9 @@ class DishPage extends Component<RouteComponentProps<any>, MyState> {
 
     }
 
-    showDescription() {
+    toggleDescription() {
         const wrapper = this.wrapperRef.current;
-        wrapper.classList.toggle('is-nav-open')
-    }
-
-    hideDescription() {
-        const wrapper = this.wrapperRef.current;
-        wrapper.classList.toggle("is-nav-open");
+        wrapper.classList.toggle('is-recipe-open')
     }
 
 
@@ -52,7 +53,7 @@ class DishPage extends Component<RouteComponentProps<any>, MyState> {
                 this.setState({
                     dish: dish.data,
                     dynamicImage: {
-                        backgroundImage: "url(" + dish.data.image + ")"
+                        backgroundImage: "linear-gradient(45deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url(" + dish.data.image + ")"
                     }
                 })
             })
@@ -61,22 +62,18 @@ class DishPage extends Component<RouteComponentProps<any>, MyState> {
     render() {
         return (
             <div className="dish-page">
-                <div ref={this.wrapperRef} className="wrapper">
-                    <div className="nav">
-                        <span className="close" onClick={() => this.hideDescription()}></span>
-                        <div className="nav__body">
-                            {this.state.dish.description}
-                        </div>
-                    </div>
-                </div>
-
-
-
-
+                <DishDetailed
+                    dish={this.state.dish}
+                    toggleDescription={this.toggleDescription}
+                    wrapperRef={this.wrapperRef}>
+                </DishDetailed>
                 <div className="dish-page-container" style={this.state.dynamicImage}>
+                    <Link to="/dishes" className="menu-link">
+                        Menu
+                    </Link>
                     <div className="dish-container">
                         <div className="img-container">
-                            <img src={this.state.dish.image} />
+                            <img src={this.state.dish.image} alt={this.state.dish.name} />
                             <div className="short-description">
                                 <span className="name">
                                     {this.state.dish.name}
@@ -84,7 +81,7 @@ class DishPage extends Component<RouteComponentProps<any>, MyState> {
 
                                 <span className="description">{this.state.dish.description}
                                 </span>
-                                <div className="button" onClick={() => this.showDescription()}>Show Recipe</div>
+                                <div className="button" onClick={() => this.toggleDescription()}>Show Recipe</div>
                             </div>
                         </div>
                     </div>

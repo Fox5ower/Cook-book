@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import IDish from "../../../../src/interfaces/IDish"
-import MenuItem from '../MenuItem';
-import { useTable } from 'react-table'
 import Table from "./Table"
 
 interface MyProps {

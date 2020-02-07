@@ -139,18 +139,19 @@ body{
     .admin__login-form-container{
         width: 100vw;
         height: 100vh;
-        background-color: rgb(245, 245, 245);
+        background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url(/menu-page-bg.png);
+        background-repeat: no-repeat;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
 
         .admin-login__form{
+            font-family: "Montserrat";
             max-width: 500px;
             margin: 10px auto;
             padding: 20px;
-            background: #aebbcc;
-            border-radius: 8px;
+            background: #ffffff67;
 
             fieldset{
                 border: none;
@@ -158,9 +159,11 @@ body{
 
             legend {
                 font-size: 1.4em;
-                margin-bottom: 10px;
                 color: black;
+                margin-bottom: 30px;
+                text-decoration: underline;
             }
+
 
             label {
                 display: block;
@@ -181,17 +184,16 @@ body{
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box; 
                 background-color: #fafafa;
-                color:#8a97a0;
+                color: black;
                 -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
                 box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
                 margin-bottom: 30px;
-                transition: 300ms;
+                transition: all .3s;
             }
 
             input[type="text"]:focus,
             input[type="email"]:focus{
-                transition: 300ms;
-                background: #d8ddec;
+                background: #d4d4d4;
             }
 
             input[type="submit"]{
@@ -206,16 +208,15 @@ body{
                 font-style: normal;
                 width: 50%;
                 margin-bottom: 10px;
-                border: 2px solid rgba(0, 0, 0, 0.158);
-                border-radius: 5px;
+                border: 1px solid black;
                 transition: 300ms;
                 cursor: pointer;
             }
 
             input[type="submit"]:hover{
-                border: 2px solid rgba(0, 0, 0, 0.5);
-                background: #fafafa98;
-                transition: 300ms;
+                border: 1px solid black;
+                background: #fafafa60;
+                box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.5);
             }
         }
 
@@ -319,11 +320,11 @@ body{
             margin: 0 0 0 -550px;
         }
         
-        .wrapper.is-nav-open {
+        .wrapper.is-recipe-open {
             margin-left: 0px;
         }
         
-        .nav {
+        .recipe {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -332,6 +333,44 @@ body{
             width: 550px;
             height: 100vh;
             background-color: rgba(0, 0, 0, 0.9);
+
+            .recipe__body{
+                width: 80%;
+                height: 75%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: left;
+
+                .body__name{
+                    font-size: 42pt;
+                }
+
+                .engreediants{
+                    text-align: left;
+
+                    ul{
+                        list-style-type: none;
+                        padding-left: 0;
+
+                        li{
+                            padding: 3px 10px;
+                        }
+
+                        .engreediant{
+                            margin: 10px;
+                        }
+                    }
+                }
+
+                .method{
+                    text-align: left;
+
+                    .method__text{
+                        padding: 6px 10px;
+                    }
+                }
+            }
 
             .close {
                 position: absolute;
@@ -376,6 +415,20 @@ body{
             align-items: center;
             justify-content: center;
 
+            .menu-link{
+                font-family: "Montserrat";
+                font-weight: lighter;
+                font-size: 14pt;
+                color: rgba(255, 255, 255, 0.6);
+                transition: all .3s;
+                margin: 0 5px 25px;
+                cursor: pointer;
+            }
+
+            .menu-link:hover{
+                color: rgba(255, 255, 255, 1);
+            }
+
             .dish-container{
                 z-index: 2;
                 background-color: rgba(0, 0, 0, 0.5);
@@ -389,14 +442,19 @@ body{
                         width: 85vw;
                         img{
                             object-fit: cover;
-                            height: 90vh;
+                            height: 80vh;
                             width: 40vw;
                             border: 5px solid white;
+                            cursor: pointer;
+                            transition: all .3s;
+                        }
+                        img:hover{
+                            transform: scale(0.95);
                         }
 
                         .short-description{
                             color: white;
-                            height: 90vh;
+                            height: 80vh;
                             display: flex;
                             flex-direction: column;
                             justify-content: space-between;
