@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
-import IDish from "../../../src/interfaces/IDish";
+import IDish from "../interfaces/IDish";
 import DishDetailed from './DishDetailed';
 
 interface IBackground {

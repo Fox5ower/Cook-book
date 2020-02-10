@@ -5,14 +5,33 @@ import Body from "./Body"
 const jwt = require("jsonwebtoken");
 
 interface IDecoded {
+    id: string,
+    name: string,
     exp: number;
 }
 
-class Pannel extends Component {
+interface MyProps {
 
-    loggedIn() {
+}
+
+interface MyState {
+    id: string
+}
+
+
+class Pannel extends Component<MyProps, MyState> {
+
+    constructor(props: MyProps) {
+        super(props)
+
+        this.state = {
+            id: ""
+        }
+    }
+
+    loggedIn(): string {
         const token = this.getToken()
-        return !!token && this.isToken(token);
+        return this.isToken(token);
     }
 
     getToken() {
@@ -25,38 +44,31 @@ class Pannel extends Component {
         })
         if (dec) {
             if (dec.exp < Date.now() / 1000) {
-                console.log("decoded exp < date should redir");
                 return false;
             } else {
-                console.log("decoded ok");
-                return true
+                console.log(dec.id)
+                return dec.id
             }
         } else {
             return false;
         }
-
     }
 
 
     render() {
-        if (this.loggedIn()) {
+        if (typeof this.loggedIn() === "string") {
+            const id = this.loggedIn()
             return (
                 <div className="pannel-container">
-                    <Header />
+                    <Header id={id} />
                     <Route path="/admin" component={Body}></Route>
                 </div>
-
             )
         } else {
-            console.log("We are going home");
             return (
-
                 <Redirect to="/"></Redirect>
-
             )
-
         }
-
     }
 }
 

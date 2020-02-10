@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import IDish from "../../../src/interfaces/IDish";
+import IDish from "../interfaces/IDish";
 
 
 interface MyProps {

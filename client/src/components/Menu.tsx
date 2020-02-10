@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import IDish from "../../../src/interfaces/IDish"
+import IDish from "../interfaces/IDish"
 import MenuItem from "./MenuItem";
 
 

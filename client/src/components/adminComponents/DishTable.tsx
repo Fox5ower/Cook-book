@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import IDish from "../../../../src/interfaces/IDish"
+import IDish from "../../interfaces/IDish"
 import Table from "./Table"
 
 interface MyProps {
@@ -11,7 +11,7 @@ interface MyState {
     dishes: Array<IDish>,
 }
 
-class DishDB extends Component<MyProps, MyState> {
+class DishTable extends Component<MyProps, MyState> {
 
     constructor(props: MyProps) {
         super(props)
@@ -49,23 +49,11 @@ class DishDB extends Component<MyProps, MyState> {
 
         const data = this.state.dishes;
         return (
-
             <Table columns={columns} data={data}></Table>
-            // <div>{this.state.dishes.map((dish, i) => (
-            //     <MenuItem key={dish._id}
-            //         _id={dish._id}
-            //         name={dish.name}
-            //         category={dish.category}
-            //         method={dish.method}
-            //         description={dish.description}
-            //         engreediants={dish.engreediants}
-            //         image={dish.image}
-            //         counter={i + 1} />
-            // ))}</div>
         )
 
     }
 }
 
 
-export default DishDB
+export default DishTable

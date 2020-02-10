@@ -1,0 +1,11 @@
+interface IDish {
+    _id: string,
+    name: string,
+    category: string,
+    method: string,
+    description: string,
+    engreediants: Array<string>,
+    image: string
+}
+
+export default IDish;

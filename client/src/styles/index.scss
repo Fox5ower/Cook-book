@@ -7,6 +7,10 @@ html{
     height: 100vh;
 }
 
+hr{
+    margin: -7% 0 0 0;
+}
+
 body{
     margin: 0;
     font-family: "Dancing Script", cursive;
@@ -107,13 +111,13 @@ body{
                 flex-wrap: wrap;
                 justify-content: space-around;
                 align-items: center;
-                
+
                 .menu__item{
                     margin: 1%;
                     max-width: 30%;
                     text-align: left;
                     cursor: pointer;
-                    
+
                     .menu__item__name{
                         font-size: 23pt;
                         text-decoration: underline 1px ;
@@ -180,9 +184,9 @@ body{
                 outline: 0;
                 padding: 10px;
                 width: 100%;
-                box-sizing: border-box; 
+                box-sizing: border-box;
                 -webkit-box-sizing: border-box;
-                -moz-box-sizing: border-box; 
+                -moz-box-sizing: border-box;
                 background-color: #fafafa;
                 color: black;
                 -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
@@ -223,12 +227,12 @@ body{
     }
 
     .pannel-container{
-        color: black;
         font-family: "Montserrat";
-
+        color: white;
+        
         .pannel__header{
-            background: linear-gradient(45deg, #b7bbd3, #3f85ad);
-            padding: 0.8vw 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1vw 0;
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.349);
 
             display: flex;
@@ -236,53 +240,20 @@ body{
             justify-content: space-between;
             align-items: center;
 
-            .header__nav{
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: flex-start;
-                margin: 0 3vh;
-                width: 33%;
-
-                .nav__item{
-                    padding: 10px;
-                    border: 1px solid rgba(0, 0, 0, 0.2);
-                    margin: 1vh;
-                    color: black;
-                    text-decoration: none;
-                    font-size: 0.8vw;
-                    cursor: pointer;
-                    transition: 300ms;
-                }
-
-                .nav__item:hover{
-                    border: 1px solid rgba(0, 0, 0, 0.5);
-                    background-color: rgba(255, 255, 255, 0.2);
-                    transition: 300ms;
-                }
-            }
-
-            .header__logout{
-                margin: 0 3vh;
-                width: 33%;
-                text-decoration: underline 1px;
+            .header__logo{
+                font-family: "Dancing Script", cursive;
+                font-size: 22pt;
+                width: 25%;
                 cursor: pointer;
-                transition: 300ms;
-            }
-
-            .header__logout:hover{
-                transition: 300ms;
-                color: rgb(255, 255, 255);
-                text-shadow: 3px 3px 10px white ;
             }
 
             .header__pannel-name{
-                width: 33%;
+                width: 25%;
                 font-size: 2.1vw;
                 cursor: pointer;
 
                 a{
-                    color: black;
+                    color: white;
                     text-decoration: none;
                     transition: 300ms;
                 }
@@ -292,20 +263,158 @@ body{
                 color: rgb(255, 255, 255);
                 text-shadow: 3px 3px 10px white ;
             }
+
+            .header__admin-actions{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                width: 25%;
+                .miniature{
+                    width: 50px;
+                    height: 50px;
+                    line-height: 48px;
+                    background: rgba(255, 255, 255, 0.5);
+                    border-radius: 50%;
+                    text-align: center;
+                    font-size: 16pt;
+                    cursor: pointer;
+                    transition: all 300ms;
+                }
+
+                .miniature:hover{
+                    box-shadow: inset 0px 0px 5px black;
+                    background: rgb(214, 214, 214);
+                }
+
+                .miniature:hover .actions{
+                    visibility: visible;
+                    opacity: 1;
+                      transition: .3s linear;
+                    }
+
+                .actions {
+                    visibility: hidden;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: space-between;
+                    z-index: 1;
+                    opacity: 0;
+                    width: 11.8%;
+                    padding: 0px 20px;
+                    background: rgb(66, 66, 66);
+                    position: absolute;
+                    // top: 12%;
+                    right: 5.3%;
+                    border-radius: 2px;
+                    font: 16px;
+                    cursor: default;
+                    transform: translateY(9px);
+                    transition: all 0.3s ease-in-out;
+                    box-shadow: 0 0 3px rgba(56, 54, 54, 0.86);
+
+                    .info, .action{
+                        color: white;
+                        font-size: 10pt;
+                    }
+
+                    .action{
+                        padding: 0;
+                        width: 100%;
+                        height: 30px;
+                        line-height: 30px;
+                        margin: 10px 0;
+                        cursor: pointer;
+                        border: 1px solid rgba(255, 255, 255, 0.5);
+                        transition: all .3s
+                    }
+
+                    .action:hover{
+                        border-radius: 5px;
+                        background-color: rgba(255, 255, 255, 0.5);
+                    }
+
+                    
+                  }
+            }
         }
 
         table {
             font-size: 0.9rem;
             border-collapse: collapse;
             width: 100%;
-
+            color: rgb(58, 58, 58);
+            margin-top: 20px;
             th, td {
                 text-align: left;
-                padding: 8px;
+                padding: 10px;
               }
-              
+
               tr:nth-child(even) {background-color: #f2f2f2;}
-          }   
+          }
+
+        //   .modal{
+        //     position: absolute;
+        //     padding: 120px;
+        //     top: 50%;
+        //     left: 50%;
+        //     z-index: 100;
+        //     transform: translate(-50%, -50%);
+        //     background-color: rgba(0, 0, 0, 0.8);
+        //     color: white;
+        //     transition: transform 0.5s ease, opacity 0.5s ease;
+        //     transition-delay: 0.1s;
+        //     opacity: 0;
+        //     visibility: hidden;
+        // }
+
+        // .overlay{
+        //     position: absolute;
+        //     width: 100%;
+        //     height: 100%;
+        //     top: 0;
+        //     left: 0;
+        //     right: 0;
+        //     bottom: 0;
+        //     z-index: 99;
+        //     background-color: #ffffff81;
+        //     opacity: 0;
+        //     transform: scale(0.5);
+        //     transition: transform 0.5s ease, opacity 0.5s ease;
+        // }
+
+        // .showing{
+        //     opacity: 1;
+        //     visibility: visible;
+        // }
+        // .overlay-showing{
+        //     opacity: 1;
+        //     visibility: visible;
+        //     transform: scale(1);
+        // }
+
+        .modal{
+            z-index: 9999;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 250px;
+            min-height: 100px;
+            padding: 120px;
+            border-radius: 2px;
+            transform: translate(-50%, -50%);
+            transition: all .4s;
+            background: rgba(0, 0, 0, 0.9);
+        }
+        .bg{
+            z-index: 9998;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(255, 255, 255, 0.5);
+        }
     }
 
     .dish-page{
@@ -319,11 +428,11 @@ body{
             transition: all .5s;
             margin: 0 0 0 -550px;
         }
-        
+
         .wrapper.is-recipe-open {
             margin-left: 0px;
         }
-        
+
         .recipe {
             display: flex;
             flex-direction: column;
@@ -492,9 +601,9 @@ body{
                             }
                         }
 
-                        
+
                     }
-                    
+
             }
         }
     }
