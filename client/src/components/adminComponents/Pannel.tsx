@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Header from './Header';
-import Body from "./Body"
+import DishTable from './DishTable';
+import AddPage from './AddPage';
+import EditPage from './EditPage';
+import MainPage from '../MainPage';
 const jwt = require("jsonwebtoken");
 
 interface IDecoded {
@@ -61,12 +64,17 @@ class Pannel extends Component<MyProps, MyState> {
             return (
                 <div className="pannel-container">
                     <Header id={id} />
-                    <Route path="/admin" component={Body}></Route>
+                    <Switch>
+                        <Route path={"/admin/add"} component={AddPage} />
+                        <Route path={"/admin/edit/:name"} component={EditPage} />
+                        <Route exact path={"/admin"} component={DishTable} />
+
+                    </Switch>
                 </div>
             )
         } else {
             return (
-                <Redirect to="/"></Redirect>
+                <Redirect to="/login"></Redirect>
             )
         }
     }

@@ -35,17 +35,13 @@ class Login extends Component<MyProps, MyState> {
     }
 
     submitHandler = (e: SyntheticEvent) => {
-
         e.preventDefault();
         console.log(this.state);
-
         axios.post("http://localhost:3001/admin/login", this.state)
             .then((res) => {
-
                 console.log(res.data.token);
                 localStorage.setItem("token", res.data.token);
                 this.setState({ redirect: true })
-
             }).catch(err => {
                 console.log(err);
             })
@@ -54,7 +50,6 @@ class Login extends Component<MyProps, MyState> {
 
     render() {
         const { email, password, redirect } = this.state;
-
         if (redirect) {
             return <Redirect to="/admin" />
         }

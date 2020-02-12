@@ -5,6 +5,8 @@ import Menu from "./Menu";
 import Login from "./adminComponents/Login";
 import Pannel from "./adminComponents/Pannel";
 import DishPage from "./DishPage";
+import AddPage from "./adminComponents/AddPage";
+import EditPage from "./adminComponents/EditPage";
 
 
 
@@ -20,6 +22,8 @@ class App extends Component {
 
                     <Route path="/login" component={Login}></Route>
                     <Route path="/admin" component={Pannel}></Route>
+                    <Route path="/add" component={AddPage}></Route>
+                    <Route path="/edit/:name" component={EditPage}></Route>
 
                     <Redirect from="/" to="/home" />
                 </Switch>

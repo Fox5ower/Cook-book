@@ -5,7 +5,7 @@ interface IDish {
     method: string,
     description: string,
     engreediants: Array<string>,
-    image: string
+    image: any
 }
 
 export default IDish;

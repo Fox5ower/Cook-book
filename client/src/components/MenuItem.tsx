@@ -19,9 +19,12 @@ class MenuItem extends Component<MyProps> {
     render() {
         return (
             <Link to={`/dishes/${this.props._id}`} className="menu__item">
-                <span className="menu__item__name">{this.props.name}</span>
-                <span className="menu__item__counter">{this.props.counter}</span>
+                <div className="memu__item__head-container">
+                    <span className="menu__item__name">{this.props.name}</span>
+                    <span className="menu__item__counter">{this.props.counter}</span>
+                </div>
                 <br />
+                <hr />
                 <span className="menu__item__description">{this.props.description}</span>
             </Link>
 

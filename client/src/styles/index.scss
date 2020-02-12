@@ -2,10 +2,6 @@
 @import url("https://fonts.googleapis.com/css?family=Dancing+Script&display=swap");
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
-html{
-    width: 100vw;
-    height: 100vh;
-}
 
 hr{
     margin: -7% 0 0 0;
@@ -72,8 +68,8 @@ body{
     }
 
     .menu-page-container{
-        width: 100%;
-        height: 100%;
+        min-width: 100%;
+        min-height: 100%;
         position: absolute;
         background-image: url("../img/menu-page-bg.png");
         background-size: cover;
@@ -82,51 +78,63 @@ body{
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        justify-content: center;
+        justify-content: flex-start;
 
 
 
         .menu__container{
                 width: 100%;
-                height: 75%;
                 max-height: fit-content;
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
-                align-items: flex-start;
+                justify-content: flex-start;
+                align-items: center;
 
             .menu__header{
                 font-size: 78pt;
-                margin: 0 5%;
             }
 
             .menu{
-                margin: 0 5%;
                 width: 90%;
                 max-width: 90%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.65);
                 display: flex;
-                flex-direction: column;
+                flex-direction: row;
                 flex-wrap: wrap;
-                justify-content: space-around;
-                align-items: center;
+                justify-content: center;
+
 
                 .menu__item{
-                    margin: 1%;
-                    max-width: 30%;
+                    background-color: rgba(0, 0, 0, 0.65);
+                    margin: 20px;
+                    padding: 35px;
+                    width: 240px;
+                    max-height: 200px;
+                    border-radius: 1px;
+                    border: 4px solid white;
+                    transition: all .3s;
                     text-align: left;
+                    overflow: hidden;
                     cursor: pointer;
 
-                    .menu__item__name{
-                        font-size: 23pt;
-                        text-decoration: underline 1px ;
+                    .memu__item__head-container{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        .menu__item__name{
+                            font-size: 22pt;
+                        }
+    
+                        .menu__item__counter{
+                            font-size: 22pt;
+                            font-style: italic;
+                            color: rgba(255, 255, 255, 0.2);
+                        }
                     }
 
-                    .menu__item__counter{
-                        font-size: 32pt;
-                        margin-left: 30%;
-                        font-style: italic;
+                    hr{
+                        border: 1px solid white;
+                        width: 100%;
+                        margin: 0 0 10px 0;
                     }
 
                     .menu__item__description{
@@ -135,7 +143,10 @@ body{
                         font-weight: lighter;
                     }
                 }
-
+                .menu__item:hover{
+                    transform: scale(1.1);
+                    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.8);
+                }
             }
         }
     }
@@ -244,7 +255,13 @@ body{
                 font-family: "Dancing Script", cursive;
                 font-size: 22pt;
                 width: 25%;
+                transition: all .3s;
                 cursor: pointer;
+            }
+
+            .header__logo:hover{
+                color: rgb(255, 255, 255);
+                text-shadow: 3px 3px 10px white ;
             }
 
             .header__pannel-name{
@@ -344,67 +361,149 @@ body{
             border-collapse: collapse;
             width: 100%;
             color: rgb(58, 58, 58);
-            margin-top: 20px;
+            margin: 20px 0;
             th, td {
                 text-align: left;
                 padding: 10px;
-              }
+                .action-container{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    .edit, .delete{
+                        margin: 0 10px;
+                        cursor: pointer;
+                    }
+    
+                    .edit, .delete svg{
+                        color: black;
+                        transition: all .2s;
+                    }
+    
+                    .edit:hover, .delete:hover > svg{
+                        color: rgb(187, 187, 187);
+                    }
+                }
+                }
 
-              tr:nth-child(even) {background-color: #f2f2f2;}
-          }
+                tr:nth-child(even) {background-color: #f2f2f2;}
+            }
 
-        //   .modal{
-        //     position: absolute;
-        //     padding: 120px;
-        //     top: 50%;
-        //     left: 50%;
-        //     z-index: 100;
-        //     transform: translate(-50%, -50%);
-        //     background-color: rgba(0, 0, 0, 0.8);
-        //     color: white;
-        //     transition: transform 0.5s ease, opacity 0.5s ease;
-        //     transition-delay: 0.1s;
-        //     opacity: 0;
-        //     visibility: hidden;
-        // }
+        .add-dish{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
 
-        // .overlay{
-        //     position: absolute;
-        //     width: 100%;
-        //     height: 100%;
-        //     top: 0;
-        //     left: 0;
-        //     right: 0;
-        //     bottom: 0;
-        //     z-index: 99;
-        //     background-color: #ffffff81;
-        //     opacity: 0;
-        //     transform: scale(0.5);
-        //     transition: transform 0.5s ease, opacity 0.5s ease;
-        // }
+            .add-dish__icon{
+                color: black;
+                cursor: pointer;
+                transition: all .2s;
+            }
 
-        // .showing{
-        //     opacity: 1;
-        //     visibility: visible;
-        // }
-        // .overlay-showing{
-        //     opacity: 1;
-        //     visibility: visible;
-        //     transform: scale(1);
-        // }
+            .add-dish__icon:hover{
+                color: rgb(187, 187, 187);
+                transform: scale(1.2)
+            }
+        }
 
+        
+        
+        .pagination{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            span{
+                margin: 0 20px;
+            }
+            button{
+                background-color: transparent;
+                border: none;
+                transition: all .2s;
+                cursor: pointer;
+            }
+        }
         .modal{
             z-index: 9999;
             position: absolute;
             top: 50%;
             left: 50%;
-            min-width: 250px;
-            min-height: 100px;
-            padding: 120px;
+            padding: 40px 80px;
             border-radius: 2px;
             transform: translate(-50%, -50%);
             transition: all .4s;
             background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            form{
+                font-family: "Montserrat";
+                
+                fieldset{
+                    padding-top: 20px;
+                }
+    
+                legend {
+                    font-size: 12pt;
+                }
+    
+    
+                label {
+                    display: block;
+                    margin-bottom: 8px;
+                }
+    
+                input[type="text"],
+                input[type="email"],
+                input[type="password"]{
+                    background: rgba(255,255,255,.1);
+                    border: none;
+                    border-radius: 4px;
+                    font-size: 15px;
+                    margin: 0;
+                    outline: 0;
+                    padding: 10px;
+                    width: 100%;
+                    box-sizing: border-box;
+                    -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box;
+                    background-color: #fafafa;
+                    color: black;
+                    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+                    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+                    margin-bottom: 15px;
+                    transition: all .3s;
+                }
+    
+                input[type="text"]:focus,
+                input[type="email"],
+                input[type="password"]:focus{
+                    background: #d4d4d4;
+                }
+            }
+            .button{
+                margin: 10px;
+                padding: 5px 50px;
+                border: 1px solid rgba(226, 226, 226, 0.250);
+                background-color: rgba(255, 255, 255, 0);
+                color: white;
+                font-family: "Montserrat";
+                font-size: 12pt;
+                text-decoration: none;
+                cursor: pointer;
+                transition: 300ms;
+            }
+    
+            .button:hover{
+                transition: 300ms;
+                background-color: rgba(255, 255, 255, 0.185);
+                border: 1px solid rgb(255, 255, 255);
+            }
         }
         .bg{
             z-index: 9998;
@@ -415,6 +514,112 @@ body{
             left: 0;
             background: rgba(255, 255, 255, 0.5);
         }
+    }
+
+    .edit-form{
+        color: black;
+        width: 100%;
+        margin: 30px 0;
+        font-family: "Montserrat";
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+                #form{
+                    width: 80%;
+                    fieldset{
+                        padding-top: 20px;
+                    }
+        
+                    legend {
+                        font-size: 12pt;
+                    }
+        
+        
+                    label {
+                        display: block;
+                        margin-bottom: 8px;
+                    }
+        
+                    textarea{
+                        background: rgba(255,255,255,.1);
+                        border: none;
+                        border-radius: 4px;
+                        font-size: 15px;
+                        margin: 0;
+                        outline: 0;
+                        width: 100%;
+                        height: 30px;
+                        padding: 6px 10px;
+                        box-sizing: border-box;
+                        background-color: #fafafa;
+                        color: black;
+                        box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+                        margin-bottom: 15px;
+                        transition: all .3s;
+                    }
+        
+                    textarea:focus{
+                        background: #d4d4d4;
+                    }
+
+                    input[type="submit"]{
+                        margin: 10px;
+                        padding: 5px 50px;
+                        border: 1px solid rgba(0, 0, 0, 0.25);
+                        background-color: rgba(255, 255, 255, 0);
+                        font-family: "Montserrat";
+                        font-size: 12pt;
+                        text-decoration: none;
+                        cursor: pointer;
+                        transition: 300ms;
+                    }
+            
+                    input[type="submit"]:hover{
+                        transition: 300ms;
+                        background-color: rgba(0, 0, 0, 0.185);
+                        border: 1px solid rgb(0, 0, 0);
+                    }
+
+                    .image-input{
+                        .form-group{
+                            padding:1em;
+                            margin:1em;
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
+                            .label{
+
+                                padding: 20px 20px 0;
+                                width:100px;
+                                border: 2px solid rgb(194, 194, 194);
+                                border-radius:5px;
+                                display:block;
+                                transition: all .3s;
+                                cursor:pointer;
+                                text-align:center;
+
+                                i{
+                                    display:block;
+                                    font-size:42px;
+                                    padding-bottom:16px;
+                                }
+
+                                input[type=file]{
+                                    outline:0;
+                                    opacity:0;
+                                    pointer-events:none;
+                                    user-select:none;
+                                }
+                            }
+
+                            .label:hover{
+                                border: 2px solid #000;
+                            }
+                        }
+                    }
+                }
     }
 
     .dish-page{

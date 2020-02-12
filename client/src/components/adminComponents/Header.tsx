@@ -56,7 +56,7 @@ class Header extends Component<MyProps, MyState> {
             <>
                 <div className="pannel__header">
                     <div className="header__logo">
-                        <Link to={"/home"}>Coock-Book</Link>
+                        <Link to={"/"}>Coock-Book</Link>
                     </div>
                     <div className="header__pannel-name"><Link to="/admin">DASHBOARD</Link></div>
                     <div className="header__admin-actions">

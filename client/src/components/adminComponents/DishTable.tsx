@@ -4,7 +4,7 @@ import IDish from "../../interfaces/IDish"
 import Table from "./Table"
 
 interface MyProps {
-    dishes: Array<IDish>
+
 }
 
 interface MyState {
@@ -15,9 +15,20 @@ class DishTable extends Component<MyProps, MyState> {
 
     constructor(props: MyProps) {
         super(props)
+        this.onDeleteClick = this.onDeleteClick.bind(this)
         this.state = {
             dishes: []
         }
+    }
+
+    onDeleteClick(dishName: string) {
+        axios.delete(`http://localhost:3001/api/panel/remove/${dishName}`)
+            .then(() => axios.get("http://localhost:3001/dishes")
+                .then((dishes) => {
+                    this.setState({
+                        dishes: dishes.data.dish
+                    })
+                }))
     }
 
     componentWillMount() {
@@ -31,25 +42,18 @@ class DishTable extends Component<MyProps, MyState> {
     render() {
         const columns = [
             {
-                Header: "ID",
-                accessor: "_id"
-            },
-            {
                 Header: "Name",
                 accessor: "name"
             },
             {
                 Header: "Category",
                 accessor: "category"
-            },
-            {
-                Header: "Edit"
             }
         ]
 
         const data = this.state.dishes;
         return (
-            <Table columns={columns} data={data}></Table>
+            <Table columns={columns} data={data} onDeleteClick={this.onDeleteClick}></Table>
         )
 
     }
