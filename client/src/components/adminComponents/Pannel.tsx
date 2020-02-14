@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Header from './Header';
-import DishTable from './DishTable';
-import AddPage from './AddPage';
-import EditPage from './EditPage';
-import MainPage from '../MainPage';
+import DishTable from './adminDishComponents/DishTable';
+import AddPage from './adminDishComponents/AddPage';
+import EditPage from './adminDishComponents/EditPage';
 const jwt = require("jsonwebtoken");
 
 interface IDecoded {

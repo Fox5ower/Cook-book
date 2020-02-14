@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import IDish from "../../interfaces/IDish"
+import IDish from "../../../interfaces/IDish"
 import Table from "./Table"
 
 interface MyProps {

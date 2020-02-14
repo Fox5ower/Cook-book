@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, ImgHTMLAttributes } from 'react';
 import axios from "axios";
-import { RouteComponentProps } from "react-router";
+import { RouteComponentProps, Redirect } from "react-router";
 import { FaPaperclip } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import IDish from '../../interfaces/IDish';
-import tokenInterceptor from '../../middlewares/tokenInterceptor';
+import IDish from '../../../interfaces/IDish';
+import tokenInterceptor from '../../../middlewares/tokenInterceptor';
+import Input from './Input';
+import ImageInput from './ImageInput';
 
 interface MyState {
     dish: IDish,
+    fileName: string,
+    redirect: boolean
 }
 
 class EditPage extends Component<RouteComponentProps<any>, MyState> {
@@ -24,7 +28,9 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                 description: "",
                 engreediants: [],
                 image: {}
-            }
+            },
+            fileName: "",
+            redirect: false
         }
 
     }
@@ -102,6 +108,13 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
             })
     }
 
+    fileHandler(e: any) {
+        this.setState({
+            fileName: e.currentTarget.files[0].name
+        });
+        document.querySelector(".label").classList.add("label-loaded");
+        document.querySelector(".dish-img").setAttribute("src", "/" + e.currentTarget.files[0].name);
+    }
 
     submitHandler = (e: any) => {
 
@@ -120,36 +133,47 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
         });
         axios.put(`http://localhost:3001/api/panel/update/${this.props.match.params.name}`, body)
             .then((res) => {
-                console.log(res);
-            }).catch(err => {
-                console.log(err);
+                if (res.status === 200) {
+                    this.setState({
+                        dish: {
+                            _id: "",
+                            name: "",
+                            category: "",
+                            method: "",
+                            description: "",
+                            engreediants: [],
+                            image: {}
+                        },
+                        redirect: true
+                    })
+                }
             })
     }
 
     render() {
+        if (this.state.redirect === true) {
+            return (
+                <Redirect to="/admin"></Redirect>
+            )
+        }
         const { name, category, description, engreediants, method } = this.state.dish
         return (
             <div className="edit-form">
+                <span>{name}</span>
                 <form id="form" method="POST" action="/api/panel/update/:name" onSubmit={this.submitHandler} >
-                    <textarea name="name" id="name" value={name} onChange={this.changeHandler} />
-                    <textarea name="category" id="category" value={category} onChange={this.changeHandler} />
-                    <textarea name="description" id="description" value={description} onChange={this.changeHandler} />
-                    <textarea name="engreediants" id="engreediants" value={engreediants} onChange={this.changeHandler} />
-                    <textarea name="method" id="method" value={method} onChange={this.changeHandler} />
-                    <div className="image-input">
-                        <div className="form-group">
-                            <label className="label">
-                                <IconContext.Provider value={{ size: "1.5em" }}>
-                                    <FaPaperclip />
-                                </IconContext.Provider>
-                                <br />
-                                <span className="title">Load IMG...</span>
-                                <input type="file" name="image" id="image" />
-                            </label>
-                        </div>
-                    </div>
+                    <fieldset>
+                        <Input name="name" maxLength={20} value={name} onChange={e => this.changeHandler(e)}></Input>
+                        <Input name="category" maxLength={15} value={category} onChange={e => this.changeHandler(e)}></Input>
+                        <Input name="description" maxLength={220} value={description} onChange={e => this.changeHandler(e)}></Input>
+                        <Input name="engreediants" maxLength={150} value={engreediants} onChange={e => this.changeHandler(e)}></Input>
+                        <Input name="method" maxLength={220} value={method} onChange={e => this.changeHandler(e)}></Input>
 
-                    <input type="submit" value="Submit Changes" />
+                        <img className="dish-img" src={this.state.dish.image} alt="dish-image" />
+                        <ImageInput fileName={this.state.fileName} fileHandler={e => this.fileHandler(e)}></ImageInput>
+
+                        <input type="submit" value="Submit Changes" />
+                    </fieldset>
+
                 </form>
             </div>
         )

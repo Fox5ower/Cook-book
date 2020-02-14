@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTable, usePagination } from 'react-table'
 import { IconContext } from "react-icons";
 import { FaArrowLeft, FaArrowRight, FaEdit, FaTrash, FaPlusCircle } from "react-icons/fa";
@@ -37,6 +37,12 @@ const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {
     return (
         <>
             <div className="table-container">
+                <div className="add-dish">
+                    <Link to="/admin/add" className="add-dish__link">
+                        Add Dish
+                    </Link>
+
+                </div>
                 <table {...getTableProps()}>
                     <thead>
                         {headerGroups.map(headerGroup => (
@@ -57,7 +63,7 @@ const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {
                                     })}
                                     <td>
                                         {row.cells.map((cell, i) => {
-                                            if (i % 2 == 0) {
+                                            if (i % 2 === 0) {
                                                 return (
                                                     <div className="action-container" key={cell.value}>
                                                         <Link className="edit" to={`/admin/edit/${cell.value}`}>
@@ -77,14 +83,6 @@ const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {
                         })}
                     </tbody>
                 </table>
-            </div>
-            <div className="add-dish">
-                <Link to="/admin/add" className="add-dish__icon">
-                    <IconContext.Provider value={{ size: "1.8em" }}>
-                        <FaPlusCircle />
-                    </IconContext.Provider>
-                </Link>
-
             </div>
             <div className="pagination">
                 <div>

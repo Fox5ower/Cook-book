@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import MainPage from "./MainPage";
-import Menu from "./Menu";
+import Menu from "./DishMenu";
 import Login from "./adminComponents/Login";
 import Pannel from "./adminComponents/Pannel";
 import DishPage from "./DishPage";
-import AddPage from "./adminComponents/AddPage";
-import EditPage from "./adminComponents/EditPage";
+import AddPage from "./adminComponents/adminDishComponents/AddPage";
+import EditPage from "./adminComponents/adminDishComponents/EditPage";
 
 
 

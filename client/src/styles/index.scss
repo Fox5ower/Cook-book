@@ -355,57 +355,80 @@ body{
                   }
             }
         }
+        .table-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
-        table {
-            font-size: 0.9rem;
-            border-collapse: collapse;
-            width: 100%;
-            color: rgb(58, 58, 58);
-            margin: 20px 0;
-            th, td {
-                text-align: left;
-                padding: 10px;
-                .action-container{
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    .edit, .delete{
-                        margin: 0 10px;
-                        cursor: pointer;
-                    }
-    
-                    .edit, .delete svg{
-                        color: black;
-                        transition: all .2s;
-                    }
-    
-                    .edit:hover, .delete:hover > svg{
-                        color: rgb(187, 187, 187);
+            table {
+                font-size: 0.9rem;
+                border-collapse: collapse;
+                width: 100%;
+                // border: 5px solid rgba(117, 117, 117, 0.5);
+                color: rgb(58, 58, 58);
+                margin: 0 0 20px 0;
+                th, td {
+                    text-align: center;
+                    padding: 10px;
+                    width: 33%;
+                    .action-container{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        .edit, .delete{
+                            margin: 0 10px;
+                            cursor: pointer;
+                        }
+        
+                        .edit, .delete svg{
+                            color: black;
+                            transition: all .2s;
+                        }
+        
+                        .edit:hover, .delete:hover > svg{
+                            color: rgb(187, 187, 187);
+                        }
                     }
                 }
+    
+                    tr:nth-child(even) {
+                        background-color: #f2f2f2;
+                    }
+
+                    tbody{
+                        tr:hover{
+                            background-color: rgb(255, 255, 255);
+                        }
+                    }
                 }
 
-                tr:nth-child(even) {background-color: #f2f2f2;}
-            }
+                
+        }
+        
 
         .add-dish{
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            margin-bottom: 15px;
+            align-items: flex-start;
+            margin: 30px 0 15px 10px;
 
-            .add-dish__icon{
+            .add-dish__link{
                 color: black;
+                padding: 5px 20px;
+                border: 1px solid rgba(0, 0, 0, 0.25);
+                background-color: rgba(255, 255, 255, 0);
                 cursor: pointer;
                 transition: all .2s;
             }
 
-            .add-dish__icon:hover{
-                color: rgb(187, 187, 187);
-                transform: scale(1.2)
+            .add-dish__link:hover{
+                background-color: rgba(0, 0, 0, 0.185);
+                border: 1px solid rgb(0, 0, 0);
             }
+                    
         }
 
         
@@ -526,41 +549,14 @@ body{
         justify-content: center;
         align-items: center;
                 #form{
-                    width: 80%;
+                    width: 65%;
                     fieldset{
-                        padding-top: 20px;
+                        padding: 20px 50px 20px 50px ;
+                        margin: 20px;
                     }
         
                     legend {
                         font-size: 12pt;
-                    }
-        
-        
-                    label {
-                        display: block;
-                        margin-bottom: 8px;
-                    }
-        
-                    textarea{
-                        background: rgba(255,255,255,.1);
-                        border: none;
-                        border-radius: 4px;
-                        font-size: 15px;
-                        margin: 0;
-                        outline: 0;
-                        width: 100%;
-                        height: 30px;
-                        padding: 6px 10px;
-                        box-sizing: border-box;
-                        background-color: #fafafa;
-                        color: black;
-                        box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-                        margin-bottom: 15px;
-                        transition: all .3s;
-                    }
-        
-                    textarea:focus{
-                        background: #d4d4d4;
                     }
 
                     input[type="submit"]{
@@ -581,17 +577,53 @@ body{
                         border: 1px solid rgb(0, 0, 0);
                     }
 
+                    .input-container{
+                        text-align: left;
+                        margin: 10px;
+
+                        label {
+                            display: block;
+                            margin-bottom: 8px;
+                        }
+            
+                        textarea{
+                            background: rgba(255,255,255,.1);
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 15px;
+                            margin: 0;
+                            outline: 0;
+                            width: 100%;
+                            height: 30px;
+                            padding: 6px 10px;
+                            box-sizing: border-box;
+                            background-color: #fafafa;
+                            color: black;
+                            box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+                            margin-bottom: 15px;
+                            transition: all .3s;
+                        }
+            
+                        textarea:focus{
+                            background: #d4d4d4;
+                        }
+                    }
+
+                    .dish-img{
+                        width: 20%;
+                    }
+
                     .image-input{
                         .form-group{
                             padding:1em;
-                            margin:1em;
+                            margin: 0 1em;
                             display: flex;
                             flex-direction: row;
                             justify-content: center;
                             align-items: center;
                             .label{
 
-                                padding: 20px 20px 0;
+                                padding: 5px 30px;
                                 width:100px;
                                 border: 2px solid rgb(194, 194, 194);
                                 border-radius:5px;
@@ -608,10 +640,15 @@ body{
 
                                 input[type=file]{
                                     outline:0;
-                                    opacity:0;
+                                    display: none;
                                     pointer-events:none;
                                     user-select:none;
                                 }
+                            }
+
+                            .label-loaded{
+                                border: 2px solid rgb(78, 218, 131);
+                                background-color: rgb(215, 255, 189);
                             }
 
                             .label:hover{
