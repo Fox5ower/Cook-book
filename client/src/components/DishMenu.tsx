@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from "axios";
 import IDish from "../interfaces/IDish"
 import MenuItem from "./MenuItem";
+import SearchBar from "./SearchBar";
+import Sortbar from './ToolBar';
 
 
 interface MyProps {
@@ -10,22 +12,34 @@ interface MyProps {
 
 interface MyState {
     dishes: Array<IDish>,
+    term: string
 }
 
 
 class Menu extends Component<MyProps, MyState> {
     constructor(props: MyProps) {
         super(props)
+
+        this.initialData = []
+
         this.state = {
-            dishes: []
+            dishes: [],
+            term: ""
         }
+    }
+
+    initialData: Array<IDish>;
+
+    updateData(config: MyState) {
+        this.setState(config);
     }
 
     componentWillMount() {
         axios.get("http://localhost:3001/dishes")
             .then((dishes) => {
+                this.initialData = dishes.data.dish;
                 this.setState({
-                    dishes: dishes.data.dish
+                    dishes: this.initialData
                 })
             })
     }
@@ -34,7 +48,12 @@ class Menu extends Component<MyProps, MyState> {
         return (
             <div className="menu-page-container">
                 <div className="menu__container">
-                    <span className="menu__header">Menu</span>
+                    <span className="menu__header">Dish List</span>
+                    <Sortbar
+                        term={this.state.term}
+                        data={this.initialData}
+                        update={this.updateData.bind(this)}
+                    />
                     <div className="menu">
 
                         {this.state.dishes.map((dish, i) => (

@@ -81,7 +81,6 @@ body{
         justify-content: flex-start;
 
 
-
         .menu__container{
                 width: 100%;
                 max-height: fit-content;
@@ -91,17 +90,119 @@ body{
                 align-items: center;
 
             .menu__header{
-                font-size: 78pt;
+                font-size: 60pt;
             }
 
+            .search{
+                padding: 10px 0 15px 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                box-shadow: 0 0 32px black;
+
+                .bar-container {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-around;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    position: relative;
+                    .search-icon{
+                        position: relative;
+                        display: inline-block;
+
+                        input {
+                            color: white;
+                            font-size: 12px;
+                            background: transparent;
+                            font-family: "Montserrat";
+                            width: 10px;
+                            height: 10px;
+                            padding: 8px;
+                            border: solid 3px white;
+                            outline: none;
+                            border-radius: 35px;
+                            box-shadow: 0 1px #0091c2;
+                            transition: all 0.5s;
+                        }
+    
+                        input::placeholder {
+                            color: #efefef;
+                            opacity: 0;
+                        }
+    
+                        input:focus,
+                        input:valid {
+                            width: 250px;
+                        }
+                        input:focus::placeholder{
+                            opacity: 1
+                        }
+                    }
+                    
+                    .category{
+                        font-family: "Montserrat";
+                        font-size: 12pt;
+                        color: white;
+                        border: none;
+                        background-color: transparent;
+                        cursor: pointer;
+                    }
+                }
+
+                  div.search-icon:after {
+                    content: "";
+                    background: white;
+                    width: 4px;
+                    height: 15px;
+                    position: absolute;
+                    top: 25px;
+                    right: -1px;
+                    border: none;
+                    transform: rotate(135deg);
+                    box-shadow: 1px 0 #0091c2;
+                  }
+            }
+           
+              
+              .search > div > input {
+                color: white;
+                font-size: 12px;
+                background: transparent;
+                font-family: "Montserrat";
+                width: 10px;
+                height: 10px;
+                padding: 8px;
+                border: solid 3px white;
+                outline: none;
+                border-radius: 35px;
+                box-shadow: 0 1px #0091c2;
+                transition: all 0.5s;
+              }
+              
+              .search > div > input::placeholder {
+                color: #efefef;
+                opacity: 0;
+              }
+              
+              .search > div > input:focus,
+              .search > div > input:valid {
+                width: 250px;
+              }
+
+              .search > div > input:focus::placeholder{
+                  opacity: 1
+              }
+
             .menu{
-                width: 90%;
-                max-width: 90%;
+                width: 80%;
+                max-width: 80%;
+                max-height: 600px;
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
                 justify-content: center;
-
+                overflow-y: scroll;
+                scrollbar-width: none;
 
                 .menu__item{
                     background-color: rgba(0, 0, 0, 0.65);
