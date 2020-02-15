@@ -2,65 +2,121 @@
     {
         "name": "Tasty Cocktail",
         "category": "cocktails",
-        "method": "method1",
+        "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
-        "engreediants": "engreediants1",
-        "image": "/logo.JPG"
+        "engreediants": [
+            "Milk",
+            "Honey",
+            "Lime",
+            "Pepper Mint",
+            "Water",
+            "Sugar"
+        ],
+        "image": "/tasty-cocktail.png"
     },
     {
         "name": "Sea Treasure",
         "category": "fishDishes",
-        "method": "method2",
+        "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
-        "engreediants": "engreediants2",
-        "image": "/logo.JPG"
+        "engreediants": [
+            "Milk",
+            "Honey",
+            "Lime",
+            "Pepper Mint",
+            "Water",
+            "Sugar"
+        ],
+        "image": "/sea-treasure.png"
     },
     {
         "name": "Home Pizza",
         "category": "fastfood",
-        "method": "method3",
+        "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
-        "engreediants": "engreediants3",
-        "image": "/logo.JPG"
+        "engreediants": [
+            "Milk",
+            "Honey",
+            "Lime",
+            "Pepper Mint",
+            "Water",
+            "Sugar"
+        ],
+        "image": "/home-pizza.png"
     },
     {
         "name": "Salad Lunch",
         "category": "salads",
-        "method": "method4",
+        "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
-        "engreediants": "engreediants4",
-        "image": "/logo.JPG"
+        "engreediants": [
+            "Milk",
+            "Honey",
+            "Lime",
+            "Pepper Mint",
+            "Water",
+            "Sugar"
+        ],
+        "image": "/salad-lunch.png"
     },
     {
         "name": "Roasted Chicken",
         "category": "meatDishes",
-        "method": "method5",
+        "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
-        "engreediants": "engreediants5",
-        "image": "/logo.JPG"
+        "engreediants": [
+            "Milk",
+            "Honey",
+            "Lime",
+            "Pepper Mint",
+            "Water",
+            "Sugar"
+        ],
+        "image": "/roasted-chicken.png"
     },
     {
         "name": "Chicken And Mushrooms",
         "category": "meatDishes",
-        "method": "method6",
+        "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
-        "engreediants": "engreediants6",
-        "image": "/logo.JPG"
+        "engreediants": [
+            "Milk",
+            "Honey",
+            "Lime",
+            "Pepper Mint",
+            "Water",
+            "Sugar"
+        ],
+        "image": "/chicken-and-mushrooms.png"
     },
     {
         "name": "Christmas Salad",
         "category": "salads",
-        "method": "method7",
+        "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
-        "engreediants": "engreediants7",
-        "image": "/logo.JPG"
+        "engreediants": [
+            "Milk",
+            "Honey",
+            "Lime",
+            "Pepper Mint",
+            "Water",
+            "Sugar"
+        ],
+        "image": "/christmas-salad.png"
     },
     {
-        "name": "Fam Meatballs",
-        "category": "meatDishes",
-        "method": "method8",
+        "name": "Fam Rolls",
+        "category": "deserts",
+        "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
-        "engreediants": "engreediants8",
-        "image": "/logo.JPG"
+        "engreediants": [
+            "Milk",
+            "Honey",
+            "Lime",
+            "Pepper Mint",
+            "Water",
+            "Sugar"
+        ],
+        "image": "/fam-rolls.png"
     }
 ]

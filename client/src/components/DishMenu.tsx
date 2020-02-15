@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import IDish from "../interfaces/IDish"
 import MenuItem from "./MenuItem";
-import SearchBar from "./SearchBar";
-import Sortbar from './ToolBar';
+import ToolBar from './ToolBar';
 
 
 interface MyProps {
@@ -49,10 +48,11 @@ class Menu extends Component<MyProps, MyState> {
             <div className="menu-page-container">
                 <div className="menu__container">
                     <span className="menu__header">Dish List</span>
-                    <Sortbar
+                    <ToolBar
                         term={this.state.term}
                         data={this.initialData}
                         update={this.updateData.bind(this)}
+                        initialState={this.initialData}
                     />
                     <div className="menu">
 

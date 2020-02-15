@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req: Request, file: Express.Multer.File, cb: Function) => {
-    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    if (file.mimetype === "image/png" || file.mimetype === "image/jpeg") {
         cb(null, true);
     } else {
         cb(null, false);
@@ -32,7 +32,7 @@ const upload = multer({
 
 
 class AdminDishController implements IControllerBase {
-    public path = "/admin/pannel";
+    public path = "/panel";
     public router = express.Router();
 
     constructor() {
@@ -43,19 +43,19 @@ class AdminDishController implements IControllerBase {
         this.router.use(adminTokenChecker);
         this.router.post(`${this.path}/add`, upload.single("image"), this.addDish);
         this.router.delete(`${this.path}/remove/:name`, this.removeDish);
-        this.router.put(`${this.path}/update/:name`, this.updateDish);
+        this.router.put(`${this.path}/update/:name`, upload.single("image"), this.updateDish);
+        this.router.get(`${this.path}/edit/:name`, this.dishByName);
     }
 
     addDish = async (req: Request, res: Response, next: any) => {
-        console.log(req.file);
 
         const dish = new Dish({
             name: req.body.name,
             category: req.body.category,
             method: req.body.method,
             description: req.body.description,
-            engreediants: req.body.engreediants,
-            image: req.file.path
+            engreediants: req.body.engreediants.split(","),
+            image: "/" + req.file.originalname
         })
         const savedDish = await dish.save();
         if (savedDish) {
@@ -78,20 +78,49 @@ class AdminDishController implements IControllerBase {
 
     updateDish = async (req: Request, res: Response) => {
         const oldDish = await Dish.findOne({ name: req.params.name });
-        const updatedDish = await Dish.updateOne({ name: req.params.name }, {
-            $set: {
-                name: req.body.name || oldDish.name,
-                category: req.body.category || oldDish.category,
-                method: req.body.method || oldDish.method,
-                description: req.body.description || oldDish.description,
-                engreediants: req.body.engreediants || oldDish.engreediants,
-                image: req.file.path || oldDish.image
+        console.log(req.file);
+        if (req.file) {
+            const updatedDish = await Dish.updateOne({ name: req.params.name }, {
+                $set: {
+                    name: req.body.name || oldDish.name,
+                    category: req.body.category || oldDish.category,
+                    method: req.body.method || oldDish.method,
+                    description: req.body.description || oldDish.description,
+                    engreediants: req.body.engreediants.split(",") || oldDish.engreediants,
+                    image: "/" + req.file.originalname
+                }
+            })
+            if (updatedDish) {
+                res.json({ "Updated Dish: ": updatedDish.name });
+            } else {
+                res.status(401).json({ message: "Something went wrong" })
             }
-        });
-        if (updatedDish) {
-            res.json({ "Updated Dish: ": updatedDish.name });
         } else {
-            res.status(401).json({ message: "Something went wrong" })
+            const updatedDish = await Dish.updateOne({ name: req.params.name }, {
+                $set: {
+                    name: req.body.name || oldDish.name,
+                    category: req.body.category || oldDish.category,
+                    method: req.body.method || oldDish.method,
+                    description: req.body.description || oldDish.description,
+                    engreediants: req.body.engreediants.split(",") || oldDish.engreediants,
+                    image: oldDish.image
+                }
+            })
+            if (updatedDish) {
+                res.json({ "Updated Dish: ": updatedDish.name });
+            } else {
+                res.status(401).json({ message: "Something went wrong" })
+            }
+        }
+
+    }
+
+    dishByName = async (req: Request, res: Response) => {
+        const dish = await Dish.findOne({ name: req.params.name });
+        if (dish) {
+            res.json(dish);
+        } else {
+            res.status(404).json({ message: "Not Found" });
         }
     }
 }

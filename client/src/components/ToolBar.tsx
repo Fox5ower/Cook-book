@@ -1,58 +1,93 @@
-import React from "react";
+import React, { Component } from "react";
 import IDish from "../interfaces/IDish";
 import ICategory from "../interfaces/ICategory"
 import SearchBar from "./SearchBar";
+import axios from "axios";
 
-export default ({ term, data, update }) => {
+interface MyProps {
+    term: string,
+    data: Array<IDish>,
+    update: Function,
+    initialState: Array<IDish>
+}
 
-    const dataSort = (e: any) => {
+interface MyState {
+    categories: Array<ICategory>
+}
+
+class ToolBar extends Component<MyProps, MyState>{
+    constructor(props: MyProps) {
+        super(props)
+
+        this.state = {
+            categories: []
+        }
+    }
+
+    componentWillMount() {
+        axios.get("http://localhost:3001/categories")
+            .then((category) => {
+                this.setState({
+                    categories: category.data.category
+                })
+            })
+    }
+
+    resetData(e: any) {
+        e.preventDefault();
+        console.log(this.props.initialState)
+        this.props.update({
+            dishes: this.props.initialState
+        })
+    }
+
+    dataSort = (e: any) => {
         e.preventDefault();
         const value = e.target.name;
-        const filter = data.filter((dish: IDish) => {
+        const filter = this.props.data.filter((dish: IDish) => {
             return dish.category.includes(value);
         });
 
-        update({
+        this.props.update({
             dishes: filter,
         });
     };
 
-    const categories: Array<ICategory> = [
-        { key: "deserts", name: "Deserts" },
-        { key: "salads", name: "Salads" },
-        { key: "meatDishes", name: "Meat Dishes" },
-        { key: "fastfood", name: "FastFood" },
-        { key: "fishDishes", name: "Fish Dishes" },
-        { key: "cocktails", name: "Cocktails" }
-    ];
+    render() {
+        return (
+            <div className="nav-container">
+                <div className="search">
+                    <div className="bar-container">
 
-    return (
+                        {this.state.categories.map((category: ICategory, i: number) => {
+                            while (i < 3) {
+                                return (
+                                    <button key={category.key} className="category" onClick={this.dataSort} name={category.key}>{category.name}</button>
+                                )
+                            }
+                        })}
 
-        <div className="search">
-            <div className="bar-container">
+                        <SearchBar
+                            term={this.props.term}
+                            data={this.props.data}
+                            update={this.props.update}
+                        />
 
-                {categories.map((category: ICategory, i: number) => {
-                    while (i < 3) {
-                        return (
-                            <button className="category" onClick={dataSort} name={category.key}>{category.name}</button>
-                        )
-                    }
-                })}
-
-                <SearchBar
-                    term={term}
-                    data={data}
-                    update={update}
-                />
-
-                {categories.map((category: ICategory, i: number) => {
-                    while (i >= 3) {
-                        return (
-                            <button className="category" onClick={dataSort} name={category.key}>{category.name}</button>
-                        )
-                    }
-                })}
+                        {this.state.categories.map((category: ICategory, i: number) => {
+                            while (i >= 3) {
+                                return (
+                                    <button key={category.key} className="category" onClick={this.dataSort} name={category.key}>{category.name}</button>
+                                )
+                            }
+                        })}
+                    </div>
+                </div>
+                <button className="reset-button" onClick={(e: any) => this.resetData(e)}>
+                    Reset Filters
+                </button>
             </div>
-        </div>
-    );
-};
+        )
+    }
+}
+
+export default ToolBar

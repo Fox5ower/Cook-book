@@ -19,6 +19,7 @@ class AdminController implements IControllerBase {
     public initRoutes() {
         this.router.use(adminTokenChecker)
         this.router.get(`${this.path}/`, this.index);
+        this.router.get(`${this.path}/:adminId`, this.specificAdmin);
         this.router.put(`${this.path}/password`, this.adminChangePassword);
         this.router.put(`${this.path}/information`, this.adminChangeInfo);
     }
@@ -26,7 +27,7 @@ class AdminController implements IControllerBase {
     index = async (req: Request, res: Response, next: any) => {
         const admin = await Admin.find();
         if (admin) {
-            res.json({ "All Admins: ": admin });
+            res.json(admin);
         } else {
             res.status(404).json({ message: "Admin Not found" })
         }
@@ -64,10 +65,12 @@ class AdminController implements IControllerBase {
             return res.status(401).json(errors);
         }
 
+        const oldAdmin = await Admin.findOne({});
+
         const updatedAdmin = await Admin.updateOne({}, {
             $set: {
-                name: req.body.name,
-                email: req.body.email
+                name: req.body.name || oldAdmin.name,
+                email: req.body.email || oldAdmin.email
             }
         });
         if (updatedAdmin) {
@@ -83,7 +86,7 @@ class AdminController implements IControllerBase {
         if (admin) {
             res.json(admin);
         } else {
-            res.status(404).json({ message: "Not found" })
+            res.status(404).json({ message: "Not found" });
         }
     }
 

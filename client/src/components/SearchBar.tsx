@@ -1,7 +1,13 @@
 import React from "react";
 import IDish from "../interfaces/IDish";
 
-export default ({ term, data, update }) => {
+interface MyProps {
+    term: string,
+    data: Array<IDish>,
+    update: Function
+}
+
+const Searchbar: React.SFC<MyProps> = ({ term, data, update }) => {
 
     const dataSearch = (e: any) => {
         const value = e.target.value.toLowerCase();
@@ -28,3 +34,5 @@ export default ({ term, data, update }) => {
         </div>
     );
 };
+
+export default Searchbar

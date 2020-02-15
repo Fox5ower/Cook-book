@@ -30,7 +30,7 @@ class DishController implements IControllerBase {
         const dish = await Dish.findOne({ _id: req.params.dishId });
 
         if (dish) {
-            res.json({ "Found dish: ": dish });
+            res.json(dish);
         } else {
             res.status(404).json({ message: "Not Found" });
         }

@@ -5,7 +5,6 @@ export default async () => {
     const dish = await Dish.find();
     if (dish.length >= 1) {
         console.log("Dish collection already exists");
-        console.log(dish);
 
         return;
     } else {
@@ -20,7 +19,7 @@ export default async () => {
             })
             const savedDish = await newDish.save();
             if (savedDish) {
-                console.log({ "Added new dish: ": savedDish.name });
+                console.log("New dish collection created");
             } else {
                 console.log({ message: "Something went wrong" })
             }

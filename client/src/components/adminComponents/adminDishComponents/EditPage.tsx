@@ -162,14 +162,14 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                 <span>{name}</span>
                 <form id="form" method="POST" action="/api/panel/update/:name" onSubmit={this.submitHandler} >
                     <fieldset>
-                        <Input name="name" maxLength={20} value={name} onChange={e => this.changeHandler(e)}></Input>
-                        <Input name="category" maxLength={15} value={category} onChange={e => this.changeHandler(e)}></Input>
-                        <Input name="description" maxLength={220} value={description} onChange={e => this.changeHandler(e)}></Input>
-                        <Input name="engreediants" maxLength={150} value={engreediants} onChange={e => this.changeHandler(e)}></Input>
-                        <Input name="method" maxLength={220} value={method} onChange={e => this.changeHandler(e)}></Input>
+                        <Input name="name" maxLength={20} value={name} onChange={(e: any) => this.changeHandler(e)}></Input>
+                        <Input name="category" maxLength={15} value={category} onChange={(e: any) => this.changeHandler(e)}></Input>
+                        <Input name="description" maxLength={220} value={description} onChange={(e: any) => this.changeHandler(e)}></Input>
+                        <Input name="engreediants" maxLength={150} value={engreediants} onChange={(e: any) => this.changeHandler(e)}></Input>
+                        <Input name="method" maxLength={220} value={method} onChange={(e: any) => this.changeHandler(e)}></Input>
 
                         <img className="dish-img" src={this.state.dish.image} alt="dish-image" />
-                        <ImageInput fileName={this.state.fileName} fileHandler={e => this.fileHandler(e)}></ImageInput>
+                        <ImageInput fileName={this.state.fileName} fileHandler={(e: any) => this.fileHandler(e)}></ImageInput>
 
                         <input type="submit" value="Submit Changes" />
                     </fieldset>

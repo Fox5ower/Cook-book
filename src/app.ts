@@ -4,6 +4,7 @@ import dishData from "../config/dish.json";
 import adminInitializer from "./db_scripts/admin.initialize";
 import dishInitializer from "./db_scripts/dish.initialize";
 import tokenBLInitializer from "./db_scripts/tokenBlackList.initialize";
+import categoryInitializer from "./db_scripts/category.initialize";
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const Admin = require("./models/Admin");
@@ -26,7 +27,7 @@ class App {
 
     private routes(controllers: { forEach: (arg: (controller: any) => void) => void; }) {
         controllers.forEach(controller => {
-            if (controller.name == "AdminLoginController" || controller.name == "DishController"/* || controller.name == "RegisterController" || controller.name == "LoginController" */) {
+            if (controller.name == "AdminLoginController" || controller.name == "DishController" || controller.name == "CategoryController"/* || controller.name == "RegisterController" || controller.name == "LoginController" */) {
                 this.app.use("/", controller.router)
             } else {
                 this.app.use("/api", controller.router)
@@ -46,6 +47,7 @@ class App {
             useUnifiedTopology: true,
             useCreateIndex: true
         }).then(adminInitializer)
+            .then(categoryInitializer)
             .then(dishInitializer,
                 console.log(`Connected to Mongo DB with URI: ${this.mongoUri}`))
             .then(tokenBLInitializer);

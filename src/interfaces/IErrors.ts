@@ -1,6 +1,7 @@
 interface IErrors {
-    name?: string,
+    information?: string,
     email?: string,
+    name?: string,
     password?: string,
     password2?: string
 }

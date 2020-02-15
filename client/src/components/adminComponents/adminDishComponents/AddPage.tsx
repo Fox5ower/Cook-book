@@ -5,15 +5,19 @@ import { Redirect } from 'react-router';
 import Input from './Input';
 import ImageInput from './ImageInput';
 
+interface MyProps {
+
+}
+
 interface MyState {
     fileName: string,
     redirect: boolean,
     image: string
 }
 
-class AddPage extends Component<{}, MyState> {
+class AddPage extends Component<MyProps, MyState> {
 
-    constructor(props) {
+    constructor(props: MyProps) {
         super(props)
 
         this.state = {
@@ -93,7 +97,7 @@ class AddPage extends Component<{}, MyState> {
                             : <i />
                         }
 
-                        <ImageInput fileName={this.state.fileName} fileHandler={e => this.fileHandler(e)}></ImageInput>
+                        <ImageInput fileName={this.state.fileName} fileHandler={(e: any) => this.fileHandler(e)}></ImageInput>
 
                         <input type="submit" value="Submit Changes" />
                     </fieldset>
