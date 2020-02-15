@@ -4,7 +4,7 @@ interface MyProps {
     name: string,
     maxLength: number,
     value?: string | Array<string>,
-    onChange?: Function
+    onChange?: any | null
 }
 
 class Input extends Component<MyProps> {

@@ -7,11 +7,13 @@ import IDish from '../../../interfaces/IDish';
 import tokenInterceptor from '../../../middlewares/tokenInterceptor';
 import Input from './Input';
 import ImageInput from './ImageInput';
+import ICategory from '../../../interfaces/ICategory';
 
 interface MyState {
     dish: IDish,
     fileName: string,
-    redirect: boolean
+    redirect: boolean,
+    categories: Array<ICategory>
 }
 
 class EditPage extends Component<RouteComponentProps<any>, MyState> {
@@ -30,7 +32,8 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                 image: {}
             },
             fileName: "",
-            redirect: false
+            redirect: false,
+            categories: []
         }
 
     }
@@ -105,7 +108,12 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                 this.setState({
                     dish: dish.data
                 })
-            })
+            }).then(() => axios.get("http://localhost:3001/categories")
+                .then((category) => {
+                    this.setState({
+                        categories: category.data.category
+                    })
+                }))
     }
 
     fileHandler(e: any) {
@@ -159,20 +167,29 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
         const { name, category, description, engreediants, method } = this.state.dish
         return (
             <div className="edit-form">
-                <span>{name}</span>
+                <span className="form-header">{name}</span>
                 <form id="form" method="POST" action="/api/panel/update/:name" onSubmit={this.submitHandler} >
                     <fieldset>
                         <Input name="name" maxLength={20} value={name} onChange={(e: any) => this.changeHandler(e)}></Input>
-                        <Input name="category" maxLength={15} value={category} onChange={(e: any) => this.changeHandler(e)}></Input>
                         <Input name="description" maxLength={220} value={description} onChange={(e: any) => this.changeHandler(e)}></Input>
                         <Input name="engreediants" maxLength={150} value={engreediants} onChange={(e: any) => this.changeHandler(e)}></Input>
                         <Input name="method" maxLength={220} value={method} onChange={(e: any) => this.changeHandler(e)}></Input>
-
+                        <div className="input-container">
+                            <label htmlFor="category">Category</label>
+                            <select form="form" name="category" id="category">
+                                <option value="" selected disabled hidden>{category}</option>
+                                {this.state.categories.map((category, i) => {
+                                    return (
+                                        <option key={category.key} value={category.key}>{category.name}</option>
+                                    )
+                                })}
+                            </select>
+                        </div>
                         <img className="dish-img" src={this.state.dish.image} alt="dish-image" />
                         <ImageInput fileName={this.state.fileName} fileHandler={(e: any) => this.fileHandler(e)}></ImageInput>
-
-                        <input type="submit" value="Submit Changes" />
                     </fieldset>
+                    <input type="submit" value="Submit Changes" />
+
 
                 </form>
             </div>

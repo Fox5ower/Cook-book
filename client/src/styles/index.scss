@@ -12,7 +12,8 @@ body{
     font-family: "Dancing Script", cursive;
     color: white;
     text-align: center;
-    background-color: rgb(235, 235, 235);
+    background-image: url("../img/admin-bg.jpg");
+    background-repeat: no-repeat;
 
     a{
         color: white;
@@ -261,7 +262,6 @@ body{
     .admin__login-form-container{
         width: 100vw;
         height: 100vh;
-        background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url(/menu-page-bg.png);
         background-repeat: no-repeat;
         display: flex;
         flex-direction: column;
@@ -273,7 +273,8 @@ body{
             max-width: 500px;
             margin: 10px auto;
             padding: 20px;
-            background: #ffffff67;
+            background-color: rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 32px black;
 
             fieldset{
                 border: none;
@@ -330,7 +331,7 @@ body{
                 font-style: normal;
                 width: 50%;
                 margin-bottom: 10px;
-                border: 1px solid black;
+                border: 1px solid white;
                 transition: 300ms;
                 cursor: pointer;
             }
@@ -361,7 +362,7 @@ body{
             .header__logo{
                 font-family: "Dancing Script", cursive;
                 font-size: 22pt;
-                width: 25%;
+                width: 33%;
                 transition: all .3s;
                 cursor: pointer;
             }
@@ -372,7 +373,7 @@ body{
             }
 
             .header__pannel-name{
-                width: 25%;
+                width: 33%;
                 font-size: 2.1vw;
                 cursor: pointer;
 
@@ -392,7 +393,7 @@ body{
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
-                width: 25%;
+                width: 33%;
                 .miniature{
                     width: 50px;
                     height: 50px;
@@ -424,12 +425,11 @@ body{
                     align-items: space-between;
                     z-index: 1;
                     opacity: 0;
-                    width: 11.8%;
+                    width: 180px;
                     padding: 0px 20px;
                     background: rgb(66, 66, 66);
                     position: absolute;
-                    // top: 12%;
-                    right: 5.3%;
+                    right: 9.44vw;
                     border-radius: 2px;
                     font: 16px;
                     cursor: default;
@@ -473,7 +473,7 @@ body{
                 border-collapse: collapse;
                 width: 100%;
                 // border: 5px solid rgba(117, 117, 117, 0.5);
-                color: rgb(58, 58, 58);
+                color: rgb(0, 0, 0);
                 margin: 0 0 20px 0;
                 th, td {
                     text-align: center;
@@ -501,12 +501,12 @@ body{
                 }
     
                     tr:nth-child(even) {
-                        background-color: #f2f2f2;
+                        background-color: rgba(0, 0, 0, 0.2);
                     }
 
                     tbody{
                         tr:hover{
-                            background-color: rgb(255, 255, 255);
+                            background-color: rgba(255, 255, 255, 0.5);
                         }
                     }
                 }
@@ -520,20 +520,20 @@ body{
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
-            margin: 30px 0 15px 10px;
+            margin: 30px 0 10px 0;
 
             .add-dish__link{
                 color: black;
                 padding: 5px 20px;
-                border: 1px solid rgba(0, 0, 0, 0.25);
+                border: 1px solid rgb(68, 68, 68);
                 background-color: rgba(255, 255, 255, 0);
                 cursor: pointer;
                 transition: all .2s;
             }
 
             .add-dish__link:hover{
-                background-color: rgba(0, 0, 0, 0.185);
-                border: 1px solid rgb(0, 0, 0);
+                background-color: rgba(255, 255, 255, 0.6);
+                box-shadow: 0 0 32px white;
             }
                     
         }
@@ -553,6 +553,14 @@ body{
                 background-color: transparent;
                 border: none;
                 transition: all .2s;
+                cursor: pointer;
+            }
+            select{
+                border: 1px solid rgba(0, 0, 0, 0.25);
+                background-color: rgba(255, 255, 255, 0);
+                font-family: "Montserrat";
+                font-size: 10pt;
+                text-decoration: none;
                 cursor: pointer;
             }
         }
@@ -649,16 +657,24 @@ body{
     .edit-form{
         color: black;
         width: 100%;
-        margin: 30px 0;
+        margin-top: 30px;
         font-family: "Montserrat";
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
+                .form-header{
+                    font-size: 18pt;
+                }
+
                 #form{
                     width: 65%;
                     fieldset{
+                        border: none;
                         padding: 20px 50px 20px 50px ;
+                        background-color: rgba(0, 0, 0, 0.2);
+                        box-shadow: 0 0 32px black;
                         margin: 20px;
                     }
         
@@ -666,22 +682,40 @@ body{
                         font-size: 12pt;
                     }
 
-                    input[type="submit"]{
-                        margin: 10px;
-                        padding: 5px 50px;
+                    select{
+                        margin-bottom: 10px;
+                        padding: 3px 0;
+                        width: 100%;
                         border: 1px solid rgba(0, 0, 0, 0.25);
+                        background-color: rgba(255, 255, 255, 0.5);
+                        font-family: "Montserrat";
+                        font-size: 12pt;
+                        text-decoration: none;
+                        cursor: pointer;
+
+                        option{
+                            font-family: "Montserrat";
+                            font-size: 10pt;
+                            cursor: pointer;
+                        }
+                    }
+
+                    input[type="submit"]{
+                        margin: 10px 0 20px 0;
+                        padding: 5px 50px;
+                        border: 1px solid black;
                         background-color: rgba(255, 255, 255, 0);
                         font-family: "Montserrat";
                         font-size: 12pt;
                         text-decoration: none;
                         cursor: pointer;
-                        transition: 300ms;
+                        transition: all .3s;
                     }
             
                     input[type="submit"]:hover{
-                        transition: 300ms;
-                        background-color: rgba(0, 0, 0, 0.185);
-                        border: 1px solid rgb(0, 0, 0);
+                        background-color: rgba(255, 255, 255, 0.6);
+                        border: 1px solid white;
+                        box-shadow: 0 0 32px white;
                     }
 
                     .input-container{
@@ -704,7 +738,7 @@ body{
                             height: 30px;
                             padding: 6px 10px;
                             box-sizing: border-box;
-                            background-color: #fafafa;
+                            background-color: #fafafa7e;
                             color: black;
                             box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
                             margin-bottom: 15px;
@@ -712,7 +746,7 @@ body{
                         }
             
                         textarea:focus{
-                            background: #d4d4d4;
+                            background: #fafafadc;
                         }
                     }
 
@@ -732,7 +766,7 @@ body{
 
                                 padding: 5px 30px;
                                 width:100px;
-                                border: 2px solid rgb(194, 194, 194);
+                                border: 2px solid rgb(0, 0, 0);
                                 border-radius:5px;
                                 display:block;
                                 transition: all .3s;
@@ -759,7 +793,9 @@ body{
                             }
 
                             .label:hover{
-                                border: 2px solid #000;
+                                background-color: rgba(255, 255, 255, 0.6);
+                                border: 2px solid white;
+                                box-shadow: 0 0 32px white;
                             }
                         }
                     }

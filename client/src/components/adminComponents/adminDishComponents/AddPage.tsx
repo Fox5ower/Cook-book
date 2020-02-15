@@ -4,6 +4,7 @@ import tokenInterceptor from '../../../middlewares/tokenInterceptor';
 import { Redirect } from 'react-router';
 import Input from './Input';
 import ImageInput from './ImageInput';
+import ICategory from '../../../interfaces/ICategory';
 
 interface MyProps {
 
@@ -12,7 +13,8 @@ interface MyProps {
 interface MyState {
     fileName: string,
     redirect: boolean,
-    image: string
+    image: string,
+    categories: Array<ICategory>
 }
 
 class AddPage extends Component<MyProps, MyState> {
@@ -23,12 +25,19 @@ class AddPage extends Component<MyProps, MyState> {
         this.state = {
             fileName: "",
             redirect: false,
-            image: ""
+            image: "",
+            categories: []
         }
     }
 
     componentWillMount() {
         tokenInterceptor()
+        axios.get("http://localhost:3001/categories")
+            .then((category) => {
+                this.setState({
+                    categories: category.data.category
+                })
+            })
     }
 
     fileHandler(e: any) {
@@ -39,9 +48,6 @@ class AddPage extends Component<MyProps, MyState> {
     }
 
     changeHandler(e: any) {
-        if (e.target.value.length = e.target.value.maxLength) {
-            e.target.classList.add("input-max-size")
-        }
     }
 
 
@@ -55,14 +61,14 @@ class AddPage extends Component<MyProps, MyState> {
                 if (input.nodeName === 'BUTTON') return false;
                 return true;
             });
-        Array.prototype.map.call(data, (input: HTMLInputElement) => {
+        Array.prototype.map.call(data, (input: any) => {
             if (input.id === "image") {
                 body.append("image", input.files[0]);
                 this.setState({
                     image: input.files[0].name
                 })
             } else {
-                body.append(input.name, input.value)
+                body.append(input.name, input.value);
             }
         });
         axios.post(`http://localhost:3001/api/panel/add`, body)
@@ -83,24 +89,34 @@ class AddPage extends Component<MyProps, MyState> {
         }
         return (
             <div className="edit-form">
-                <span>Add New Dish</span>
+                <span className="form-header">Add New Dish</span>
                 <form id="form" method="POST" action="/api/panel/add" onSubmit={this.submitHandler} >
                     <fieldset>
-                        <Input name="name" maxLength={20}></Input>
-                        <Input name="category" maxLength={15}></Input>
-                        <Input name="description" maxLength={220}></Input>
-                        <Input name="engreediants" maxLength={150}></Input>
-                        <Input name="method" maxLength={220}></Input>
-
-                        {this.state.fileName ?
-                            <img className="dish-img" src={"/" + this.state.fileName} alt="" />
-                            : <i />
-                        }
+                        <Input name="name" maxLength={20} onChange={(e: any) => this.changeHandler(e)}></Input>
+                        <Input name="description" maxLength={220} onChange={(e: any) => this.changeHandler(e)}></Input>
+                        <Input name="engreediants" maxLength={150} onChange={(e: any) => this.changeHandler(e)}></Input>
+                        <Input name="method" maxLength={220} onChange={(e: any) => this.changeHandler(e)}></Input>
+                        <div className="input-container">
+                            <label htmlFor="category">Category</label>
+                            <select form="form" name="category" id="category">
+                                {this.state.categories.map((category, i) => {
+                                    return (
+                                        <option key={category.key} value={category.key}>{category.name}</option>
+                                    )
+                                })}
+                            </select>
+                        </div>
+                        <div className="img-container">
+                            {this.state.fileName ?
+                                <img className="dish-img" src={"/" + this.state.fileName} alt="" />
+                                : <div></div>
+                            }
+                        </div>
 
                         <ImageInput fileName={this.state.fileName} fileHandler={(e: any) => this.fileHandler(e)}></ImageInput>
-
-                        <input type="submit" value="Submit Changes" />
                     </fieldset>
+                    <input type="submit" value="Submit Changes" />
+
                 </form>
             </div>
         )
