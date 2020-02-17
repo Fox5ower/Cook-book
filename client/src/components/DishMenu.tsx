@@ -3,6 +3,8 @@ import axios from "axios";
 import IDish from "../interfaces/IDish"
 import MenuItem from "./MenuItem";
 import ToolBar from './ToolBar';
+import DishSlider from './DishSlider';
+import Slider from './Slider';
 
 
 interface MyProps {
@@ -11,7 +13,9 @@ interface MyProps {
 
 interface MyState {
     dishes: Array<IDish>,
-    term: string
+    term: string,
+    showSlider: boolean,
+    index: number
 }
 
 
@@ -23,7 +27,9 @@ class Menu extends Component<MyProps, MyState> {
 
         this.state = {
             dishes: [],
-            term: ""
+            term: "",
+            showSlider: false,
+            index: undefined
         }
     }
 
@@ -33,10 +39,23 @@ class Menu extends Component<MyProps, MyState> {
         this.setState(config);
     }
 
+    toggleSlider() {
+        this.setState({
+            showSlider: !this.state.showSlider
+        })
+    }
+
+    setIndex(index: number) {
+        this.setState({
+            index: index
+        })
+    }
+
     componentWillMount() {
         axios.get("http://localhost:3001/dishes")
             .then((dishes) => {
                 this.initialData = dishes.data.dish;
+
                 this.setState({
                     dishes: this.initialData
                 })
@@ -44,36 +63,45 @@ class Menu extends Component<MyProps, MyState> {
     }
 
     render() {
-        return (
-            <div className="menu-page-container">
-                <div className="menu__container">
-                    <span className="menu__header">Dish List</span>
-                    <ToolBar
-                        term={this.state.term}
-                        data={this.initialData}
-                        update={this.updateData.bind(this)}
-                        initialState={this.initialData}
-                    />
-                    <div className="menu">
+        if (!this.state.showSlider) {
+            return (
+                <div className="menu-page-container">
+                    <div className="menu__container">
+                        <span className="menu__header">Dish List</span>
+                        <ToolBar
+                            term={this.state.term}
+                            data={this.initialData}
+                            update={this.updateData.bind(this)}
+                            initialState={this.initialData}
+                        />
+                        <div className="menu">
 
-                        {this.state.dishes.map((dish, i) => (
+                            {this.state.dishes.map((dish, i) => (
 
-                            <MenuItem key={dish._id}
-                                _id={dish._id}
-                                name={dish.name}
-                                category={dish.category}
-                                method={dish.method}
-                                description={dish.description}
-                                engreediants={dish.engreediants}
-                                image={dish.image}
-                                counter={i + 1} >
-                            </MenuItem>
+                                <MenuItem key={dish._id}
+                                    _id={dish._id}
+                                    name={dish.name}
+                                    category={dish.category}
+                                    method={dish.method}
+                                    description={dish.description}
+                                    engreediants={dish.engreediants}
+                                    image={dish.image}
+                                    toggleSlider={this.toggleSlider.bind(this)}
+                                    counter={i + 1}
+                                    setIndex={this.setIndex.bind(this)}>
+                                </MenuItem>
 
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        } else if (this.state.showSlider && this.state.index) {
+            return (
+                <Slider initialData={this.state.dishes} toggleSlider={this.toggleSlider.bind(this)} index={this.state.index}></Slider>
+            )
+        }
+
     }
 }
 

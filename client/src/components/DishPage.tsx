@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import axios from "axios";
-import { RouteComponentProps } from "react-router";
-import { Link } from "react-router-dom";
 import IDish from "../interfaces/IDish";
 import DishDetailed from './DishDetailed';
 
@@ -11,17 +8,19 @@ interface IBackground {
 
 interface MyState {
     dish: IDish,
-    dynamicImage: IBackground
+    dynamicImage: IBackground,
+    showDescription: boolean
 }
 
-class DishPage extends Component<RouteComponentProps<any>, MyState> {
+interface MyProps {
+    dish: IDish,
+    toggleSlider: Function
+}
 
-    private wrapperRef: React.RefObject<HTMLInputElement>;
+class DishPage extends Component<MyProps, MyState> {
 
-    constructor(props: RouteComponentProps<any>) {
+    constructor(props: MyProps) {
         super(props)
-
-        this.wrapperRef = React.createRef();
 
         this.state = {
             dish: {
@@ -35,28 +34,26 @@ class DishPage extends Component<RouteComponentProps<any>, MyState> {
             },
             dynamicImage: {
                 backgroundImage: ""
-            }
+            },
+            showDescription: false
 
         }
 
     }
 
     toggleDescription() {
-        const wrapper = this.wrapperRef.current;
-        wrapper.classList.toggle('is-recipe-open')
+        this.setState({
+            showDescription: !this.state.showDescription
+        })
     }
 
-
     componentWillMount() {
-        axios.get(`http://localhost:3001/dishes/${this.props.match.params.id}`)
-            .then((dish) => {
-                this.setState({
-                    dish: dish.data,
-                    dynamicImage: {
-                        backgroundImage: "linear-gradient(45deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url(" + dish.data.image + ")"
-                    }
-                })
-            })
+        this.setState({
+            dish: this.props.dish,
+            dynamicImage: {
+                backgroundImage: "linear-gradient(45deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url(" + this.props.dish.image + ")"
+            }
+        })
     }
 
     render() {
@@ -64,13 +61,14 @@ class DishPage extends Component<RouteComponentProps<any>, MyState> {
             <div className="dish-page">
                 <DishDetailed
                     dish={this.state.dish}
-                    toggleDescription={this.toggleDescription}
-                    wrapperRef={this.wrapperRef}>
+                    showing={this.state.showDescription}
+                    toggleDescription={this.toggleDescription.bind(this)}
+                >
                 </DishDetailed>
                 <div className="dish-page-container" style={this.state.dynamicImage}>
-                    <Link to="/dishes" className="menu-link">
+                    <div className="menu-link" onClick={() => this.props.toggleSlider()}>
                         Menu
-                    </Link>
+                    </div>
                     <div className="dish-container">
                         <div className="img-container">
                             <img src={this.state.dish.image} alt={this.state.dish.name} />
@@ -81,7 +79,7 @@ class DishPage extends Component<RouteComponentProps<any>, MyState> {
 
                                 <span className="description">{this.state.dish.description}
                                 </span>
-                                <div className="button" onClick={() => this.toggleDescription()}>Show Recipe</div>
+                                <div className="button" onClick={this.toggleDescription.bind(this)}>Show Recipe</div>
                             </div>
                         </div>
                     </div>
