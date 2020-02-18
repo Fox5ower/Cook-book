@@ -1,8 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom";
 import { useTable, usePagination } from 'react-table'
-import { IconContext } from "react-icons";
-import { FaArrowLeft, FaArrowRight, FaEdit, FaTrash, FaPlusCircle } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaEdit, FaTrash } from "react-icons/fa";
 
 interface MyProps {
     columns: any,
@@ -74,7 +73,7 @@ const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {
                                                         </div>
                                                     </div>
                                                 )
-                                            }
+                                            } else return <></>
                                         })}
 
                                     </td>

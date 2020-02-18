@@ -9,15 +9,6 @@ interface MyProps {
 
 class ImageInput extends Component<MyProps> {
 
-    constructor(props: MyProps) {
-        super(props)
-
-    }
-
-    capitalizeFirstLetter(string: string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
     render() {
         return (
             <div className="image-input">

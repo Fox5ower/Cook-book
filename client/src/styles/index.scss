@@ -132,7 +132,12 @@ body{
                                 border: solid 3px white;
                                 outline: none;
                                 border-radius: 35px;
+                                box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0);
                                 transition: all 0.5s;
+                            }
+
+                            input:visited{
+                                outline: none;
                             }
         
                             input::placeholder {
@@ -186,17 +191,17 @@ body{
                     font-family: "Montserrat";
                     font-size: 10pt;
                     margin: 10px 70px;
-                    border: 1px solid rgba(255, 255, 255, 0.5);
+                    border: 2px solid rgba(255, 255, 255, 0.8);
                     padding: 5px 15px;
                     color: white;
-                    background-color: transparent;
+                    background-color: rgba(0, 0, 0, 0.5);
                     transition: all .2s;
                     cursor: pointer;
                 }
 
                 .reset-button:hover{
                     background-color: rgba(255, 255, 255, 0.2);
-                    border: 1px solid rgba(255, 255, 255, 0.5);
+                    border: 2px solid rgba(255, 255, 255, 1);
                 }
 
             }
@@ -1016,14 +1021,15 @@ body{
             transform: translateY(-50%);
             width: 3%;
             height: 100%;
-            z-index: 0;
+            z-index: 1;
             background: none;
             transition: all .5s;
             border: none;
             color: white;
             cursor: pointer;
             &:hover{
-                background-color: rgba(0, 0, 0, 0.5);
+                background-color: rgba(0, 0, 0, 0.2);
+                color: rgb(175, 175, 175);
             }
         }
 

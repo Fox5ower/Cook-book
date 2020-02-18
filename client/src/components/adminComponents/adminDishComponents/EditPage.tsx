@@ -1,8 +1,6 @@
-import React, { Component, ImgHTMLAttributes } from 'react';
+import React, { Component } from 'react';
 import axios from "axios";
 import { RouteComponentProps, Redirect } from "react-router";
-import { FaPaperclip } from "react-icons/fa";
-import { IconContext } from "react-icons";
 import IDish from '../../../interfaces/IDish';
 import tokenInterceptor from '../../../middlewares/tokenInterceptor';
 import Input from './Input';
@@ -185,7 +183,7 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                                 })}
                             </select>
                         </div>
-                        <img className="dish-img" src={this.state.dish.image} alt="dish-image" />
+                        <img className="dish-img" src={this.state.dish.image} alt="dish" />
                         <ImageInput fileName={this.state.fileName} fileHandler={(e: any) => this.fileHandler(e)}></ImageInput>
                     </fieldset>
                     <input type="submit" value="Submit Changes" />

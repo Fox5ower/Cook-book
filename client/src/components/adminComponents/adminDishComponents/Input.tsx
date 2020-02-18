@@ -1,18 +1,13 @@
-import React, { Component, ChangeEvent } from 'react';
+import React, { Component } from 'react';
 
 interface MyProps {
     name: string,
     maxLength: number,
     value?: string | Array<string>,
-    onChange?: any | null
+    onChange?: Function | null
 }
 
 class Input extends Component<MyProps> {
-
-    constructor(props: MyProps) {
-        super(props)
-
-    }
 
     capitalizeFirstLetter(string: string) {
         return string.charAt(0).toUpperCase() + string.slice(1);

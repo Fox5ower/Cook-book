@@ -3,7 +3,6 @@ import axios from "axios";
 import IDish from "../interfaces/IDish"
 import MenuItem from "./MenuItem";
 import ToolBar from './ToolBar';
-import DishSlider from './DishSlider';
 import Slider from './Slider';
 
 
