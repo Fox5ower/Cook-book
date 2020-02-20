@@ -16,8 +16,8 @@ class Input extends Component<MyProps> {
     render() {
         return (
             <div className="input-container">
-                <label htmlFor={this.props.name}>{this.capitalizeFirstLetter(this.props.name)}</label>
-                <textarea maxLength={this.props.maxLength} name={this.props.name} id={this.props.name} value={this.props.value} onChange={e => this.props.onChange(e)} />
+                <textarea maxLength={this.props.maxLength} name={this.props.name} id={this.props.name} value={this.props.value} onChange={e => this.props.onChange(e)} required />
+                <label className="label" htmlFor={this.props.name}>{this.capitalizeFirstLetter(this.props.name)}</label>
             </div>
         )
     }

@@ -4,6 +4,8 @@ import Header from './Header';
 import DishTable from './adminDishComponents/DishTable';
 import AddPage from './adminDishComponents/AddPage';
 import EditPage from './adminDishComponents/EditPage';
+import AddCategory from './adminDishComponents/AddCategory';
+import RemoveCategory from './adminDishComponents/RemoveCategory';
 const jwt = require("jsonwebtoken");
 
 interface IDecoded {
@@ -65,9 +67,10 @@ class Pannel extends Component<MyProps, MyState> {
                     <Header id={id} />
                     <Switch>
                         <Route path={"/admin/add"} component={AddPage} />
+                        <Route path={"/admin/category"} component={AddCategory} />
                         <Route path={"/admin/edit/:name"} component={EditPage} />
                         <Route exact path={"/admin"} component={DishTable} />
-
+                        <Route exact path={"/admin/remove_category"} component={RemoveCategory} />
                     </Switch>
                 </div>
             )

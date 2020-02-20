@@ -1,0 +1,114 @@
+.button {
+  margin: 10px;
+  padding: 5px 50px;
+  border: 1px solid rgba(226, 226, 226, 0.25);
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
+  font-family: "Montserrat";
+  font-size: 12pt;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 300ms;
+}
+
+.main__button {
+  margin: 4vh;
+  width: 17vw;
+  height: 6vh;
+  border: 2px solid rgba(226, 226, 226, 0.25);
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
+  font-family: "Dancing Script";
+  font-size: 1.4rem;
+  line-height: 2.8rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 300ms;
+}
+
+.main__button:hover {
+  transition: 300ms;
+  background-color: rgba(0, 0, 0, 0.185);
+  border: 2px solid rgba(226, 226, 226, 0.5);
+}
+
+.reset-button {
+  font-family: "Montserrat";
+  color: #fb5454af;
+  font-size: 9pt;
+  padding: 3px 10px;
+  margin: 10px 0;
+  box-shadow: none;
+  border-radius: 3px;
+  background-color: transparent;
+  border: #fb5454af solid 2px;
+  transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+}
+
+.reset-button:hover {
+  background-color: #fb545483;
+  box-shadow: inset 0 0 0 rgba(251, 81, 81, 0.4), 0 0 1.5em rgba(251, 81, 81, 0.6);
+}
+
+.pagination button {
+  background-color: transparent;
+  border: none;
+  transition: all 0.2s;
+  color: white;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.description-button {
+  color: rgb(209, 63, 63);
+  font-size: 16pt;
+  padding: 5px 20px;
+  width: 140px;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  background-image: linear-gradient(to left, transparent, transparent 50%, #ac0e0e3a 50%, #ac0e0e3a);
+  background-position: 100% 0;
+  background-size: 200% 100%;
+  transition: all 0.25s ease-in;
+  border: 2px solid rgb(209, 63, 63);
+  cursor: pointer;
+}
+
+.description-button:hover {
+  background-position: 0 0;
+  color: #fff;
+  box-shadow: 0px 0px 30px rgb(139, 0, 0);
+}
+
+#goLeft,
+#goRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3%;
+  height: 100%;
+  z-index: 1;
+  background: none;
+  transition: all 0.5s;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+#goLeft:hover,
+#goRight:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: rgb(175, 175, 175);
+}
+
+#goLeft {
+  left: 0;
+}
+
+#goRight {
+  right: 0;
+}

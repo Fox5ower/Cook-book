@@ -14,7 +14,8 @@ interface MyState {
     dishes: Array<IDish>,
     term: string,
     showSlider: boolean,
-    index: number
+    index: number,
+    showNav: boolean
 }
 
 
@@ -28,7 +29,8 @@ class Menu extends Component<MyProps, MyState> {
             dishes: [],
             term: "",
             showSlider: false,
-            index: undefined
+            index: undefined,
+            showNav: true
         }
     }
 
@@ -50,6 +52,12 @@ class Menu extends Component<MyProps, MyState> {
         })
     }
 
+    toggleNav() {
+        this.setState({
+            showNav: !this.state.showNav
+        })
+    }
+
     componentWillMount() {
         axios.get("http://localhost:3001/dishes")
             .then((dishes) => {
@@ -65,33 +73,37 @@ class Menu extends Component<MyProps, MyState> {
         if (!this.state.showSlider) {
             return (
                 <div className="menu-page-container">
-                    <div className="menu__container">
-                        <span className="menu__header">Dish List</span>
-                        <ToolBar
-                            term={this.state.term}
-                            data={this.initialData}
-                            update={this.updateData.bind(this)}
-                            initialState={this.initialData}
-                        />
-                        <div className="menu">
-
-                            {this.state.dishes.map((dish, i) => (
-
-                                <MenuItem key={dish._id}
-                                    _id={dish._id}
-                                    name={dish.name}
-                                    category={dish.category}
-                                    method={dish.method}
-                                    description={dish.description}
-                                    engreediants={dish.engreediants}
-                                    image={dish.image}
-                                    toggleSlider={this.toggleSlider.bind(this)}
-                                    counter={i + 1}
-                                    setIndex={this.setIndex.bind(this)}>
-                                </MenuItem>
-
-                            ))}
+                    <div className="nav-wrapper" style={(window.innerWidth > 1064) ? (this.state.showNav ? { margin: "0 0 0 0", visibility: "visible" } : {}) : (this.state.showNav ? { left: "0", visibility: "visible", opacity: "1" } : {})}>
+                        <span className={`close ${!this.state.showNav ? "close-unshown" : ""}`} onClick={() => this.toggleNav()}></span>
+                        <span className="open" style={this.state.showNav ? { opacity: "0", visibility: "hidden" } : {}} onClick={() => this.toggleNav()}></span>
+                        <div className="navbar-container">
+                            <ToolBar
+                                term={this.state.term}
+                                data={this.initialData}
+                                update={this.updateData.bind(this)}
+                                initialState={this.initialData}
+                            />
                         </div>
+                    </div>
+                    <div className="menu__container">
+
+                        {this.state.dishes.map((dish, i) => (
+
+                            <MenuItem key={dish._id}
+                                _id={dish._id}
+                                name={dish.name}
+                                category={dish.category}
+                                method={dish.method}
+                                description={dish.description}
+                                engreediants={dish.engreediants}
+                                image={dish.image}
+                                toggleSlider={this.toggleSlider.bind(this)}
+                                counter={i + 1}
+                                setIndex={this.setIndex.bind(this)}>
+                            </MenuItem>
+
+                        ))}
+                        <div className="menu-margin"></div>
                     </div>
                 </div>
             )

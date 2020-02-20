@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import tokenInterceptor from "../../middlewares/tokenInterceptor"
 import IAdmin from "../../interfaces/IAdmin";
-import Modal from "./Modal";
+import Modal from "./modalComponents/Modal";
 
 interface MyProps {
     id: string

@@ -2,6 +2,7 @@ import * as express from "express";
 import { Request, Response } from "express";
 import IControllerBase from "../../interfaces/IControllerBase";
 const Dish = require("../../models/Dish");
+const Category = require("../../models/Category");
 const adminTokenChecker = require("../../middlewares/adminTokenChecker")
 const multer = require("multer");
 
@@ -42,6 +43,8 @@ class AdminDishController implements IControllerBase {
     public initRoutes() {
         this.router.use(adminTokenChecker);
         this.router.post(`${this.path}/add`, upload.single("image"), this.addDish);
+        this.router.post(`${this.path}/add_category`, this.addCategory);
+        this.router.delete(`${this.path}/remove_category/:key`, this.removeCategory);
         this.router.delete(`${this.path}/remove/:name`, this.removeDish);
         this.router.put(`${this.path}/update/:name`, upload.single("image"), this.updateDish);
         this.router.get(`${this.path}/edit/:name`, this.dishByName);
@@ -65,11 +68,35 @@ class AdminDishController implements IControllerBase {
         }
     }
 
+    addCategory = async (req: Request, res: Response, next: any) => {
+        console.log(req);
+        const category = new Category({
+            key: req.body.key,
+            name: req.body.name
+        })
+        const savedCategory = await category.save();
+        if (savedCategory) {
+            res.json({ "Added new category: ": savedCategory.name });
+        } else {
+            res.status(401).json({ message: "Something went wrong" })
+        }
+    }
+
     removeDish = async (req: Request, res: Response, next: any) => {
         const removedDish = await Dish.deleteMany({ name: req.params.name });
 
         if (removedDish) {
             res.json({ "Removed dish: ": removedDish.name });
+        } else {
+            res.status(401).json({ message: "Something went wrong" });
+        }
+    }
+
+    removeCategory = async (req: Request, res: Response, next: any) => {
+        const removedCategory = await Category.deleteOne({ key: req.params.key });
+
+        if (removedCategory) {
+            res.json({ "Removed dish: ": removedCategory.name });
         } else {
             res.status(401).json({ message: "Something went wrong" });
         }

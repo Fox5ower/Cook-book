@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom";
 import { useTable, usePagination } from 'react-table'
-import { FaArrowLeft, FaArrowRight, FaEdit, FaTrash } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaEdit, FaTrash, FaChevronDown } from "react-icons/fa";
 
 interface MyProps {
     columns: any,
@@ -36,18 +36,26 @@ const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {
     return (
         <>
             <div className="table-container">
-                <div className="add-dish">
-                    <Link to="/admin/add" className="add-dish__link">
+                <div className="add-btn-container">
+                    <Link to="/admin/add" className="add__link">
                         Add Dish
+                    </Link>
+
+                    <Link to="/admin/category" className="add__link">
+                        Add Category
+                    </Link>
+
+                    <Link to="/admin/remove_category" className="add__link">
+                        Remove Category
                     </Link>
 
                 </div>
                 <table {...getTableProps()}>
                     <thead>
-                        {headerGroups.map(headerGroup => (
-                            <tr {...headerGroup.getHeaderGroupProps()}>
-                                {headerGroup.headers.map(column => (
-                                    <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                        {headerGroups.map((headerGroup, i) => (
+                            <tr key={i} {...headerGroup.getHeaderGroupProps()}>
+                                {headerGroup.headers.map((column, i) => (
+                                    <th key={i} {...column.getHeaderProps()}>{column.render('Header')}</th>
                                 ))}
                             </tr>
                         ))}
@@ -56,9 +64,9 @@ const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {
                         {page.map((row, i) => {
                             prepareRow(row)
                             return (
-                                <tr {...row.getRowProps()}>
-                                    {row.cells.map(cell => {
-                                        return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                                <tr key={i} {...row.getRowProps()}>
+                                    {row.cells.map((cell, i) => {
+                                        return <td key={i} {...cell.getCellProps()}>{cell.render('Cell')}</td>
                                     })}
                                     <td>
                                         {row.cells.map((cell, i) => {
@@ -73,7 +81,7 @@ const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {
                                                         </div>
                                                     </div>
                                                 )
-                                            } else return <></>
+                                            } else return <div key={i}></div>
                                         })}
 
                                     </td>
@@ -98,18 +106,21 @@ const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {
                         {pageIndex + 1} of {pageOptions.length}
                     </strong>{' '}
                 </span>
-                <select
-                    value={pageSize}
-                    onChange={e => {
-                        setPageSize(Number(e.target.value))
-                    }}
-                >
-                    {[5, 10, 20, 30, 40].map(pageSize => (
-                        <option key={pageSize} value={pageSize}>
-                            Show {pageSize}
-                        </option>
-                    ))}
-                </select>
+                <div className="select-container">
+                    <select
+                        value={pageSize}
+                        onChange={e => {
+                            setPageSize(Number(e.target.value))
+                        }}
+                    >
+                        {[5, 10, 20, 30, 40].map(pageSize => (
+                            <option key={pageSize} value={pageSize}>
+                                Show {pageSize}
+                            </option>
+                        ))}
+                    </select>
+                    <FaChevronDown style={{ position: "absolute", top: "38%", left: "85%", pointerEvents: "none", opacity: "0.7", fontSize: "0.7em" }} ></FaChevronDown>
+                </div>
             </div>
         </>
     )

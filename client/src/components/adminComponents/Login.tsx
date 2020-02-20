@@ -39,11 +39,13 @@ class Login extends Component<MyProps, MyState> {
         console.log(this.state);
         axios.post("http://localhost:3001/admin/login", this.state)
             .then((res) => {
-                console.log(res.data.token);
-                localStorage.setItem("token", res.data.token);
-                this.setState({ redirect: true })
+                if (res.status === 200) {
+                    console.log(res.data.token);
+                    localStorage.setItem("token", res.data.token);
+                    this.setState({ redirect: true })
+                }
             }).catch(err => {
-                console.log(err);
+                console.log(err)
             })
 
     }
@@ -59,8 +61,14 @@ class Login extends Component<MyProps, MyState> {
                 <form className="admin-login__form" method="POST" action="/admin/login">
                     <fieldset>
                         <legend>Admin Login</legend>
-                        <input type="email" name="email" placeholder="Email" value={email} onChange={this.changeHandler} />
-                        <input type="text" name="password" placeholder="Password" value={password} onChange={this.changeHandler} />
+                        <div className="input-container">
+                            <input type="email" name="email" value={email} onChange={this.changeHandler} required />
+                            <label className="label" htmlFor="email">Email</label>
+                        </div>
+                        <div className="input-container">
+                            <input type="password" name="password" value={password} onChange={this.changeHandler} required />
+                            <label className="label" htmlFor="password">Password</label>
+                        </div>
                     </fieldset>
 
                     <input type="submit" value="Log In" onClick={this.submitHandler} />

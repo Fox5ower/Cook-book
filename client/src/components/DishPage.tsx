@@ -79,7 +79,7 @@ class DishPage extends Component<MyProps, MyState> {
 
                                 <span className="description">{this.state.dish.description}
                                 </span>
-                                <div className="button" onClick={this.toggleDescription.bind(this)}>Show Recipe</div>
+                                <div className="description-button" onClick={this.toggleDescription.bind(this)}>Show Recipe</div>
                             </div>
                         </div>
                     </div>

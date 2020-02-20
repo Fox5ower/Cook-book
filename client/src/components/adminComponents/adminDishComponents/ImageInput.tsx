@@ -13,7 +13,7 @@ class ImageInput extends Component<MyProps> {
         return (
             <div className="image-input">
                 <div className="form-group">
-                    <label className="label">
+                    <label className="img-label">
                         <IconContext.Provider value={{ size: "1.5em" }}>
                             <FaPaperclip />
                         </IconContext.Provider>

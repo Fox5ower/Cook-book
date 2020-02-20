@@ -6,6 +6,7 @@ import tokenInterceptor from '../../../middlewares/tokenInterceptor';
 import Input from './Input';
 import ImageInput from './ImageInput';
 import ICategory from '../../../interfaces/ICategory';
+import { FaChevronDown } from "react-icons/fa"
 
 interface MyState {
     dish: IDish,
@@ -164,32 +165,39 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
         }
         const { name, category, description, engreediants, method } = this.state.dish
         return (
-            <div className="edit-form">
-                <span className="form-header">{name}</span>
-                <form id="form" method="POST" action="/api/panel/update/:name" onSubmit={this.submitHandler} >
-                    <fieldset>
-                        <Input name="name" maxLength={20} value={name} onChange={(e: any) => this.changeHandler(e)}></Input>
-                        <Input name="description" maxLength={220} value={description} onChange={(e: any) => this.changeHandler(e)}></Input>
-                        <Input name="engreediants" maxLength={150} value={engreediants} onChange={(e: any) => this.changeHandler(e)}></Input>
-                        <Input name="method" maxLength={220} value={method} onChange={(e: any) => this.changeHandler(e)}></Input>
-                        <div className="input-container">
-                            <label htmlFor="category">Category</label>
-                            <select form="form" name="category" id="category">
-                                <option value="" selected disabled hidden>{category}</option>
-                                {this.state.categories.map((category, i) => {
-                                    return (
-                                        <option key={category.key} value={category.key}>{category.name}</option>
-                                    )
-                                })}
-                            </select>
-                        </div>
+            <div className="dish-form__container">
+                <div className="dish-form">
+                    <div className="dish-form__header">
+                        <span>{name}</span>
+                    </div>
+                    <form id="form" method="POST" action="/api/panel/update/:name" onSubmit={this.submitHandler} >
+                        <fieldset className="row-fieldset">
+                            <Input name="name" maxLength={20} value={name} onChange={(e: any) => this.changeHandler(e)}></Input>
+                            <Input name="engreediants" maxLength={150} value={engreediants} onChange={(e: any) => this.changeHandler(e)}></Input>
+                        </fieldset>
+                        <fieldset className="column-fieldset">
+                            <Input name="description" maxLength={220} value={description} onChange={(e: any) => this.changeHandler(e)}></Input>
+                            <Input name="method" maxLength={220} value={method} onChange={(e: any) => this.changeHandler(e)}></Input>
+
+                            <div className="input-container">
+                                <label htmlFor="category">Category</label>
+                                <select form="form" name="category" id="category">
+                                    {this.state.categories.map((category, i) => {
+                                        return (
+                                            <option key={category.key} value={category.key}>{category.name}</option>
+                                        )
+                                    })}
+                                </select>
+                                <FaChevronDown style={{ position: "absolute", top: "51%", left: "95%", pointerEvents: "none", opacity: "0.7" }} ></FaChevronDown>
+                            </div>
+                        </fieldset>
+
                         <img className="dish-img" src={this.state.dish.image} alt="dish" />
                         <ImageInput fileName={this.state.fileName} fileHandler={(e: any) => this.fileHandler(e)}></ImageInput>
-                    </fieldset>
-                    <input type="submit" value="Submit Changes" />
 
-
-                </form>
+                        <input type="submit" value="Submit Changes" />
+                    </form>
+                </div>
             </div>
         )
     }

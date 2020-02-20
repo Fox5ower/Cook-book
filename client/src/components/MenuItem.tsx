@@ -16,9 +16,13 @@ interface MyProps {
 
 class MenuItem extends Component<MyProps> {
 
+    dynamicBackground = {
+        backgroundImage: "url(" + this.props.image + ")"
+    }
+
     render() {
         return (
-            <div onClick={() => { this.props.toggleSlider(); this.props.setIndex(this.props.counter) }} className="menu__item">
+            <div onClick={() => { this.props.toggleSlider(); this.props.setIndex(this.props.counter) }} className="menu__item" style={this.dynamicBackground}>
                 <div className="memu__item__head-container">
                     <span className="menu__item__name">{this.props.name}</span>
                     <span className="menu__item__counter">{this.props.counter}</span>
