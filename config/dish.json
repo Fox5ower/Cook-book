@@ -1,7 +1,7 @@
 [
     {
         "name": "Tasty Cocktail",
-        "category": "cocktails",
+        "category": "Cocktails",
         "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": [
@@ -16,7 +16,7 @@
     },
     {
         "name": "Sea Treasure",
-        "category": "fishDishes",
+        "category": "Fish Dishes",
         "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": [
@@ -31,7 +31,7 @@
     },
     {
         "name": "Home Pizza",
-        "category": "fastfood",
+        "category": "FastFood",
         "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": [
@@ -46,7 +46,7 @@
     },
     {
         "name": "Salad Lunch",
-        "category": "salads",
+        "category": "Salads",
         "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": [
@@ -61,7 +61,7 @@
     },
     {
         "name": "Roasted Chicken",
-        "category": "meatDishes",
+        "category": "Meat Dishes",
         "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": [
@@ -76,7 +76,7 @@
     },
     {
         "name": "Chicken And Mushrooms",
-        "category": "meatDishes",
+        "category": "Meat Dishes",
         "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": [
@@ -91,7 +91,7 @@
     },
     {
         "name": "Christmas Salad",
-        "category": "salads",
+        "category": "Salads",
         "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": [
@@ -106,7 +106,7 @@
     },
     {
         "name": "Fam Rolls",
-        "category": "deserts",
+        "category": "Deserts",
         "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": [
@@ -121,7 +121,7 @@
     },
     {
         "name": "Party Cocktail",
-        "category": "cocktails",
+        "category": "Cocktails",
         "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": [
@@ -136,7 +136,7 @@
     },
     {
         "name": "Fish And Chips",
-        "category": "fishDishes",
+        "category": "Fish Dishes",
         "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": [
@@ -151,7 +151,7 @@
     },
     {
         "name": "Pizza Pepperoni",
-        "category": "fastfood",
+        "category": "FastFood",
         "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": [
@@ -166,7 +166,7 @@
     },
     {
         "name": "Salad Caesar",
-        "category": "salads",
+        "category": "Salads",
         "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": [
@@ -181,7 +181,7 @@
     },
     {
         "name": "Chicken Wings",
-        "category": "meatDishes",
+        "category": "Meat Dishes",
         "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": [
@@ -196,7 +196,7 @@
     },
     {
         "name": "Chicken Curry",
-        "category": "meatDishes",
+        "category": "Meat Dishes",
         "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": [
@@ -211,7 +211,7 @@
     },
     {
         "name": "Olivier Salad",
-        "category": "salads",
+        "category": "Salads",
         "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": [
@@ -226,7 +226,7 @@
     },
     {
         "name": "Cheesecake",
-        "category": "deserts",
+        "category": "Deserts",
         "method": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat commodo metus. Integer blandit libero mi, quis pretium enim ornare quis. Duis accumsan, risus in malesuada placerat, lectus tellus ullamcorper nibh, in euismod urna tortor at mauris. Quisque consequat porta blandit. Quisque arcu turpis, tristique non sapien eget, suscipit ornare enim. Vestibulum accumsan nisl quis leo placerat, ultrices vestibulum eros elementum. Duis luctus a sem id rutrum. Nam quam ligula, gravida id nibh at, placerat auctor diam. Donec aliquet purus id pharetra hendrerit. Pellentesque sodales lacus quis interdum porttitor. ",
         "description": "Susaesti voluptas aut quo exerior estoressit licias rehentur sit que net, quiatus daectoribus dolestis ipicide",
         "engreediants": [

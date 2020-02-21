@@ -44,7 +44,7 @@ class AdminDishController implements IControllerBase {
         this.router.use(adminTokenChecker);
         this.router.post(`${this.path}/add`, upload.single("image"), this.addDish);
         this.router.post(`${this.path}/add_category`, this.addCategory);
-        this.router.delete(`${this.path}/remove_category/:key`, this.removeCategory);
+        this.router.delete(`${this.path}/remove_category/:name`, this.removeCategory);
         this.router.delete(`${this.path}/remove/:name`, this.removeDish);
         this.router.put(`${this.path}/update/:name`, upload.single("image"), this.updateDish);
         this.router.get(`${this.path}/edit/:name`, this.dishByName);
@@ -69,9 +69,7 @@ class AdminDishController implements IControllerBase {
     }
 
     addCategory = async (req: Request, res: Response, next: any) => {
-        console.log(req);
         const category = new Category({
-            key: req.body.key,
             name: req.body.name
         })
         const savedCategory = await category.save();
@@ -93,7 +91,7 @@ class AdminDishController implements IControllerBase {
     }
 
     removeCategory = async (req: Request, res: Response, next: any) => {
-        const removedCategory = await Category.deleteOne({ key: req.params.key });
+        const removedCategory = await Category.deleteOne({ name: req.params.name });
 
         if (removedCategory) {
             res.json({ "Removed dish: ": removedCategory.name });

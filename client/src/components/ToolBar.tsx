@@ -4,7 +4,7 @@ import ICategory from "../interfaces/ICategory"
 import SearchBar from "./SearchBar";
 import axios from "axios";
 import { AiOutlineInstagram, AiOutlineTwitter, AiOutlineFacebook } from "react-icons/ai";
-import { FaVk, FaTwitter } from "react-icons/fa"
+import { FaVk } from "react-icons/fa"
 
 interface MyProps {
     term: string,
@@ -15,7 +15,8 @@ interface MyProps {
 
 interface MyState {
     categories: Array<ICategory>,
-    value: string
+    value: string,
+    filteredDish: Array<IDish>
 }
 
 class ToolBar extends Component<MyProps, MyState>{
@@ -24,7 +25,8 @@ class ToolBar extends Component<MyProps, MyState>{
 
         this.state = {
             categories: [],
-            value: ""
+            value: "",
+            filteredDish: []
         }
     }
 
@@ -42,6 +44,9 @@ class ToolBar extends Component<MyProps, MyState>{
         this.props.update({
             dishes: this.props.initialState
         })
+        this.setState({
+            filteredDish: []
+        })
         let unchoosedArr = document.querySelectorAll(".category");
         if (unchoosedArr) {
             unchoosedArr.forEach(el => {
@@ -53,12 +58,13 @@ class ToolBar extends Component<MyProps, MyState>{
     dataSort = (e: any) => {
         e.preventDefault();
         const value = e.target.name;
-        this.setState({
-            value: value
-        })
         const filter = this.props.data.filter((dish: IDish) => {
             return dish.category.includes(value);
         });
+        this.setState({
+            value: value,
+            filteredDish: filter
+        })
 
         this.props.update({
             dishes: filter,
@@ -79,13 +85,14 @@ class ToolBar extends Component<MyProps, MyState>{
             <>
                 <div className="navbar__header">
                     Dish List
-                    </div>
+                </div>
                 <div className="nav-container">
                     <div className="search">
                         <SearchBar
                             term={this.props.term}
                             data={this.props.data}
                             update={this.props.update}
+                            filteredDish={this.state.filteredDish}
                         />
                         <div className="line-divider"></div>
                     </div>
@@ -94,7 +101,7 @@ class ToolBar extends Component<MyProps, MyState>{
                     <div className="category-container">
                         {this.state.categories.map((category: ICategory, i: number) => {
                             return (
-                                <button key={category.key} className="category" onClick={this.dataSort} id={category.key} name={category.key}>{category.name}</button>
+                                <button key={category._id} className="category" onClick={this.dataSort} id={category._id} name={category.name}>{category.name}</button>
                             )
                         })}
                         <button className="reset-button" onClick={(e: any) => this.resetData(e)}>

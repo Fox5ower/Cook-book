@@ -1,5 +1,5 @@
 interface ICategory {
-    key: string,
+    _id: string,
     name: string
 }
 

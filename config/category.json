@@ -1,26 +1,20 @@
 [
     {
-        "key": "deserts",
         "name": "Deserts"
     },
     {
-        "key": "salads",
         "name": "Salads"
     },
     {
-        "key": "meatDishes",
         "name": "Meat Dishes"
     },
     {
-        "key": "fastfood",
         "name": "FastFood"
     },
     {
-        "key": "fishDishes",
         "name": "Fish Dishes"
     },
     {
-        "key": "cocktails",
         "name": "Cocktails"
     }
 ]

@@ -1,6 +1,6 @@
 interface ICategory {
-    key: string,
-    name: string
+    name: string,
+    _id: string
 }
 
 export default ICategory

@@ -25,8 +25,8 @@ class CategoryController implements IControllerBase {
         }
     }
 
-    categoryByKey = async (req: Request, res: Response, next: any) => {
-        const category = await Category.findOne({ key: req.params.key });
+    categoryById = async (req: Request, res: Response, next: any) => {
+        const category = await Category.findOne({ _id: req.params.id });
 
         if (category) {
             res.json(category);

@@ -13,7 +13,6 @@ interface MyState {
     redirect: boolean,
     categories: Array<ICategory>
     name: string
-    key: string
 }
 
 class AddCategory extends Component<MyProps, MyState> {
@@ -25,7 +24,6 @@ class AddCategory extends Component<MyProps, MyState> {
             redirect: false,
             categories: [],
             name: "",
-            key: ""
         }
     }
 
@@ -36,20 +34,9 @@ class AddCategory extends Component<MyProps, MyState> {
     changeHandler = (e: any) => {
         if (e.target) {
             let target = e.target;
-            switch (target.name) {
-                case "name": {
-                    this.setState({
-                        name: target.value
-                    })
-                    break;
-                }
-                case "key": {
-                    this.setState({
-                        key: target.value
-                    })
-                    break;
-                }
-            }
+            this.setState({
+                name: target.value
+            })
         }
     }
 
@@ -58,7 +45,7 @@ class AddCategory extends Component<MyProps, MyState> {
 
         e.preventDefault();
 
-        axios.post(`http://localhost:3001/api/panel/add_category`, { name: this.state.name, key: this.state.key })
+        axios.post(`http://localhost:3001/api/panel/add_category`, { name: this.state.name })
             .then((res) => {
                 if (res.status === 200) {
                     this.setState({
@@ -76,7 +63,7 @@ class AddCategory extends Component<MyProps, MyState> {
                 <Redirect to="/admin"></Redirect>
             )
         }
-        const { name, key } = this.state
+        const { name } = this.state
         return (
 
             <div className="dish-form__container">
@@ -87,7 +74,6 @@ class AddCategory extends Component<MyProps, MyState> {
                     <form id="form" method="POST" onSubmit={this.submitHandler} >
                         <fieldset className="row-fieldset">
                             <Input name="name" maxLength={20} value={name} onChange={(e: any) => this.changeHandler(e)}></Input>
-                            <Input name="key" maxLength={20} value={key} onChange={(e: any) => this.changeHandler(e)}></Input>
                         </fieldset>
 
                         <input type="submit" value="Submit Changes" />

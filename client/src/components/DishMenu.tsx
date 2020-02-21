@@ -70,10 +70,11 @@ class Menu extends Component<MyProps, MyState> {
     }
 
     render() {
+        const { dishes } = this.state
         if (!this.state.showSlider) {
             return (
                 <div className="menu-page-container">
-                    <div className="nav-wrapper" style={(window.innerWidth > 1064) ? (this.state.showNav ? { margin: "0 0 0 0", visibility: "visible" } : {}) : (this.state.showNav ? { left: "0", visibility: "visible", opacity: "1" } : {})}>
+                    <div className="nav-wrapper" style={(window.innerWidth > 1064) ? (this.state.showNav ? { margin: "0 0 0 0", visibility: "visible" } : {}) : (this.state.showNav ? { top: "0", visibility: "visible", opacity: "1" } : {})}>
                         <span className={`close ${!this.state.showNav ? "close-unshown" : ""}`} onClick={() => this.toggleNav()}></span>
                         <span className="open" style={this.state.showNav ? { opacity: "0", visibility: "hidden" } : {}} onClick={() => this.toggleNav()}></span>
                         <div className="navbar-container">
@@ -87,7 +88,7 @@ class Menu extends Component<MyProps, MyState> {
                     </div>
                     <div className="menu__container">
 
-                        {this.state.dishes.map((dish, i) => (
+                        {dishes.map((dish, i) => (
 
                             <MenuItem key={dish._id}
                                 _id={dish._id}

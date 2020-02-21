@@ -108,7 +108,7 @@ class AddPage extends Component<MyProps, MyState> {
                                 <select form="form" name="category" id="category">
                                     {this.state.categories.map((category, i) => {
                                         return (
-                                            <option key={category.key} value={category.key}>{category.name}</option>
+                                            <option key={category._id} value={category.name}>{category.name}</option>
                                         )
                                     })}
                                 </select>
