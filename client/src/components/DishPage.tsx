@@ -67,7 +67,7 @@ class DishPage extends Component<MyProps, MyState> {
                 </DishDetailed>
                 <div className="dish-page-container" style={this.state.dynamicImage}>
                     <div className="menu-link" onClick={() => this.props.toggleSlider()}>
-                        Menu
+                        ⮌ Menu
                     </div>
                     <div className="dish-container">
                         <div className="img-container">
