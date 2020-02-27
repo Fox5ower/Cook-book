@@ -1,6 +1,8 @@
 import React, { Component, SyntheticEvent } from 'react';
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+import { DEV_URL } from "../App";
 
 interface MyProps {
 
@@ -37,7 +39,7 @@ class Login extends Component<MyProps, MyState> {
     submitHandler = (e: SyntheticEvent) => {
         e.preventDefault();
         console.log(this.state);
-        axios.post("http://localhost:3001/admin/login", this.state)
+        axios.post(`${DEV_URL}admin/login`, this.state)
             .then((res) => {
                 if (res.status === 200) {
                     console.log(res.data.token);
@@ -60,18 +62,26 @@ class Login extends Component<MyProps, MyState> {
             <div className="admin__login-form-container">
                 <form className="admin-login__form" method="POST" action="/admin/login">
                     <fieldset>
-                        <legend>Admin Login</legend>
+                        <legend><FormattedMessage id="admin.login" defaultMessage="Admin" /></legend>
                         <div className="input-container">
                             <input type="email" name="email" value={email} onChange={this.changeHandler} required />
-                            <label className="label" htmlFor="email">Email</label>
+                            <label className="label" htmlFor="email">
+                                <FormattedMessage id="admin.login.email.placeholder" defaultMessage="Email" />
+                            </label>
                         </div>
                         <div className="input-container">
                             <input type="password" name="password" value={password} onChange={this.changeHandler} required />
-                            <label className="label" htmlFor="password">Password</label>
+                            <label className="label" htmlFor="password">
+                                <FormattedMessage id="admin.login.password.placeholder" defaultMessage="Password" />
+                            </label>
                         </div>
                     </fieldset>
+                    <FormattedMessage id="admin.login.button" defaultMessage="Log in">
+                        {(placeholder: string) =>
+                            <input type="submit" value={placeholder} onClick={this.submitHandler} />
+                        }
+                    </FormattedMessage>
 
-                    <input type="submit" value="Log In" onClick={this.submitHandler} />
                 </form>
             </div>
         )

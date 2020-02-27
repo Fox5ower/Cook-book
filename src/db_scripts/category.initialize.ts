@@ -10,7 +10,6 @@ export default async () => {
     } else {
         categoryData.forEach(async (category) => {
             const newCategory = new Category({
-                key: category.key,
                 name: category.name,
             })
             const savedCategory = await newCategory.save();

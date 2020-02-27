@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import axios from "axios";
 import tokenInterceptor from '../../../middlewares/tokenInterceptor';
 import { Redirect } from 'react-router';
+import { DEV_URL } from "../../App";
 import Input from './Input';
 import ImageInput from './ImageInput';
 import ICategory from '../../../interfaces/ICategory';
 import { FaChevronDown } from "react-icons/fa"
+import { FormattedMessage } from 'react-intl';
 
 interface MyProps {
 
@@ -33,7 +35,7 @@ class AddPage extends Component<MyProps, MyState> {
 
     componentWillMount() {
         tokenInterceptor()
-        axios.get("http://localhost:3001/categories")
+        axios.get(`${DEV_URL}categories`)
             .then((category) => {
                 this.setState({
                     categories: category.data.category
@@ -93,18 +95,42 @@ class AddPage extends Component<MyProps, MyState> {
             <div className="dish-form__container">
                 <div className="dish-form">
                     <div className="dish-form__header">
-                        <span>Add New Dish</span>
+                        <span>
+                            <FormattedMessage id="admin.addPage.header" defaultMessage="Add New Dish" />
+                        </span>
                     </div>
                     <form id="form" method="POST" action="/api/panel/add" onSubmit={this.submitHandler} >
                         <fieldset className="row-fieldset">
-                            <Input name="name" maxLength={20} onChange={(e: any) => this.changeHandler(e)}></Input>
-                            <Input name="engreediants" maxLength={150} onChange={(e: any) => this.changeHandler(e)}></Input>
+                            <FormattedMessage id="admin.addPage.name.placeholder" defaultMessage="Name">
+                                {(placeholder: string) =>
+                                    <Input placeholder={placeholder} name="name" maxLength={20} onChange={(e: any) => this.changeHandler(e)}></Input>
+                                }
+                            </FormattedMessage>
+
+                            <FormattedMessage id="admin.addPage.engreediants.placeholder" defaultMessage="Engreediants">
+                                {(placeholder: string) =>
+                                    <Input placeholder={placeholder} name="engreediants" maxLength={150} onChange={(e: any) => this.changeHandler(e)}></Input>
+                                }
+                            </FormattedMessage>
                         </fieldset>
                         <fieldset className="column-fieldset">
-                            <Input name="description" maxLength={220} onChange={(e: any) => this.changeHandler(e)}></Input>
-                            <Input name="method" maxLength={220} onChange={(e: any) => this.changeHandler(e)}></Input>
+
+                            <FormattedMessage id="admin.addPage.description.placeholder" defaultMessage="Description">
+                                {(placeholder: string) =>
+                                    <Input placeholder={placeholder} name="description" maxLength={220} onChange={(e: any) => this.changeHandler(e)}></Input>
+                                }
+                            </FormattedMessage>
+
+                            <FormattedMessage id="admin.addPage.method.placeholder" defaultMessage="Method">
+                                {(placeholder: string) =>
+                                    <Input placeholder={placeholder} name="method" maxLength={220} onChange={(e: any) => this.changeHandler(e)}></Input>
+                                }
+                            </FormattedMessage>
+
                             <div className="input-container">
-                                <label htmlFor="category">Category</label>
+                                <label htmlFor="category">
+                                    <FormattedMessage id="admin.addPage.category.placeholder" defaultMessage="Category" />
+                                </label>
                                 <select form="form" name="category" id="category">
                                     {this.state.categories.map((category, i) => {
                                         return (
@@ -124,7 +150,11 @@ class AddPage extends Component<MyProps, MyState> {
                         </div>
                         <ImageInput fileName={this.state.fileName} fileHandler={(e: any) => this.fileHandler(e)}></ImageInput>
 
-                        <input type="submit" value="Submit Changes" />
+                        <FormattedMessage id="admin.submit.button" defaultMessage="Submit Changes">
+                            {(value: string) =>
+                                <input type="submit" value={value} />
+                            }
+                        </FormattedMessage>
                     </form>
                 </div>
             </div>

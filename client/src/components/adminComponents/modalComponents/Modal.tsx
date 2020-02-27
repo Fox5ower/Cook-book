@@ -1,12 +1,15 @@
 import React, { Component, SyntheticEvent } from "react"
 import axios from "axios";
+import { DEV_URL } from "../../App";
 import tokenInterceptor from "../../../middlewares/tokenInterceptor"
 import { Redirect } from "react-router";
 import Input from "../adminDishComponents/Input";
+import { FormattedMessage } from "react-intl";
 interface MyProps {
-    isOpen: boolean
-    onClose: any
-    actionType: string
+    isOpen: boolean,
+    onClose: any,
+    actionType: string,
+    changeName: Function
 }
 
 interface MyState {
@@ -49,8 +52,8 @@ class Modal extends Component<MyProps, MyState> {
     submitHandler = (e: SyntheticEvent) => {
 
         e.preventDefault();
-        console.log(this.state);
-        axios.put(`http://localhost:3001/api/admin/${this.props.actionType}`, this.state)
+        this.props.changeName(this.state.name)
+        axios.put(`${DEV_URL}api/admin/${this.props.actionType}`, this.state)
             .then((res) => {
                 console.log(res.data);
                 if (res.status === 200) {
@@ -60,6 +63,7 @@ class Modal extends Component<MyProps, MyState> {
                         email: "",
                         name: ""
                     });
+
                     this.close(e);
                     alert("Changes has been submited");
                 }
@@ -86,7 +90,9 @@ class Modal extends Component<MyProps, MyState> {
             return (
                 <div>
                     <div className="modal">
-                        <button className="button" onClick={(e) => { this.logout(e) }}>Logout</button>
+                        <button className="button" onClick={(e) => { this.logout(e) }}>
+                            <FormattedMessage id="admin.modal.logout.button" defaultMessage="Logout" />
+                        </button>
                     </div>
                     <div className="bg" onClick={e => this.close(e)} />
                 </div>
@@ -97,11 +103,23 @@ class Modal extends Component<MyProps, MyState> {
                     <div className="modal">
                         <form id="form" method="POST" action="/api/admin/password">
                             <fieldset className="column-fieldset">
-                                <legend>Change Password</legend>
-                                <Input name="password" maxLength={50} value={password} onChange={this.changeHandler}></Input>
-                                <Input name="confirm password" maxLength={50} value={password2} onChange={this.changeHandler}></Input>
+                                <legend><FormattedMessage id="admin.modal.changePass.header" defaultMessage="Change Password" /></legend>
+                                <FormattedMessage id="admin.modal.changePass.pass.placeholder" defaultMessage="Password">
+                                    {(placeholder: string) =>
+                                        <Input placeholder={placeholder} name="password" maxLength={50} value={password} onChange={this.changeHandler}></Input>
+                                    }
+                                </FormattedMessage>
+                                <FormattedMessage id="admin.modal.changePass.confirmPass.placeholder" defaultMessage="Confirm password">
+                                    {(placeholder: string) =>
+                                        <Input placeholder={placeholder} name="confirm password" maxLength={50} value={password2} onChange={this.changeHandler}></Input>
+                                    }
+                                </FormattedMessage>
                             </fieldset>
-                            <input type="submit" className="button" value="Send" onClick={this.submitHandler} />
+                            <FormattedMessage id="admin.modal.send.button" defaultMessage="Send">
+                                {(value: string) =>
+                                    <input type="submit" className="button" value={value} onClick={this.submitHandler} />
+                                }
+                            </FormattedMessage>
                         </form>
                     </div>
                     <div className="bg" onClick={e => this.close(e)} />
@@ -113,12 +131,24 @@ class Modal extends Component<MyProps, MyState> {
                     <div className="modal">
                         <form id="form" method="POST" action="/api/admin/password">
                             <fieldset className="column-fieldset">
-                                <legend>Change Information</legend>
-                                <Input name="email" maxLength={50} value={email} onChange={this.changeHandler}></Input>
-                                <Input name="name" maxLength={50} value={name} onChange={this.changeHandler}></Input>
+                                <legend><FormattedMessage id="admin.modal.changeInfo.header" defaultMessage="Change Information" /></legend>
+                                <FormattedMessage id="admin.modal.changeInfo.email.placeholder" defaultMessage="Email">
+                                    {(placeholder: string) =>
+                                        <Input placeholder={placeholder} name="email" maxLength={50} value={email} onChange={this.changeHandler}></Input>
+                                    }
+                                </FormattedMessage>
+                                <FormattedMessage id="admin.modal.changeInfo.name.placeholder" defaultMessage="Name">
+                                    {(placeholder: string) =>
+                                        <Input placeholder={placeholder} name="name" maxLength={50} value={name} onChange={this.changeHandler.bind(this)}></Input>
+                                    }
+                                </FormattedMessage>
                             </fieldset>
 
-                            <input type="submit" className="button" value="Send" onClick={this.submitHandler} />
+                            <FormattedMessage id="admin.modal.send.button" defaultMessage="Send">
+                                {(value: string) =>
+                                    <input type="submit" className="button" value={value} onClick={this.submitHandler} />
+                                }
+                            </FormattedMessage>
                         </form>
                     </div>
                     <div className="bg" onClick={e => this.close(e)} />
@@ -137,7 +167,7 @@ class Modal extends Component<MyProps, MyState> {
     logout(e: SyntheticEvent) {
         e.preventDefault();
         let token: string = localStorage.getItem("token");
-        axios.post("http://localhost:3001/api/admin/logout", token)
+        axios.post(`${DEV_URL}api/admin/logout`, token)
             .then(res => {
                 if (res.status === 200) {
                     console.log(res);

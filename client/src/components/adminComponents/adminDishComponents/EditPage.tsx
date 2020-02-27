@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import { DEV_URL } from "../../App";
 import { RouteComponentProps, Redirect } from "react-router";
 import IDish from '../../../interfaces/IDish';
 import tokenInterceptor from '../../../middlewares/tokenInterceptor';
@@ -7,6 +8,7 @@ import Input from './Input';
 import ImageInput from './ImageInput';
 import ICategory from '../../../interfaces/ICategory';
 import { FaChevronDown } from "react-icons/fa"
+import { FormattedMessage } from 'react-intl';
 
 interface MyState {
     dish: IDish,
@@ -102,12 +104,12 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
     componentWillMount() {
         tokenInterceptor()
         console.log(this.props.match.params.name);
-        axios.get(`http://localhost:3001/api/panel/edit/${this.props.match.params.name}`)
+        axios.get(`${DEV_URL}api/panel/edit/${this.props.match.params.name}`)
             .then((dish) => {
                 this.setState({
                     dish: dish.data
                 })
-            }).then(() => axios.get("http://localhost:3001/categories")
+            }).then(() => axios.get(`${DEV_URL}categories`)
                 .then((category) => {
                     this.setState({
                         categories: category.data.category
@@ -138,7 +140,7 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                 : body.append('image', input.files[0]);
 
         });
-        axios.put(`http://localhost:3001/api/panel/update/${this.props.match.params.name}`, body)
+        axios.put(`${DEV_URL}api/panel/update/${this.props.match.params.name}`, body)
             .then((res) => {
                 if (res.status === 200) {
                     this.setState({
@@ -163,7 +165,7 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                 <Redirect to="/admin"></Redirect>
             )
         }
-        const { name, category, description, engreediants, method } = this.state.dish
+        const { name, description, engreediants, method } = this.state.dish
         return (
             <div className="dish-form__container">
                 <div className="dish-form">
@@ -172,15 +174,34 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                     </div>
                     <form id="form" method="POST" action="/api/panel/update/:name" onSubmit={this.submitHandler} >
                         <fieldset className="row-fieldset">
-                            <Input name="name" maxLength={20} value={name} onChange={(e: any) => this.changeHandler(e)}></Input>
-                            <Input name="engreediants" maxLength={150} value={engreediants} onChange={(e: any) => this.changeHandler(e)}></Input>
+                            <FormattedMessage id="admin.dish.name.placeholder" defaultMessage="Name">
+                                {(placeholder: string) =>
+                                    <Input placeholder={placeholder} name="name" maxLength={20} value={name} onChange={(e: any) => this.changeHandler(e)}></Input>
+                                }
+                            </FormattedMessage>
+                            <FormattedMessage id="admin.dish.engreediants.placeholder" defaultMessage="Engredients">
+                                {(placeholder: string) =>
+                                    <Input placeholder={placeholder} name="engreediants" maxLength={150} value={engreediants} onChange={(e: any) => this.changeHandler(e)}></Input>
+                                }
+                            </FormattedMessage>
                         </fieldset>
                         <fieldset className="column-fieldset">
-                            <Input name="description" maxLength={220} value={description} onChange={(e: any) => this.changeHandler(e)}></Input>
-                            <Input name="method" maxLength={220} value={method} onChange={(e: any) => this.changeHandler(e)}></Input>
+                            <FormattedMessage id="admin.dish.description.placeholder" defaultMessage="Description">
+                                {(placeholder: string) =>
+                                    <Input placeholder={placeholder} name="description" maxLength={220} value={description} onChange={(e: any) => this.changeHandler(e)}></Input>
+                                }
+                            </FormattedMessage>
+                            <FormattedMessage id="admin.dish.method.placeholder" defaultMessage="Method">
+                                {(placeholder: string) =>
+                                    <Input placeholder={placeholder} name="method" maxLength={220} value={method} onChange={(e: any) => this.changeHandler(e)}></Input>
+
+                                }
+                            </FormattedMessage>
 
                             <div className="input-container">
-                                <label htmlFor="category">Category</label>
+                                <label htmlFor="category">
+                                    <FormattedMessage id="admin.dish.category.placeholder" defaultMessage="Category" />
+                                </label>
                                 <select form="form" name="category" id="category">
                                     {this.state.categories.map((category, i) => {
                                         return (
@@ -195,7 +216,11 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                         <img className="dish-img" src={this.state.dish.image} alt="dish" />
                         <ImageInput fileName={this.state.fileName} fileHandler={(e: any) => this.fileHandler(e)}></ImageInput>
 
-                        <input type="submit" value="Submit Changes" />
+                        <FormattedMessage id="admin.submit.button" defaultMessage="Submit Changes">
+                            {(value: string) =>
+                                <input type="submit" value={value} />
+                            }
+                        </FormattedMessage>
                     </form>
                 </div>
             </div>

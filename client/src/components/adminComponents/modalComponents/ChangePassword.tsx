@@ -1,5 +1,6 @@
 import React, { Component, SyntheticEvent } from "react"
 import axios from "axios";
+import { DEV_URL } from "../../App";
 import tokenInterceptor from "../../../middlewares/tokenInterceptor"
 import { Redirect } from "react-router";
 
@@ -47,7 +48,7 @@ class Logout extends Component<MyProps, MyState> {
     logout(e: SyntheticEvent) {
         e.preventDefault();
         let token: string = localStorage.getItem("token");
-        axios.post("http://localhost:3001/api/admin/logout", token)
+        axios.post(`${DEV_URL}api/admin/logout`, token)
             .then(res => {
                 if (res.status === 200) {
                     console.log(res);

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { FormattedMessage } from 'react-intl';
 import IDish from "../interfaces/IDish";
 import ICategory from "../interfaces/ICategory"
 import SearchBar from "./SearchBar";
+import { DEV_URL } from "./App";
 import axios from "axios";
 import { AiOutlineInstagram, AiOutlineTwitter, AiOutlineFacebook } from "react-icons/ai";
 import { FaVk } from "react-icons/fa"
@@ -31,7 +33,7 @@ class ToolBar extends Component<MyProps, MyState>{
     }
 
     componentWillMount() {
-        axios.get("http://localhost:3001/categories")
+        axios.get(`${DEV_URL}categories`)
             .then((category) => {
                 this.setState({
                     categories: category.data.category
@@ -84,7 +86,7 @@ class ToolBar extends Component<MyProps, MyState>{
         return (
             <>
                 <div className="navbar__header">
-                    Dish List
+                    <FormattedMessage id="dishes.header" defaultMessage="Dish List" />
                 </div>
                 <div className="nav-container">
                     <div className="search">
@@ -105,8 +107,8 @@ class ToolBar extends Component<MyProps, MyState>{
                             )
                         })}
                         <button className="reset-button" onClick={(e: any) => this.resetData(e)}>
-                            Reset Filters
-                    </button>
+                            <FormattedMessage id="dishes.reset.button" defaultMessage="Reset Filters" />
+                        </button>
                     </div>
                     <div className="line-divider"></div>
 

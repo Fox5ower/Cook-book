@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import IDish from "../interfaces/IDish";
 import DishDetailed from './DishDetailed';
+import { FormattedMessage } from 'react-intl';
 
 interface IBackground {
     backgroundImage: string
@@ -67,7 +68,7 @@ class DishPage extends Component<MyProps, MyState> {
                 </DishDetailed>
                 <div className="dish-page-container" style={this.state.dynamicImage}>
                     <div className="menu-link" onClick={() => this.props.toggleSlider()}>
-                        ⮌ Menu
+                        <FormattedMessage id="dish.return.link" defaultMessage="Menu" /> ⮌
                     </div>
                     <div className="dish-container">
                         <div className="img-container">
@@ -79,7 +80,9 @@ class DishPage extends Component<MyProps, MyState> {
 
                                 <span className="description">{this.state.dish.description}
                                 </span>
-                                <div className="description-button" onClick={this.toggleDescription.bind(this)}>Show Recipe</div>
+                                <div className="description-button" onClick={this.toggleDescription.bind(this)}>
+                                    <FormattedMessage id="dish.showRecipe.button" defaultMessage="Show Recipe" />
+                                </div>
                             </div>
                         </div>
                     </div>

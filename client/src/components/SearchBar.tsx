@@ -1,5 +1,6 @@
 import React from "react";
 import IDish from "../interfaces/IDish";
+import { FormattedMessage } from "react-intl";
 
 interface MyProps {
     term: string,
@@ -36,12 +37,16 @@ const Searchbar: React.SFC<MyProps> = ({ term, data, filteredDish, update }) => 
 
     return (
         <div className="search-icon">
-            <input
-                value={term}
-                placeholder="Search by name..."
-                onChange={dataSearch}
-                type="text" required
-            />
+            <FormattedMessage id="dishes.search.placeholder" defaultMessage="Search by name...">
+                {(placeholder: string) =>
+                    <input
+                        value={term}
+                        placeholder={placeholder}
+                        onChange={dataSearch}
+                        type="text" required
+                    />
+                }
+            </FormattedMessage>
         </div>
     );
 };

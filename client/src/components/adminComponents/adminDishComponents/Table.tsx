@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom";
 import { useTable, usePagination } from 'react-table'
 import { FaArrowLeft, FaArrowRight, FaEdit, FaTrash, FaChevronDown } from "react-icons/fa";
+import { FormattedMessage } from "react-intl";
 
 interface MyProps {
     columns: any,
@@ -28,7 +29,10 @@ const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {
         {
             columns,
             data,
-            initialState: { pageIndex: 0 }
+            initialState: {
+                pageIndex: 0,
+                pageSize: 10
+            }
         },
         usePagination
     )
@@ -38,15 +42,15 @@ const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {
             <div className="table-container">
                 <div className="add-btn-container">
                     <Link to="/admin/add" className="add__link">
-                        Add Dish
+                        <FormattedMessage id="admin.addDish.button" defaultMessage="Add Dish" />
                     </Link>
 
                     <Link to="/admin/category" className="add__link">
-                        Add Category
+                        <FormattedMessage id="admin.addCat.button" defaultMessage="Add Category" />
                     </Link>
 
                     <Link to="/admin/remove_category" className="add__link">
-                        Remove Category
+                        <FormattedMessage id="admin.removeCat.button" defaultMessage="Remove Category" />
                     </Link>
 
                 </div>
@@ -92,7 +96,7 @@ const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {
                 </table>
             </div>
             <div className="pagination">
-                <div>
+                <div className="pagination-btn-container">
                     <button onClick={() => previousPage()} disabled={!canPreviousPage}>
                         {<FaArrowLeft />}
                     </button>{' '}
@@ -101,9 +105,9 @@ const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {
                     </button>{' '}
                 </div>
                 <span>
-                    Page{' '}
+                    <FormattedMessage id="admin.table.pagination.page" defaultMessage="Page" />{' '}
                     <strong>
-                        {pageIndex + 1} of {pageOptions.length}
+                    {pageIndex + 1}{" "}<FormattedMessage id="admin.table.pagination.of" defaultMessage="of" />{" "}{pageOptions.length}
                     </strong>{' '}
                 </span>
                 <div className="select-container">
@@ -114,12 +118,17 @@ const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {
                         }}
                     >
                         {[5, 10, 20, 30, 40].map(pageSize => (
-                            <option key={pageSize} value={pageSize}>
-                                Show {pageSize}
-                            </option>
+                            <FormattedMessage id="admin.table.pagination.show" defaultMessage="Show">
+                                {(text: string) =>
+                                    <option key={pageSize} value={pageSize}>
+                                        {text}{" "}{pageSize}
+                                    </option>
+                                }
+
+                            </FormattedMessage>
                         ))}
                     </select>
-                    <FaChevronDown style={{ position: "absolute", top: "38%", left: "85%", pointerEvents: "none", opacity: "0.7", fontSize: "0.7em" }} ></FaChevronDown>
+                    <FaChevronDown style={{ position: "absolute", top: "38%", right: "2%", pointerEvents: "none", opacity: "0.7", fontSize: "0.7em" }} ></FaChevronDown>
                 </div>
             </div>
         </>

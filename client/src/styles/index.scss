@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Dancing+Script&display=swap");
+//@import url("https://fonts.googleapis.com/css?family=Marck+Script&display=swap");
+
+@import url("https://fonts.googleapis.com/css?family=Poiret+One&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 
 @import url("./buttons.scss");
@@ -16,7 +18,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Dancing Script", cursive;
+  font-family: "Poiret One";
   color: white;
   text-align: center;
   background-image: url("../img/panel-bg.jpg");
@@ -44,10 +46,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-around;
+    justify-content: space-between;
+
+    &.main-page-container * {
+      margin: 10px 0;
+    }
 
     .main__header-name {
-      font-size: 7rem;
+      font-size: calc((100vw - 10px) / (1280 - 480) * (24 - 4) + 40px);
     }
 
     .main__text {
@@ -62,12 +68,13 @@ body {
       .text {
         font-family: "Montserrat";
         max-height: 200px;
+        font-size: 0.9em;
       }
     }
 
     .main__page__footer {
       @media screen and (max-width: 1115px) {
-        background-color: rgba(0, 0, 0, 0.5);
+        display: none;
       }
       font-family: "Montserrat";
       font-size: 10pt;
@@ -81,6 +88,7 @@ body {
       box-sizing: border-box;
 
       .socials {
+        margin: 0;
         svg {
           font-size: 18pt;
           margin: 4px;
@@ -606,7 +614,7 @@ body {
       align-items: center;
 
       .header__logo {
-        font-family: "Dancing Script", cursive;
+        font-family: "Poiret One";
         font-size: 22pt;
         width: 33%;
         transition: all 0.3s;
@@ -765,13 +773,13 @@ body {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      width: 600px;
+      width: 700px;
       margin: 30px 0 10px 0;
 
       .add__link {
         color: white;
         padding: 5px 20px;
-        width: 150px;
+        width: 180px;
         border: 1px solid rgb(68, 68, 68);
         background-color: rgba(255, 255, 255, 0);
         cursor: pointer;
@@ -790,9 +798,26 @@ body {
       flex-direction: row;
       justify-content: center;
       align-items: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 18px black;
       color: white;
+      margin: 20px 0;
       span {
         margin: 0 20px;
+      }
+
+      .pagination-btn-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+        }
+        svg {
+          font-size: 1.3em;
+        }
       }
 
       .select-container {
@@ -801,7 +826,7 @@ body {
         select {
           margin: 10px 0;
           padding: 3px 0;
-          width: 90px;
+          width: 150px;
           color: white;
           border: 0px;
           border-bottom: 1px solid rgb(192, 191, 191);
@@ -810,6 +835,7 @@ body {
           font-size: 12pt;
           text-decoration: none;
           opacity: 0.6;
+          text-align: left;
           cursor: pointer;
           transition: all 0.3s;
           appearance: none;

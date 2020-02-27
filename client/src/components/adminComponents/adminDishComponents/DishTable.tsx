@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { DEV_URL } from "../../App";
 import axios from "axios";
 import IDish from "../../../interfaces/IDish"
 import Table from "./Table"
@@ -22,8 +23,8 @@ class DishTable extends Component<MyProps, MyState> {
     }
 
     onDeleteClick(dishName: string) {
-        axios.delete(`http://localhost:3001/api/panel/remove/${dishName}`)
-            .then(() => axios.get("http://localhost:3001/dishes")
+        axios.delete(`${DEV_URL}api/panel/remove/${dishName}`)
+            .then(() => axios.get(`${DEV_URL}dishes`)
                 .then((dishes) => {
                     this.setState({
                         dishes: dishes.data.dish
@@ -32,7 +33,7 @@ class DishTable extends Component<MyProps, MyState> {
     }
 
     componentWillMount() {
-        axios.get("http://localhost:3001/dishes")
+        axios.get(`${DEV_URL}dishes`)
             .then((dishes) => {
                 this.setState({
                     dishes: dishes.data.dish

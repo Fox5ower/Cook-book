@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import tokenInterceptor from "../../middlewares/tokenInterceptor"
+import { DEV_URL } from "../App";
 import IAdmin from "../../interfaces/IAdmin";
 import Modal from "./modalComponents/Modal";
+import { FormattedMessage } from 'react-intl';
 
 interface MyProps {
     id: string
@@ -12,7 +14,8 @@ interface MyProps {
 interface MyState {
     admin: IAdmin,
     isModalOpen: boolean,
-    actionType: string
+    actionType: string,
+    adminName: string
 }
 
 
@@ -28,13 +31,14 @@ class Header extends Component<MyProps, MyState> {
                 password: ""
             },
             isModalOpen: false,
-            actionType: ""
+            actionType: "",
+            adminName: ""
         }
     }
 
     componentWillMount() {
         tokenInterceptor();
-        axios.get(`http://localhost:3001/api/admin/${this.props.id}`)
+        axios.get(`${DEV_URL}api/admin/${this.props.id}`)
             .then((admin) => {
                 this.setState({ admin: admin.data });
                 console.log(this.state.admin);
@@ -51,21 +55,42 @@ class Header extends Component<MyProps, MyState> {
         this.setState({ isModalOpen: false });
     }
 
+    changeName(name: string) {
+        console.log(name);
+
+        this.setState(prevState => ({
+            admin: {
+                ...prevState.admin,
+                name: name
+            }
+        }))
+    }
+
     render() {
         return (
             <>
                 <div className="pannel__header">
                     <div className="header__logo">
-                        <Link to={"/"}>Coock-Book</Link>
+                        <Link to={"/"}><FormattedMessage id="admin.header.link" defaultMessage="Cook-Book" /></Link>
                     </div>
-                    <div className="header__pannel-name"><Link to="/admin">DASHBOARD</Link></div>
+                    <div className="header__pannel-name">
+                        <Link to="/admin">
+                            <FormattedMessage id="admin.header.logo" defaultMessage="DASHBOARD" />
+                        </Link>
+                    </div>
                     <div className="header__admin-actions">
                         <div className="miniature">{this.state.admin.name.toUpperCase()[0]}
                             <div className="actions">
                                 <div className="info">{this.state.admin.name.toUpperCase()}<hr /></div>
-                                <div className="action" onClick={() => this.openModal("logout")}>Logout</div>
-                                <div className="action" onClick={() => this.openModal("password")}>Change Password</div>
-                                <div className="action" onClick={() => this.openModal("information")}>Change Info</div>
+                                <div className="action" onClick={() => this.openModal("logout")}>
+                                    <FormattedMessage id="admin.modal.logout" defaultMessage="Logout" />
+                                </div>
+                                <div className="action" onClick={() => this.openModal("password")}>
+                                    <FormattedMessage id="admin.modal.change.pass" defaultMessage="Change Password" />
+                                </div>
+                                <div className="action" onClick={() => this.openModal("information")}>
+                                    <FormattedMessage id="admin.modal.change.info" defaultMessage="Change Info" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -74,6 +99,7 @@ class Header extends Component<MyProps, MyState> {
                     isOpen={this.state.isModalOpen}
                     onClose={() => this.closeModal()}
                     actionType={this.state.actionType}
+                    changeName={this.changeName.bind(this)}
                 />
             </>
         )

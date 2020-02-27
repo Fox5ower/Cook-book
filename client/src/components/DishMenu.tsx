@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import IDish from "../interfaces/IDish"
-import MenuItem from "./MenuItem";
+import { DEV_URL } from "./App";
 import ToolBar from './ToolBar';
+import MenuItem from './MenuItem';
 import Slider from './Slider';
-
 
 interface MyProps {
     dishes: Array<IDish>
@@ -59,7 +59,9 @@ class Menu extends Component<MyProps, MyState> {
     }
 
     componentWillMount() {
-        axios.get("http://localhost:3001/dishes")
+        console.log(DEV_URL);
+
+        axios.get(`${DEV_URL}dishes`)
             .then((dishes) => {
                 this.initialData = dishes.data.dish;
 
