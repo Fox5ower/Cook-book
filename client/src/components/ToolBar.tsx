@@ -33,7 +33,7 @@ class ToolBar extends Component<MyProps, MyState>{
     }
 
     componentWillMount() {
-        axios.get(`${DEV_URL}categories`)
+        axios.get(`${DEV_URL}/categories`)
             .then((category) => {
                 this.setState({
                     categories: category.data.category
@@ -71,7 +71,8 @@ class ToolBar extends Component<MyProps, MyState>{
         this.props.update({
             dishes: filter,
         });
-        let choosedCategory = document.querySelector(`#${e.target.name}`);
+        let choosedCategory = document.getElementById(e.target.id);
+
 
         if (choosedCategory) {
             let unchoosedArr = document.querySelectorAll(".category");

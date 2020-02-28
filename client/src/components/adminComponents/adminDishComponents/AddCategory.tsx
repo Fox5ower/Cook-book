@@ -47,7 +47,7 @@ class AddCategory extends Component<MyProps, MyState> {
 
         e.preventDefault();
 
-        axios.post(`${DEV_URL}api/panel/add_category`, { name: this.state.name })
+        axios.post(`${DEV_URL}/api/panel/add_category`, { name: this.state.name })
             .then((res) => {
                 if (res.status === 200) {
                     this.setState({

@@ -53,7 +53,7 @@ class Modal extends Component<MyProps, MyState> {
 
         e.preventDefault();
         this.props.changeName(this.state.name)
-        axios.put(`${DEV_URL}api/admin/${this.props.actionType}`, this.state)
+        axios.put(`${DEV_URL}/api/admin/${this.props.actionType}`, this.state)
             .then((res) => {
                 console.log(res.data);
                 if (res.status === 200) {
@@ -167,7 +167,7 @@ class Modal extends Component<MyProps, MyState> {
     logout(e: SyntheticEvent) {
         e.preventDefault();
         let token: string = localStorage.getItem("token");
-        axios.post(`${DEV_URL}api/admin/logout`, token)
+        axios.post(`${DEV_URL}/api/admin/logout`, token)
             .then(res => {
                 if (res.status === 200) {
                     console.log(res);

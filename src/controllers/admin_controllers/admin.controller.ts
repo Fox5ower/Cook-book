@@ -18,7 +18,7 @@ class AdminController implements IControllerBase {
 
     public initRoutes() {
         this.router.use(adminTokenChecker)
-        this.router.get(`${this.path}/`, this.index);
+        this.router.get(`${this.path}`, this.index);
         this.router.get(`${this.path}/:adminId`, this.specificAdmin);
         this.router.put(`${this.path}/password`, this.adminChangePassword);
         this.router.put(`${this.path}/information`, this.adminChangeInfo);

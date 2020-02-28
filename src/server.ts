@@ -12,6 +12,7 @@ import AdminLogoutController from "./controllers/admin_controllers/admin.logout.
 import CategoryController from "./controllers/category.controller";
 const express = require("express")
 const config = require("config");
+const path = require("path");
 
 const app = new App({
     port: config.get("port"),
@@ -32,6 +33,7 @@ const app = new App({
         bodyParser.urlencoded({ extended: true }),
         logger,
         express.static("uploads"),
+        express.static(path.resolve("./", "public")),
         headers
     ]
 })

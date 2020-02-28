@@ -6,6 +6,7 @@ import dishInitializer from "./db_scripts/dish.initialize";
 import tokenBLInitializer from "./db_scripts/tokenBlackList.initialize";
 import categoryInitializer from "./db_scripts/category.initialize";
 const bcrypt = require("bcryptjs");
+const path = require("path");
 const mongoose = require("mongoose");
 const Admin = require("./models/Admin");
 const Dish = require("./models/Dish");
@@ -18,6 +19,10 @@ class App {
 
     constructor(appInit: { port: string; mongoUri: string, middlewares: any, controllers: any }) {
         this.app = express()
+        // this.app.use(function (req, res, next) {
+        //     res.sendFile(path.resolve('./public', 'index.html'));
+        //     console.log("HTML USED")
+        // })
         this.port = appInit.port
         this.mongoUri = appInit.mongoUri
 
@@ -54,6 +59,7 @@ class App {
     }
 
     public listen() {
+
         this.app.listen(this.port, () => {
             console.log(`This app is listening on http://localhost:${this.port}`);
         })

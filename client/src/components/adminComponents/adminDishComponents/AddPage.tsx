@@ -35,7 +35,7 @@ class AddPage extends Component<MyProps, MyState> {
 
     componentWillMount() {
         tokenInterceptor()
-        axios.get(`${DEV_URL}categories`)
+        axios.get(`${DEV_URL}/categories`)
             .then((category) => {
                 this.setState({
                     categories: category.data.category
@@ -74,7 +74,7 @@ class AddPage extends Component<MyProps, MyState> {
                 body.append(input.name, input.value);
             }
         });
-        axios.post(`http://localhost:3001/api/panel/add`, body)
+        axios.post(`${DEV_URL}/api/panel/add`, body)
             .then((res) => {
                 if (res.status === 200) {
                     this.setState({
@@ -99,7 +99,7 @@ class AddPage extends Component<MyProps, MyState> {
                             <FormattedMessage id="admin.addPage.header" defaultMessage="Add New Dish" />
                         </span>
                     </div>
-                    <form id="form" method="POST" action="/api/panel/add" onSubmit={this.submitHandler} >
+                    <form id="form" method="POST" action="/api/getpanel/add" onSubmit={this.submitHandler} >
                         <fieldset className="row-fieldset">
                             <FormattedMessage id="admin.addPage.name.placeholder" defaultMessage="Name">
                                 {(placeholder: string) =>

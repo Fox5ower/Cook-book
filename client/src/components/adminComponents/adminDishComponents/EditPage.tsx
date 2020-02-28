@@ -104,12 +104,12 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
     componentWillMount() {
         tokenInterceptor()
         console.log(this.props.match.params.name);
-        axios.get(`${DEV_URL}api/panel/edit/${this.props.match.params.name}`)
+        axios.get(`${DEV_URL}/api/panel/edit/${this.props.match.params.name}`)
             .then((dish) => {
                 this.setState({
                     dish: dish.data
                 })
-            }).then(() => axios.get(`${DEV_URL}categories`)
+            }).then(() => axios.get(`${DEV_URL}/categories`)
                 .then((category) => {
                     this.setState({
                         categories: category.data.category
@@ -140,7 +140,7 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                 : body.append('image', input.files[0]);
 
         });
-        axios.put(`${DEV_URL}api/panel/update/${this.props.match.params.name}`, body)
+        axios.put(`${DEV_URL}/api/getpanel/update/${this.props.match.params.name}`, body)
             .then((res) => {
                 if (res.status === 200) {
                     this.setState({
@@ -165,14 +165,14 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                 <Redirect to="/admin"></Redirect>
             )
         }
-        const { name, description, engreediants, method } = this.state.dish
+        const { name, category, description, engreediants, method } = this.state.dish
         return (
             <div className="dish-form__container">
                 <div className="dish-form">
                     <div className="dish-form__header">
                         <span>{name}</span>
                     </div>
-                    <form id="form" method="POST" action="/api/panel/update/:name" onSubmit={this.submitHandler} >
+                    <form id="form" method="POST" action="/api/getpanel/update/:name" onSubmit={this.submitHandler} >
                         <fieldset className="row-fieldset">
                             <FormattedMessage id="admin.dish.name.placeholder" defaultMessage="Name">
                                 {(placeholder: string) =>
@@ -194,7 +194,6 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                             <FormattedMessage id="admin.dish.method.placeholder" defaultMessage="Method">
                                 {(placeholder: string) =>
                                     <Input placeholder={placeholder} name="method" maxLength={220} value={method} onChange={(e: any) => this.changeHandler(e)}></Input>
-
                                 }
                             </FormattedMessage>
 

@@ -24,7 +24,7 @@ if (locale === "ru-RU") {
 }
 
 if (process.env.NODE_ENV === "development") {
-    DEV_URL = "http://localhost:3001/"
+    DEV_URL = "http://localhost:3001"
     console.log("DEV_URL: ", DEV_URL)
 }
 

@@ -23,8 +23,8 @@ class DishTable extends Component<MyProps, MyState> {
     }
 
     onDeleteClick(dishName: string) {
-        axios.delete(`${DEV_URL}api/panel/remove/${dishName}`)
-            .then(() => axios.get(`${DEV_URL}dishes`)
+        axios.delete(`${DEV_URL}/api/panel/remove/${dishName}`)
+            .then(() => axios.get(`${DEV_URL}/getdishes`)
                 .then((dishes) => {
                     this.setState({
                         dishes: dishes.data.dish
@@ -33,7 +33,7 @@ class DishTable extends Component<MyProps, MyState> {
     }
 
     componentWillMount() {
-        axios.get(`${DEV_URL}dishes`)
+        axios.get(`${DEV_URL}/getdishes`)
             .then((dishes) => {
                 this.setState({
                     dishes: dishes.data.dish

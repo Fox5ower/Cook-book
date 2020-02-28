@@ -38,7 +38,7 @@ class Header extends Component<MyProps, MyState> {
 
     componentWillMount() {
         tokenInterceptor();
-        axios.get(`${DEV_URL}api/admin/${this.props.id}`)
+        axios.get(`${DEV_URL}/api/admin/${this.props.id}`)
             .then((admin) => {
                 this.setState({ admin: admin.data });
                 console.log(this.state.admin);

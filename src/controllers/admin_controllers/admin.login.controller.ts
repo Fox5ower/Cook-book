@@ -61,7 +61,7 @@ class AdminLoginController implements IControllerBase {
                             );
 
                         } else {
-                            return res.status(401).json({ passwordincorrect: "Auth Failed" });
+                            return res.status(401).json({ failed: "Auth Failed" });
                         }
                     })
 

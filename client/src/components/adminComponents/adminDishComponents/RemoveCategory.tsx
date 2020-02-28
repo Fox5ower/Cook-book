@@ -47,7 +47,7 @@ class RemoveCategory extends Component<MyProps, MyState> {
 
         e.preventDefault();
 
-        axios.delete(`${DEV_URL}api/panel/remove_category/${this.state.name}`)
+        axios.delete(`${DEV_URL}/api/panel/remove_category/${this.state.name}`)
             .then((res) => {
                 if (res.status === 200) {
                     this.setState({
