@@ -4,6 +4,9 @@ import { Redirect } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { DEV_URL } from "../App";
 import inputValidator from "../../services/input.validator";
+import resErrorHandler from "../../services/res.error.handler";
+import { AiOutlineInfoCircle } from 'react-icons/ai';
+import FormError from '../FormError';
 
 interface MyProps {
 
@@ -52,14 +55,7 @@ class Login extends Component<MyProps, MyState> {
                     }
                 }).catch(function (error) {
                     if (error.response) {
-                        if (error.response.data.email) {
-                            alert(error.response.data.email)
-                        } else if (error.response.data.password) {
-                            alert(error.response.data.password)
-                        }
-                        else if (error.response.data.failed) {
-                            alert(error.response.data.failed)
-                        }
+                        resErrorHandler(error.response.data)
                     }
                 })
         }
@@ -79,6 +75,7 @@ class Login extends Component<MyProps, MyState> {
                 <form className="admin-login__form" method="POST" action="/admin/login">
                     <fieldset>
                         <legend><FormattedMessage id="admin.login" defaultMessage="Admin" /></legend>
+                        <FormError />
                         <div className="input-container">
                             <input type="email" name="email" value={email} onChange={this.changeHandler} maxLength={20} required />
                             <label className="label" htmlFor="email">

@@ -10,6 +10,7 @@ import AdminDishController from "./controllers/admin_controllers/admin.dish.cont
 import DishController from "./controllers/dish.controller";
 import AdminLogoutController from "./controllers/admin_controllers/admin.logout.controller";
 import CategoryController from "./controllers/category.controller";
+import ClientRoutesController from "./controllers/client.routes.controller";
 const express = require("express")
 const config = require("config");
 const path = require("path");
@@ -25,7 +26,8 @@ const app = new App({
         new AdminDishController(),
         new DishController(),
         new AdminLogoutController(),
-        new CategoryController()
+        new CategoryController(),
+        new ClientRoutesController()
     ],
 
     middlewares: [

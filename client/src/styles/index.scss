@@ -524,7 +524,6 @@ body {
       legend {
         font-size: 1.4em;
         color: white;
-        margin-bottom: 30px;
         text-decoration: underline;
       }
 
@@ -1598,4 +1597,24 @@ body {
 }
 input:required {
   box-shadow: none;
+}
+.error-container {
+  visibility: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  line-height: 1em;
+  color: rgb(209, 63, 63);
+  margin-bottom: 15px;
+  margin-top: 5px;
+
+  svg {
+    margin-bottom: 2px;
+    margin-right: 5px;
+  }
+}
+
+.error-container-visible {
+  visibility: visible;
 }
