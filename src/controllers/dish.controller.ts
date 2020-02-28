@@ -14,9 +14,6 @@ class DishController implements IControllerBase {
     }
 
     public initRoutes() {
-        this.router.get(["/home", "/dishes", "/login", "/admin", "/admin/add", "/admin/category", "/admin/remove_category"], function (req, res, next) {
-            res.sendFile(path.resolve('./public', 'index.html'));
-        })
         this.router.get(`${this.path}`, this.index);
         this.router.get(`${this.path}/:dishId`, this.dishById);
     }
