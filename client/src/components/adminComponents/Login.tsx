@@ -56,8 +56,18 @@ class Login extends Component<MyProps, MyState> {
                 }).catch(function (error) {
                     if (error.response) {
                         resErrorHandler(error.response.data)
+                    } else {
+                        let errData = {
+                            message: "Something is wrong. Try again"
+                        }
+                        resErrorHandler(errData)
                     }
                 })
+        } else {
+            let errData = {
+                message: "All fields are required"
+            }
+            resErrorHandler(errData)
         }
     }
 

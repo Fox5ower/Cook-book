@@ -4,7 +4,10 @@ import { DEV_URL } from "../../App";
 import tokenInterceptor from "../../../middlewares/tokenInterceptor"
 import { Redirect } from "react-router";
 import Input from "../adminDishComponents/Input";
+import resErrorHandler from "../../../services/res.error.handler";
 import { FormattedMessage } from "react-intl";
+import FormError from "../../FormError";
+
 interface MyProps {
     isOpen: boolean,
     onClose: any,
@@ -52,26 +55,41 @@ class Modal extends Component<MyProps, MyState> {
     submitHandler = (e: SyntheticEvent) => {
 
         e.preventDefault();
-        this.props.changeName(this.state.name)
-        axios.put(`${DEV_URL}/api/admin/${this.props.actionType}`, this.state)
-            .then((res) => {
-                console.log(res.data);
-                if (res.status === 200) {
-                    this.setState({
-                        password: "",
-                        password2: "",
-                        email: "",
-                        name: ""
-                    });
+        if ((this.state.password && this.state.password2) || (this.state.email || this.state.name)) {
+            if (this.state.name) {
+                this.props.changeName(this.state.name)
+            }
+            axios.put(`${DEV_URL}/api/admin/${this.props.actionType}`, this.state)
+                .then((res) => {
+                    console.log(res.data);
+                    if (res.status === 200) {
+                        this.setState({
+                            password: "",
+                            password2: "",
+                            email: "",
+                            name: ""
+                        });
 
-                    this.close(e);
-                    alert("Changes has been submited");
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            })
-
+                        this.close(e);
+                        alert("Changes has been submited");
+                    }
+                })
+                .catch(err => {
+                    if (err.response) {
+                        resErrorHandler(err.response.data)
+                    } else {
+                        let errData = {
+                            message: "Something is wrong. Try again"
+                        }
+                        resErrorHandler(errData)
+                    }
+                })
+        } else {
+            let errData = {
+                message: "All fields are required"
+            }
+            resErrorHandler(errData)
+        }
     }
     componentWillMount() {
         tokenInterceptor();
@@ -104,6 +122,7 @@ class Modal extends Component<MyProps, MyState> {
                         <form id="form" method="POST" action="/api/admin/password">
                             <fieldset className="column-fieldset">
                                 <legend><FormattedMessage id="admin.modal.changePass.header" defaultMessage="Change Password" /></legend>
+                                <FormError></FormError>
                                 <FormattedMessage id="admin.modal.changePass.pass.placeholder" defaultMessage="Password">
                                     {(placeholder: string) =>
                                         <Input placeholder={placeholder} name="password" maxLength={50} value={password} onChange={this.changeHandler}></Input>
@@ -132,6 +151,7 @@ class Modal extends Component<MyProps, MyState> {
                         <form id="form" method="POST" action="/api/admin/password">
                             <fieldset className="column-fieldset">
                                 <legend><FormattedMessage id="admin.modal.changeInfo.header" defaultMessage="Change Information" /></legend>
+                                <FormError></FormError>
                                 <FormattedMessage id="admin.modal.changeInfo.email.placeholder" defaultMessage="Email">
                                     {(placeholder: string) =>
                                         <Input placeholder={placeholder} name="email" maxLength={50} value={email} onChange={this.changeHandler}></Input>

@@ -107,7 +107,7 @@ const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {
                 <span>
                     <FormattedMessage id="admin.table.pagination.page" defaultMessage="Page" />{' '}
                     <strong>
-                    {pageIndex + 1}{" "}<FormattedMessage id="admin.table.pagination.of" defaultMessage="of" />{" "}{pageOptions.length}
+                        {pageIndex + 1}{" "}<FormattedMessage id="admin.table.pagination.of" defaultMessage="of" />{" "}{pageOptions.length}
                     </strong>{' '}
                 </span>
                 <div className="select-container">
@@ -117,8 +117,8 @@ const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {
                             setPageSize(Number(e.target.value))
                         }}
                     >
-                        {[5, 10, 20, 30, 40].map(pageSize => (
-                            <FormattedMessage id="admin.table.pagination.show" defaultMessage="Show">
+                        {[5, 10, 20, 30, 40].map((pageSize, i) => (
+                            <FormattedMessage key={i} id="admin.table.pagination.show" defaultMessage="Show">
                                 {(text: string) =>
                                     <option key={pageSize} value={pageSize}>
                                         {text}{" "}{pageSize}

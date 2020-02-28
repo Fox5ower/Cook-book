@@ -81,7 +81,7 @@ class RemoveCategory extends Component<MyProps, MyState> {
                                 }
                             </FormattedMessage>
                         </fieldset>
-                        <FormattedMessage id="admin.category.submit.button" defaultMessage="Submit Changes">
+                        <FormattedMessage id="admin.submit.button" defaultMessage="Submit Changes">
                             {(value: string) =>
                                 <input type="submit" value={value} />
                             }
