@@ -57,16 +57,12 @@ class App extends Component<MyProps, MyState> {
         console.log(currentLocale);
 
         if (currentLocale === "/ru/") {
-            console.log("RUSSIAAAAAAAAAAAAAAAA");
-
             location = location.replace(/(\/ru\/)/, "/en/");
             localStorage.setItem("locale", "en")
-            console.log(location);
             window.location.href = location
         } else if (currentLocale === "/en/") {
             location = location.replace(/(\/en\/)/, "/ru/");
             localStorage.setItem("locale", "ru")
-            console.log(location);
             window.location.href = location
         }
         this.setState({
