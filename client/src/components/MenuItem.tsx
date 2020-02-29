@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import SkeletonLoader from "tiny-skeleton-loader-react";
+import SkeletonStyles from "../services/static/preloader.style.json";
 
 interface MyProps {
     _id: string,
@@ -13,16 +15,51 @@ interface MyProps {
     counter: number
 }
 
+interface MyState {
+    mounting: boolean
+}
 
-class MenuItem extends Component<MyProps> {
+
+class MenuItem extends Component<MyProps, MyState> {
+
+    constructor(props: MyProps) {
+        super(props)
+
+        this.state = {
+            mounting: false
+        }
+    }
 
     dynamicBackground = {
         backgroundImage: "url(" + this.props.image + ")"
     }
 
+    componentWillMount() {
+        this.setState({
+            mounting: true
+        })
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({
+                mounting: false
+            })
+        });
+    }
+
+    componentDidUpdate() {
+        setTimeout(() => {
+            this.setState({
+                mounting: false
+            })
+        }, 500);
+    }
+
     render() {
         return (
             <div onClick={() => { this.props.toggleSlider(); this.props.setIndex(this.props.counter) }} className="menu__item" style={this.dynamicBackground}>
+                <SkeletonLoader style={this.state.mounting ? SkeletonStyles : { opacity: "0", transition: "all .3s" }} />
                 <div className="memu__item__head-container">
                     <span className="menu__item__name">{this.props.name}</span>
                     <span className="menu__item__counter">{this.props.counter}</span>

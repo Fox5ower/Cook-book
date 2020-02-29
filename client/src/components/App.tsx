@@ -9,6 +9,7 @@ import DishPage from "./DishPage";
 import AddPage from "./adminComponents/adminDishComponents/AddPage";
 import EditPage from "./adminComponents/adminDishComponents/EditPage";
 import localizeRoute from "../services/localize.route";
+import toggleLocale from "../services/toggle.locale"
 
 import English from "../languages/en.json";
 import Russian from "../languages/ru.json";
@@ -51,20 +52,8 @@ class App extends Component<MyProps, MyState> {
             location: ""
         })
     }
-    toggleLocale = () => {
-        let location = window.location.href;
-        let currentLocale = location.match(/(\/en\/|\/ru\/)/)[0];
-        console.log(currentLocale);
-
-        if (currentLocale === "/ru/") {
-            location = location.replace(/(\/ru\/)/, "/en/");
-            localStorage.setItem("locale", "en")
-            window.location.href = location
-        } else if (currentLocale === "/en/") {
-            location = location.replace(/(\/en\/)/, "/ru/");
-            localStorage.setItem("locale", "ru")
-            window.location.href = location
-        }
+    toggleUserLocale = () => {
+        toggleLocale()
         this.setState({
             checked: !this.state.checked
         })
@@ -74,7 +63,7 @@ class App extends Component<MyProps, MyState> {
         return (
             <IntlProvider locale={locale} messages={this.state.checked ? English : lang}>
                 <div className="app">
-                    <input type="checkbox" checked={this.state.checked} className="locale-switcher" onChange={this.toggleLocale}></input>
+                    <input type="checkbox" checked={this.state.checked} className="locale-switcher" onChange={this.toggleUserLocale}></input>
                     <Switch>
                         <Route exact path={localizeRoute("home")} component={MainPage}></Route>
                         <Route exact path={localizeRoute("dishes")} component={Menu}></Route>

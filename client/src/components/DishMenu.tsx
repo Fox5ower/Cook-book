@@ -5,6 +5,9 @@ import { DEV_URL } from "./App";
 import ToolBar from './ToolBar';
 import MenuItem from './MenuItem';
 import Slider from './Slider';
+import SkeletonLoader from "tiny-skeleton-loader-react";
+import SkeletonStyles from "../services/static/preloader.style.json"
+
 
 interface MyProps {
     dishes: Array<IDish>
@@ -15,7 +18,8 @@ interface MyState {
     term: string,
     showSlider: boolean,
     index: number,
-    showNav: boolean
+    showNav: boolean,
+    mounting: boolean
 }
 
 
@@ -30,7 +34,8 @@ class Menu extends Component<MyProps, MyState> {
             term: "",
             showSlider: false,
             index: undefined,
-            showNav: true
+            showNav: true,
+            mounting: false
         }
     }
 
@@ -59,6 +64,9 @@ class Menu extends Component<MyProps, MyState> {
     }
 
     componentWillMount() {
+        this.setState({
+            mounting: true
+        })
         axios.get(`${DEV_URL}/getdishes`)
             .then((dishes) => {
                 this.initialData = dishes.data.dish;
@@ -67,6 +75,14 @@ class Menu extends Component<MyProps, MyState> {
                     dishes: this.initialData
                 })
             })
+    }
+
+    componentDidUpdate() {
+        setTimeout(() => {
+            this.setState({
+                mounting: false
+            })
+        });
     }
 
     render() {
@@ -78,6 +94,7 @@ class Menu extends Component<MyProps, MyState> {
                         <span className={`close ${!this.state.showNav ? "close-unshown" : ""}`} onClick={() => this.toggleNav()}></span>
                         <span className="open" style={this.state.showNav ? { opacity: "0", visibility: "hidden" } : {}} onClick={() => this.toggleNav()}></span>
                         <div className="navbar-container">
+                            <SkeletonLoader style={this.state.mounting ? SkeletonStyles : { display: "none", opacity: "0", transition: "all .3s" }} height="100%" />
                             <ToolBar
                                 term={this.state.term}
                                 data={this.initialData}
@@ -89,7 +106,6 @@ class Menu extends Component<MyProps, MyState> {
                     <div className="menu__container">
 
                         {dishes.map((dish, i) => (
-
                             <MenuItem key={dish._id}
                                 _id={dish._id}
                                 name={dish.name}
