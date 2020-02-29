@@ -59,8 +59,6 @@ class Menu extends Component<MyProps, MyState> {
     }
 
     componentWillMount() {
-        console.log(DEV_URL);
-
         axios.get(`${DEV_URL}/getdishes`)
             .then((dishes) => {
                 this.initialData = dishes.data.dish;

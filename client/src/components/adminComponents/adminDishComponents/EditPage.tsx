@@ -140,7 +140,7 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                 : body.append('image', input.files[0]);
 
         });
-        axios.put(`${DEV_URL}/api/getpanel/update/${this.props.match.params.name}`, body)
+        axios.put(`${DEV_URL}/api/panel/update/${this.props.match.params.name}`, body)
             .then((res) => {
                 if (res.status === 200) {
                     this.setState({
@@ -202,6 +202,7 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                                     <FormattedMessage id="admin.dish.category.placeholder" defaultMessage="Category" />
                                 </label>
                                 <select form="form" name="category" id="category">
+                                    <option value="none" disabled hidden selected>{category}</option>
                                     {this.state.categories.map((category, i) => {
                                         return (
                                             <option key={category._id} value={category.name}>{category.name}</option>

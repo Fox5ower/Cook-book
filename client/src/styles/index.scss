@@ -445,6 +445,8 @@ body {
             font-size: 22pt;
             font-style: italic;
             color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
           }
         }
 
@@ -1617,4 +1619,11 @@ input:required {
 
 .error-container-visible {
   visibility: visible;
+}
+
+.locale-switcher {
+  position: absolute;
+  z-index: 9999;
+  top: 5px;
+  right: 2vw;
 }

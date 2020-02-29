@@ -8,16 +8,19 @@ import Pannel from "./adminComponents/Pannel";
 import DishPage from "./DishPage";
 import AddPage from "./adminComponents/adminDishComponents/AddPage";
 import EditPage from "./adminComponents/adminDishComponents/EditPage";
+import localizeRoute from "../services/localize.route";
 
 import English from "../languages/en.json";
 import Russian from "../languages/ru.json";
 
-let locale = navigator.language;
 export let DEV_URL = "";
 
+let browserLocale = navigator.language;
+let locale = browserLocale.substr(0, 2);
+let userLocale = localStorage.getItem("locale")
 let lang: any;
 
-if (locale === "ru-RU") {
+if (locale === "ru") {
     lang = Russian;
 } else {
     lang = English
@@ -25,26 +28,68 @@ if (locale === "ru-RU") {
 
 if (process.env.NODE_ENV === "development") {
     DEV_URL = "http://localhost:3001"
-    console.log("DEV_URL: ", DEV_URL)
+    //console.log("DEV_URL: ", DEV_URL)
 }
 
-class App extends Component {
+
+interface MyProps {
+    checked: boolean
+}
+
+
+interface MyState {
+    checked: boolean,
+    location: string
+}
+
+class App extends Component<MyProps, MyState> {
+    constructor(props: MyProps) {
+        super(props)
+
+        this.state = ({
+            checked: userLocale === "ru" ? false : true,
+            location: ""
+        })
+    }
+    toggleLocale = () => {
+        let location = window.location.href;
+        let currentLocale = location.match(/(\/en\/|\/ru\/)/)[0];
+        console.log(currentLocale);
+
+        if (currentLocale === "/ru/") {
+            console.log("RUSSIAAAAAAAAAAAAAAAA");
+
+            location = location.replace(/(\/ru\/)/, "/en/");
+            localStorage.setItem("locale", "en")
+            console.log(location);
+            window.location.href = location
+        } else if (currentLocale === "/en/") {
+            location = location.replace(/(\/en\/)/, "/ru/");
+            localStorage.setItem("locale", "ru")
+            console.log(location);
+            window.location.href = location
+        }
+        this.setState({
+            checked: !this.state.checked
+        })
+    }
+
     render() {
-
         return (
-            <IntlProvider locale={locale} messages={lang}>
+            <IntlProvider locale={locale} messages={this.state.checked ? English : lang}>
                 <div className="app">
-                    <Switch >
-                        <Route exact path="/home" component={MainPage}></Route>
-                        <Route exact path="/dishes" component={Menu}></Route>
-                        <Route path={`/dishes/:id`} component={DishPage} id={this.props.children}></Route>
+                    <input type="checkbox" checked={this.state.checked} className="locale-switcher" onChange={this.toggleLocale}></input>
+                    <Switch>
+                        <Route exact path={localizeRoute("home")} component={MainPage}></Route>
+                        <Route exact path={localizeRoute("dishes")} component={Menu}></Route>
+                        <Route path={localizeRoute("dishes/:id")} component={DishPage} id={this.props.children}></Route>
 
-                        <Route path="/login" component={Login}></Route>
-                        <Route path="/admin" component={Pannel}></Route>
-                        <Route path="/add" component={AddPage}></Route>
-                        <Route path="/edit/:name" component={EditPage}></Route>
+                        <Route path={localizeRoute("login")} component={Login}></Route>
+                        <Route path={localizeRoute("admin")} component={Pannel}></Route>
+                        <Route path={localizeRoute("add")} component={AddPage}></Route>
+                        <Route path={localizeRoute("edit/:name")} component={EditPage}></Route>
 
-                        <Redirect from="/" to="/home" />
+                        {/* <Redirect from="/" to={localizeRoute("home")} /> */}
                     </Switch>
                 </div>
             </IntlProvider>

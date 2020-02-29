@@ -3,10 +3,13 @@ import { Link } from "react-router-dom"
 import { AiOutlineInstagram, AiOutlineTwitter, AiOutlineFacebook } from 'react-icons/ai';
 import { FaVk } from 'react-icons/fa';
 import { FormattedMessage } from 'react-intl';
+import getLocale from "../services/get.locale";
+import localizeRoute from '../services/localize.route';
 
-class MainPage extends Component {
+class MainPage extends Component{
 
   render() {
+    let locale: string = getLocale()
     return (
       <div className="main-page-container">
         <div className="main__header">
@@ -21,7 +24,7 @@ class MainPage extends Component {
             
           </span>
         </div>
-        <Link to="/dishes" className="main__button"><FormattedMessage id="main.welcome.button" defaultMessage="Welcome"/></Link>
+        <Link to={`${localizeRoute("dishes")}`} className="main__button"><FormattedMessage id="main.welcome.button" defaultMessage="Welcome"/></Link>
         <div className="main__page__footer">
           <span>COOK-BOOK 2020. © <FormattedMessage id="main.footer" defaultMessage="All Rights Reserved"/>.</span>
           <div className="socials">
