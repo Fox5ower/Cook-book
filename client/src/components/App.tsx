@@ -9,10 +9,12 @@ import DishPage from "./DishPage";
 import AddPage from "./adminComponents/adminDishComponents/AddPage";
 import EditPage from "./adminComponents/adminDishComponents/EditPage";
 import localizeRoute from "../services/localize.route";
-import toggleLocale from "../services/toggle.locale"
+import toggleLocale from "../services/toggle.locale";
+import "../styles/checkbox.scss";
 
 import English from "../languages/en.json";
 import Russian from "../languages/ru.json";
+
 
 export let DEV_URL = "";
 
@@ -63,7 +65,11 @@ class App extends Component<MyProps, MyState> {
         return (
             <IntlProvider locale={locale} messages={this.state.checked ? English : lang}>
                 <div className="app">
-                    <input type="checkbox" checked={this.state.checked} className="locale-switcher" onChange={this.toggleUserLocale}></input>
+                    <div className="locale-switcher__container">
+                        <label htmlFor="locale-switcher" className={`lang-en ${this.state.checked ? "checked" : ""}`}>En</label>
+                        <input type="checkbox" className="locale-switcher" id="locale-switcher" checked={this.state.checked} onChange={this.toggleUserLocale}></input>
+                        <label htmlFor="locale-switcher" className={`lang-ru ${this.state.checked ? "" : "checked"}`}>Ru</label>
+                    </div>
                     <Switch>
                         <Route exact path={localizeRoute("home")} component={MainPage}></Route>
                         <Route exact path={localizeRoute("dishes")} component={Menu}></Route>
@@ -74,10 +80,12 @@ class App extends Component<MyProps, MyState> {
                         <Route path={localizeRoute("add")} component={AddPage}></Route>
                         <Route path={localizeRoute("edit/:name")} component={EditPage}></Route>
 
-                        {/* <Redirect from="/" to={localizeRoute("home")} /> */}
+
+                        <Redirect exact from={"/"} to={localizeRoute("home")} />
+                        <Redirect exact from={localizeRoute("")} to={localizeRoute("home")} />
                     </Switch>
                 </div>
-            </IntlProvider>
+            </IntlProvider >
         )
     }
 }

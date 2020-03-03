@@ -48,13 +48,13 @@ class MenuItem extends Component<MyProps, MyState> {
         });
     }
 
-    componentDidUpdate() {
-        setTimeout(() => {
-            this.setState({
-                mounting: false
-            })
-        }, 500);
-    }
+    // componentDidUpdate() {
+    //     setTimeout(() => {
+    //         this.setState({
+    //             mounting: false
+    //         })
+    //     }, 500);
+    // }
 
     render() {
         return (

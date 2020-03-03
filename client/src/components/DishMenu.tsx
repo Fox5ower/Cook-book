@@ -7,6 +7,7 @@ import MenuItem from './MenuItem';
 import Slider from './Slider';
 import SkeletonLoader from "tiny-skeleton-loader-react";
 import SkeletonStyles from "../services/static/preloader.style.json"
+import getLocale from '../services/get.locale';
 
 
 interface MyProps {
@@ -67,7 +68,7 @@ class Menu extends Component<MyProps, MyState> {
         this.setState({
             mounting: true
         })
-        axios.get(`${DEV_URL}/getdishes`)
+        axios.get(`${DEV_URL}/getdishes/${getLocale()}`)
             .then((dishes) => {
                 this.initialData = dishes.data.dish;
 

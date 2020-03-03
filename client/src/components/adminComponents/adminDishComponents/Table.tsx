@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useTable, usePagination } from 'react-table'
 import { FaArrowLeft, FaArrowRight, FaEdit, FaTrash, FaChevronDown } from "react-icons/fa";
 import { FormattedMessage } from "react-intl";
+import localizeRoute from "../../../services/localize.route";
 
 interface MyProps {
     columns: any,
@@ -41,15 +42,15 @@ const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {
         <>
             <div className="table-container">
                 <div className="add-btn-container">
-                    <Link to="/admin/add" className="add__link">
+                    <Link to={localizeRoute("admin/add")} className="add__link">
                         <FormattedMessage id="admin.addDish.button" defaultMessage="Add Dish" />
                     </Link>
 
-                    <Link to="/admin/category" className="add__link">
+                    <Link to={localizeRoute("admin/category")} className="add__link">
                         <FormattedMessage id="admin.addCat.button" defaultMessage="Add Category" />
                     </Link>
 
-                    <Link to="/admin/remove_category" className="add__link">
+                    <Link to={localizeRoute("admin/remove_category")} className="add__link">
                         <FormattedMessage id="admin.removeCat.button" defaultMessage="Remove Category" />
                     </Link>
 
@@ -77,7 +78,7 @@ const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {
                                             if (i % 2 === 0) {
                                                 return (
                                                     <div className="action-container" key={cell.value}>
-                                                        <Link className="edit" to={`/admin/edit/${cell.value}`}>
+                                                        <Link className="edit" to={localizeRoute(`admin/edit/${cell.value}`)}>
                                                             <FaEdit />
                                                         </Link>
                                                         <div className="delete" onClick={() => onDeleteClick(cell.value)}>

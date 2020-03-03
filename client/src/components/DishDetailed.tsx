@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import IDish from "../interfaces/IDish";
+import { FormattedMessage } from 'react-intl';
 
 
 interface MyProps {
@@ -24,8 +25,8 @@ class DishDetailed2 extends Component<MyProps, MyState> {
                     <div className="recipe__body">
                         <div className="engreediants">
                             <span className="body__name">
-                                Engreediants
-                                </span>
+                                <FormattedMessage id="dish.detailed.engredients" defaultMessage="Engredients" />
+                            </span>
                             <ul>
                                 {this.props.dish.engreediants.map((el, i) => {
                                     return (<li key={i}>
@@ -42,8 +43,8 @@ class DishDetailed2 extends Component<MyProps, MyState> {
                         </div>
                         <div className="method">
                             <span className="body__name">
-                                Method
-                                </span>
+                                <FormattedMessage id="dish.detailed.method" defaultMessage="Method" />
+                            </span>
                             <div className="method__text">
                                 {this.props.dish.method}
                             </div>

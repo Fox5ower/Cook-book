@@ -401,7 +401,7 @@ body {
       max-height: 100vh;
       min-height: 100vh;
       box-sizing: border-box;
-      padding: 20px 0;
+      padding: 40px 0;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -419,7 +419,7 @@ body {
         background-size: cover;
         position: relative;
         margin: 5px;
-        padding: 50px 35px;
+        padding: 50px 25px;
         width: 320px;
         min-width: 200px;
         height: 250px;
@@ -438,7 +438,8 @@ body {
           flex-direction: row;
           justify-content: space-between;
           .menu__item__name {
-            font-size: 28pt;
+            font-size: 2rem;
+            font-weight: 200;
           }
 
           .menu__item__counter {
@@ -611,6 +612,7 @@ body {
     color: white;
 
     .pannel__header {
+      font-family: "Poiret One";
       background: rgba(255, 255, 255, 0.05);
       padding: 1vw 0;
       box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.349);
@@ -962,13 +964,15 @@ body {
       background-color: rgba(0, 0, 0, 0.4);
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
       overflow: hidden;
+      position: relative;
 
       .dish-form__header {
+        font-family: "Poiret One";
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-bottom: 25px;
+        margin-bottom: 0;
         font-size: 18pt;
         border-radius: 30px 30px 0 0;
         width: 100%;
@@ -978,11 +982,53 @@ body {
       }
 
       #form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 0 80px;
+        overflow: hidden;
+        position: relative;
+        //height: 680px;
+
+        .en-fieldset {
+          border: none;
+          position: relative;
+          //top: 22%;
+          left: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          // padding: 0 80px;
+          transition: all 0.3s;
+
+          span {
+            margin: 20px 0 10px 0;
+          }
+        }
+
+        .ru-fieldset {
+          border: none;
+          position: absolute;
+          //top: -36%;
+          left: 120%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          transition: all 0.3s;
+          padding: 0 80px;
+          span {
+            margin: 20px 0 10px 0;
+          }
+        }
+
+        .en-hiding {
+          transition: all 0.3s;
+          left: -120%;
+        }
+
+        .ru-showing {
+          transition: all 0.3s;
+          left: 1.5%;
+        }
+
         .row-fieldset {
           width: 100%;
           border: none;
@@ -1202,6 +1248,11 @@ body {
           }
         }
       }
+
+      .maximize-form {
+        transition: all 0.3s;
+        height: 665px !important;
+      }
     }
   }
 
@@ -1392,7 +1443,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 80px;
+    padding: 10px 80px;
     .row-fieldset {
       width: 100%;
       border: none;
@@ -1550,7 +1601,8 @@ body {
       }
     }
     .dish-img {
-      width: 30%;
+      //width: 30%;
+      max-height: 250px;
     }
 
     .image-input {
@@ -1619,11 +1671,4 @@ input:required {
 
 .error-container-visible {
   visibility: visible;
-}
-
-.locale-switcher {
-  position: absolute;
-  z-index: 9999;
-  top: 5px;
-  right: 2vw;
 }

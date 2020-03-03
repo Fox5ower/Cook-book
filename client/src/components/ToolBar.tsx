@@ -7,6 +7,7 @@ import { DEV_URL } from "./App";
 import axios from "axios";
 import { AiOutlineInstagram, AiOutlineTwitter, AiOutlineFacebook } from "react-icons/ai";
 import { FaVk } from "react-icons/fa"
+import getLocale from "../services/get.locale";
 
 interface MyProps {
     term: string,
@@ -33,7 +34,7 @@ class ToolBar extends Component<MyProps, MyState>{
     }
 
     componentWillMount() {
-        axios.get(`${DEV_URL}/categories`)
+        axios.get(`${DEV_URL}/categories/${getLocale()}`)
             .then((category) => {
                 this.setState({
                     categories: category.data.category

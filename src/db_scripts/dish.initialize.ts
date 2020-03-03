@@ -15,11 +15,12 @@ export default async () => {
                 method: dish.method,
                 description: dish.description,
                 engreediants: dish.engreediants,
+                language: dish.language,
                 image: dish.image
             })
             const savedDish = await newDish.save();
             if (savedDish) {
-                console.log("New dish collection created");
+                console.log("New dish created");
             } else {
                 console.log({ message: "Something went wrong" })
             }

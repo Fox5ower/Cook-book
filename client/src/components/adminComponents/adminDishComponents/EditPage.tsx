@@ -30,6 +30,7 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                 method: "",
                 description: "",
                 engreediants: [],
+                language: "",
                 image: {}
             },
             fileName: "",
@@ -84,6 +85,15 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                         dish: {
                             ...prevState.dish,
                             engreediants: target.value
+                        }
+                    }))
+                    break;
+                }
+                case "language": {
+                    this.setState(prevState => ({
+                        dish: {
+                            ...prevState.dish,
+                            language: target.value
                         }
                     }))
                     break;
@@ -151,6 +161,7 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                             method: "",
                             description: "",
                             engreediants: [],
+                            language: "",
                             image: {}
                         },
                         redirect: true
@@ -165,7 +176,7 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                 <Redirect to="/admin"></Redirect>
             )
         }
-        const { name, category, description, engreediants, method } = this.state.dish
+        const { name, category, description, engreediants, language, method } = this.state.dish
         return (
             <div className="dish-form__container">
                 <div className="dish-form">
@@ -211,6 +222,9 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                                 </select>
                                 <FaChevronDown style={{ position: "absolute", top: "51%", left: "95%", pointerEvents: "none", opacity: "0.7" }} ></FaChevronDown>
                             </div>
+                            <select disabled form="form" name="language" id="language">
+                                <option disabled hidden selected value={language}>{language}</option>
+                            </select>
                         </fieldset>
 
                         <img className="dish-img" src={this.state.dish.image} alt="dish" />

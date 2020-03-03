@@ -41,5 +41,7 @@
     "admin.dish.description.placeholder": "Description",
     "admin.dish.method.placeholder": "Method",
     "admin.dish.category.placeholder": "Category",
-    "admin.image.input.placeholder": "Choose img..."
+    "admin.image.input.placeholder": "Choose img...",
+    "dish.detailed.engredients": "Engredients",
+    "dish.detailed.method": "Method"
 }

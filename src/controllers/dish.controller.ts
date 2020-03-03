@@ -14,17 +14,29 @@ class DishController implements IControllerBase {
     }
 
     public initRoutes() {
+        this.router.get(`${this.path}/:locale`, this.index);
         this.router.get(`${this.path}`, this.index);
         this.router.get(`${this.path}/:dishId`, this.dishById);
     }
 
     index = async (req: Request, res: Response, next: any) => {
-        const dish = await Dish.find();
-        if (dish) {
-            res.json({ dish });
+        if (req.params.locale) {
+            let locale = req.params.locale;
+            const dish = await Dish.find({ language: locale === "ru" ? "Russian" : "English" });
+            if (dish) {
+                res.json({ dish });
+            } else {
+                res.status(404).json({ message: "Dishes Not found" })
+            }
         } else {
-            res.status(404).json({ message: "Dishes Not found" })
+            const dish = await Dish.find();
+            if (dish) {
+                res.json({ dish });
+            } else {
+                res.status(404).json({ message: "Dishes Not found" })
+            }
         }
+
     }
 
     dishById = async (req: Request, res: Response, next: any) => {

@@ -13,15 +13,25 @@ class CategoryController implements IControllerBase {
     }
 
     public initRoutes() {
+        this.router.get(`${this.path}/:locale`, this.index);
         this.router.get(`${this.path}`, this.index);
     }
 
     index = async (req: Request, res: Response, next: any) => {
-        const category = await Category.find();
-        if (category) {
-            res.json({ category });
+        if (req.params.locale) {
+            const category = await Category.find({ language: req.params.locale === "ru" ? "Russian" : "English" });
+            if (category) {
+                res.json({ category });
+            } else {
+                res.status(404).json({ message: "Categories Not found" })
+            }
         } else {
-            res.status(404).json({ message: "Categories Not found" })
+            const category = await Category.find();
+            if (category) {
+                res.json({ category });
+            } else {
+                res.status(404).json({ message: "Categories Not found" })
+            }
         }
     }
 

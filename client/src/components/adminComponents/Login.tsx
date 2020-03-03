@@ -7,6 +7,7 @@ import inputValidator from "../../services/input.validator";
 import resErrorHandler from "../../services/res.error.handler";
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import FormError from '../FormError';
+import localizeRoute from '../../services/localize.route';
 
 interface MyProps {
 
@@ -78,7 +79,7 @@ class Login extends Component<MyProps, MyState> {
     render() {
         const { email, password, redirect } = this.state;
         if (redirect) {
-            return <Redirect to="/admin" />
+            return <Redirect to={localizeRoute("admin")} />
         }
         return (
             <div className="admin__login-form-container">

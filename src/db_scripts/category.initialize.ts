@@ -11,10 +11,11 @@ export default async () => {
         categoryData.forEach(async (category) => {
             const newCategory = new Category({
                 name: category.name,
+                language: category.language
             })
             const savedCategory = await newCategory.save();
             if (savedCategory) {
-                console.log("Category collection created");
+                console.log("New category created");
             } else {
                 console.log({ message: "Something went wrong" })
             }

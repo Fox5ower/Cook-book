@@ -6,6 +6,7 @@ import { DEV_URL } from "../App";
 import IAdmin from "../../interfaces/IAdmin";
 import Modal from "./modalComponents/Modal";
 import { FormattedMessage } from 'react-intl';
+import localizeRoute from '../../services/localize.route';
 
 interface MyProps {
     id: string
@@ -74,7 +75,7 @@ class Header extends Component<MyProps, MyState> {
                         <Link to={"/"}><FormattedMessage id="admin.header.link" defaultMessage="Cook-Book" /></Link>
                     </div>
                     <div className="header__pannel-name">
-                        <Link to="/admin">
+                        <Link to={localizeRoute("admin")}>
                             <FormattedMessage id="admin.header.logo" defaultMessage="DASHBOARD" />
                         </Link>
                     </div>

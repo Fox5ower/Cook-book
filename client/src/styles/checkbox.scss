@@ -1,0 +1,41 @@
+.locale-switcher__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  position: absolute;
+  width: 100%;
+  height: 15px;
+
+  .lang-en,
+  .lang-ru {
+    font-family: "Montserrat";
+    color: grey;
+    font-size: 10pt;
+    position: absolute;
+    z-index: 9999;
+    top: 12px;
+    right: 45px;
+    cursor: pointer;
+  }
+
+  .lang-en {
+    right: 70px;
+  }
+
+  .checked {
+    color: white;
+    text-decoration: underline;
+  }
+
+  .lang:first-child {
+    right: 2.5vw;
+  }
+
+  .locale-switcher {
+    position: absolute;
+    z-index: 9999;
+    top: 0.5vw;
+    right: 1.5vw;
+    display: none;
+  }
+}

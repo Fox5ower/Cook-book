@@ -22,6 +22,10 @@ const DishSchema = new Schema({
         type: Array,
         required: true
     },
+    language: {
+        type: String,
+        required: true
+    },
     image: {
         type: String,
         required: true

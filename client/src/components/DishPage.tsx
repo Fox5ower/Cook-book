@@ -31,6 +31,7 @@ class DishPage extends Component<MyProps, MyState> {
                 method: "",
                 description: "",
                 engreediants: [],
+                language: "",
                 image: ""
             },
             dynamicImage: {

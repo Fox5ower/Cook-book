@@ -5,6 +5,7 @@ interface IDish {
     method: string,
     description: string,
     engreediants: Array<string>,
+    language: string,
     image: any
 }
 

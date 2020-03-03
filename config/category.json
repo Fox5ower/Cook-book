@@ -1,20 +1,50 @@
 [
     {
-        "name": "Deserts"
+        "name": "Deserts",
+        "language": "English"
     },
     {
-        "name": "Salads"
+        "name": "Salads",
+        "language": "English"
     },
     {
-        "name": "Meat Dishes"
+        "name": "Meat Dishes",
+        "language": "English"
     },
     {
-        "name": "FastFood"
+        "name": "FastFood",
+        "language": "English"
     },
     {
-        "name": "Fish Dishes"
+        "name": "Fish Dishes",
+        "language": "English"
     },
     {
-        "name": "Cocktails"
+        "name": "Cocktails",
+        "language": "English"
+    },
+    {
+        "name": "Десерты",
+        "language": "Russian"
+    },
+    {
+        "name": "Салаты",
+        "language": "Russian"
+    },
+    {
+        "name": "Мясные Блюда",
+        "language": "Russian"
+    },
+    {
+        "name": "Фастфуд",
+        "language": "Russian"
+    },
+    {
+        "name": "Блюда из Рыбы",
+        "language": "Russian"
+    },
+    {
+        "name": "Коктейли",
+        "language": "Russian"
     }
 ]

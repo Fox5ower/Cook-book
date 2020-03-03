@@ -6,6 +6,7 @@ import AddPage from './adminDishComponents/AddPage';
 import EditPage from './adminDishComponents/EditPage';
 import AddCategory from './adminDishComponents/AddCategory';
 import RemoveCategory from './adminDishComponents/RemoveCategory';
+import localizeRoute from '../../services/localize.route';
 const jwt = require("jsonwebtoken");
 
 interface IDecoded {
@@ -66,17 +67,17 @@ class Pannel extends Component<MyProps, MyState> {
                 <div className="pannel-container">
                     <Header id={id} />
                     <Switch>
-                        <Route path={"/admin/add"} component={AddPage} />
-                        <Route path={"/admin/category"} component={AddCategory} />
-                        <Route path={"/admin/edit/:name"} component={EditPage} />
-                        <Route exact path={"/admin"} component={DishTable} />
-                        <Route exact path={"/admin/remove_category"} component={RemoveCategory} />
+                        <Route path={localizeRoute("admin/add")} component={AddPage} />
+                        <Route path={localizeRoute("admin/category")} component={AddCategory} />
+                        <Route path={localizeRoute("admin/edit/:name")} component={EditPage} />
+                        <Route exact path={localizeRoute("admin")} component={DishTable} />
+                        <Route exact path={localizeRoute("admin/remove_category")} component={RemoveCategory} />
                     </Switch>
                 </div>
             )
         } else {
             return (
-                <Redirect to="/login"></Redirect>
+                <Redirect to={localizeRoute("login")}></Redirect>
             )
         }
     }

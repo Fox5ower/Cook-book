@@ -51,13 +51,13 @@ class AdminDishController implements IControllerBase {
     }
 
     addDish = async (req: Request, res: Response, next: any) => {
-
         const dish = new Dish({
             name: req.body.name,
             category: req.body.category,
             method: req.body.method,
             description: req.body.description,
             engreediants: req.body.engreediants.split(","),
+            language: req.body.language,
             image: "/" + req.file.originalname
         })
         const savedDish = await dish.save();
@@ -70,7 +70,8 @@ class AdminDishController implements IControllerBase {
 
     addCategory = async (req: Request, res: Response, next: any) => {
         const category = new Category({
-            name: req.body.name
+            name: req.body.name,
+            language: req.body.language
         })
         const savedCategory = await category.save();
         if (savedCategory) {
@@ -112,6 +113,7 @@ class AdminDishController implements IControllerBase {
                     method: req.body.method || oldDish.method,
                     description: req.body.description || oldDish.description,
                     engreediants: req.body.engreediants.split(",") || oldDish.engreediants,
+                    language: req.body.language || oldDish.language,
                     image: "/" + req.file.originalname
                 }
             })
@@ -128,6 +130,7 @@ class AdminDishController implements IControllerBase {
                     method: req.body.method || oldDish.method,
                     description: req.body.description || oldDish.description,
                     engreediants: req.body.engreediants.split(",") || oldDish.engreediants,
+                    language: req.body.language || oldDish.language,
                     image: oldDish.image
                 }
             })
