@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import { AiOutlineInstagram, AiOutlineTwitter, AiOutlineFacebook } from 'react-icons/ai';
 import { FaVk } from 'react-icons/fa';
 import { FormattedMessage } from 'react-intl';
-import SkeletonLoader from "tiny-skeleton-loader-react";
 import getLocale from "../services/get.locale";
 import localizeRoute from '../services/localize.route';
 
@@ -13,7 +12,6 @@ class MainPage extends Component{
     let locale: string = getLocale()
     return (
       <>
-      {/* <SkeletonLoader style={{position: "absolute", zIndex: "9999"}} height="100%"/> */}
       <div className="main-page-container">
         <div className="main__header">
           <span className="main__header-name"><FormattedMessage id="main.header" defaultMessage="Cook-Book" /></span>

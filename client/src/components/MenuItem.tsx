@@ -48,14 +48,6 @@ class MenuItem extends Component<MyProps, MyState> {
         });
     }
 
-    // componentDidUpdate() {
-    //     setTimeout(() => {
-    //         this.setState({
-    //             mounting: false
-    //         })
-    //     }, 500);
-    // }
-
     render() {
         return (
             <div onClick={() => { this.props.toggleSlider(); this.props.setIndex(this.props.counter) }} className="menu__item" style={this.dynamicBackground}>

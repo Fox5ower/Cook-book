@@ -3,12 +3,11 @@ export default function (route: string) {
     if (!locale) {
         localStorage.setItem("locale", navigator.language.substr(0, 2))
         locale = localStorage.getItem("locale");
+        return `/${locale}/${route}`;
     } else {
         if (locale && locale.match(/(ru|en)/)) {
-            console.log("Ok locale");
             return `/${locale}/${route}`;
         } else {
-            console.log("Not ok");
             let browserLocale = navigator.language
             let locale = browserLocale.substr(0, 2);
             return `/${locale}/${route}`;
