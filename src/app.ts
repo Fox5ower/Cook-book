@@ -51,11 +51,12 @@ class App {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true
-        }).then(adminInitializer)
-            .then(categoryInitializer)
-            .then(dishInitializer,
-                console.log(`Connected to Mongo DB with URI: ${this.mongoUri}`))
-            .then(tokenBLInitializer);
+        }).then(() => {
+            adminInitializer;
+            categoryInitializer;
+            dishInitializer;
+            tokenBLInitializer
+        })
     }
 
     public listen() {
@@ -63,8 +64,8 @@ class App {
         this.app.listen(this.port, () => {
             console.log(`This app is listening on http://localhost:${this.port}`);
         })
-    }
 
+    }
 }
 
 export default App;

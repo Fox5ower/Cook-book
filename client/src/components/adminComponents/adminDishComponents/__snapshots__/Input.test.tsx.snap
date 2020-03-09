@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should match the snapshot 1`] = `
+<div
+  className="input-container"
+>
+  <textarea
+    id="Test name"
+    maxLength={12}
+    name="Test name"
+    onChange={[Function]}
+    required={true}
+    value="Test Value"
+  />
+  <label
+    className="label"
+    htmlFor="Test name"
+  >
+    Test Placeholder
+  </label>
+</div>
+`;

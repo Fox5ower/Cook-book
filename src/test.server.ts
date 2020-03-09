@@ -3,8 +3,6 @@ import bodyParser from "body-parser";
 import logger from "./middlewares/logger";
 import headers from "./middlewares/headers"
 import AdminController from "./controllers/admin_controllers/admin.controller";
-// import RegisterController from "./controllers/register.controller";
-// import LoginController from "./controllers/login.controller";
 import AdminLoginController from "./controllers/admin_controllers/admin.login.controller";
 import AdminDishController from "./controllers/admin_controllers/admin.dish.controller";
 import DishController from "./controllers/dish.controller";
@@ -16,13 +14,11 @@ import config from "config";
 import path from "path";
 
 const app = new App({
-    port: config.get("port"),
-    mongoUri: `${config.get("mongoUri")}${config.get("dbName")}`,
+    port: "3002",
+    mongoUri: config.get("testdb"),
     controllers: [
         new AdminController(),
         new AdminLoginController(),
-        // new RegisterController(),
-        // new LoginController(),
         new AdminDishController(),
         new DishController(),
         new AdminLogoutController(),
@@ -42,6 +38,5 @@ const app = new App({
 
 app.dbConnect();
 
-app.listen();
-
-export { app }
+const server = app.listen()
+export default server;

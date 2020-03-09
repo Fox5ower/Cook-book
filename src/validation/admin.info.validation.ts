@@ -2,7 +2,7 @@ const Validator = require("validator");
 const isEmpty = require("is-empty");
 import IErrors from "../interfaces/IErrors";
 
-module.exports = function validateInformationInputData(data: any) {
+export default function validateInformationInputData(data: any) {
     let errors: IErrors = {};
 
     data.name = !isEmpty(data.name) ? data.name : "";

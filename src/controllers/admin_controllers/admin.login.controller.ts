@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
 const Admin = require("../../models/Admin");
-const validateLoginInput = require("../../validation/loginValidation");
+import validateLoginInput from "../../validation/login.validation";
 
 class AdminLoginController implements IControllerBase {
     public path = "/admin/login";

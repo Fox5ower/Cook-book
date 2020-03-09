@@ -5,7 +5,7 @@
 // const jwt = require("jsonwebtoken");
 // const config = require("config");
 // const User = require("../models/User");
-// const validateLoginInput = require("../validation/loginValidation");
+// const validateLoginInput = require("../validation/login.validation");
 
 // class LoginController implements IControllerBase {
 //     public path = "/login";

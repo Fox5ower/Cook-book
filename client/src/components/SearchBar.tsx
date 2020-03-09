@@ -39,7 +39,7 @@ const Searchbar: React.SFC<MyProps> = ({ term, data, filteredDish, update }) => 
         <div className="search-icon">
             <FormattedMessage id="dishes.search.placeholder" defaultMessage="Search by name...">
                 {(placeholder: string) =>
-                    <input
+                    <input data-testid="search-bar"
                         value={term}
                         placeholder={placeholder}
                         onChange={dataSearch}

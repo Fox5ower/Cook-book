@@ -1,11 +1,12 @@
 import * as express from "express";
 import { Request, Response } from "express";
 import IControllerBase from "../../interfaces/IControllerBase";
+import validatePasswordInputData from "../../validation/admin.password.validation";
+import validateInformationInputData from "../../validation/admin.info.validation";
 const bcrypt = require("bcryptjs");
 const Admin = require("../../models/Admin");
-const adminTokenChecker = require("../../middlewares/adminTokenChecker")
-const validatePasswordInputData = require("../../validation/adminChangePass");
-const validateInformationInputData = require("../../validation/adminChangeInfo");
+const adminTokenChecker = require("../../middlewares/adminTokenChecker");
+
 
 
 class AdminController implements IControllerBase {

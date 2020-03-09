@@ -4,7 +4,6 @@ export default async () => {
     const tokenBlackList = await TokenBlackList.find()
     if (tokenBlackList.length >= 1) {
         console.log("Token Black List collection already exists")
-        console.log(tokenBlackList);
 
         return;
     } else {

@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should match the snapshot 1`] = `
+<div
+  className="menu__item"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundImage": "url(/test-image)",
+    }
+  }
+>
+  <div
+    className="styles_skeleton__2Mj1U"
+    style={
+      Object {
+        "background": "#E9ECEF",
+        "borderRadius": "0",
+        "display": "block",
+        "height": "100%",
+        "left": "0",
+        "position": "absolute",
+        "top": "0",
+        "transition": "all .3s",
+        "width": "100%",
+        "zIndex": "9999",
+      }
+    }
+  >
+    ‌
+  </div>
+  <div
+    className="memu__item__head-container"
+  >
+    <span
+      className="menu__item__name"
+    >
+      Test Name
+    </span>
+    <span
+      className="menu__item__counter"
+    >
+      1
+    </span>
+  </div>
+  <br />
+  <hr />
+  <span
+    className="menu__item__description"
+  >
+    Test Description
+  </span>
+</div>
+`;

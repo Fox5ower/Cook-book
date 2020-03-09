@@ -64,7 +64,6 @@ class App extends Component<MyProps, MyState> {
     render() {
         return (
             <IntlProvider locale={locale} messages={this.state.checked ? English : lang}>
-                <p>TEST</p>
                 <div className="app">
                     <div className="locale-switcher__container">
                         <label htmlFor="locale-switcher" className={`lang-en ${this.state.checked ? "checked" : ""}`}>En</label>

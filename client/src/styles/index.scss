@@ -66,9 +66,9 @@ body {
       width: 400px;
       text-align: left;
       .text {
-        font-family: "Montserrat";
+        font-family: "Poiret One";
         max-height: 200px;
-        font-size: 0.9em;
+        font-size: 1.1em;
       }
     }
 
@@ -419,54 +419,125 @@ body {
         background-size: cover;
         position: relative;
         margin: 5px;
-        padding: 50px 25px;
+        padding: 30px 25px 5px 25px;
         width: 320px;
         min-width: 200px;
-        height: 250px;
-        max-height: 250px;
+        height: 310px;
         border-radius: 1px;
         border: 2px solid white;
         transition: all 0.3s;
         text-align: left;
         overflow: hidden;
-        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
-        .memu__item__head-container {
-          position: relative;
-          z-index: 2;
+        .menu__item__inner-container {
+          cursor: pointer;
+          .memu__item__head-container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .menu__item__name {
+              font-size: 2rem;
+              font-weight: 200;
+            }
+
+            .menu__item__counter {
+              font-size: 22pt;
+              font-style: italic;
+              color: rgba(255, 255, 255, 0.2);
+              display: flex;
+              align-items: center;
+            }
+          }
+
+          hr {
+            position: relative;
+            z-index: 2;
+            border: 1px solid white;
+            margin: 0 0 10px 0;
+          }
+
+          .menu__item__description {
+            position: relative;
+            z-index: 2;
+            font-family: "Montserrat";
+            font-size: 11pt;
+            font-weight: 100;
+          }
+        }
+        .dish-actions__container {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
-          .menu__item__name {
-            font-size: 2rem;
-            font-weight: 200;
-          }
-
-          .menu__item__counter {
-            font-size: 22pt;
-            font-style: italic;
-            color: rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-          }
-        }
-
-        hr {
-          position: relative;
-          z-index: 2;
-          border: 1px solid white;
+          align-items: center;
           width: 100%;
-          margin: 0 0 10px 0;
-        }
-
-        .menu__item__description {
+          height: 20%;
           position: relative;
-          z-index: 2;
-          font-family: "Montserrat";
-          font-size: 11pt;
-          font-weight: 100;
-        }
+          z-index: 10;
 
+          .rating-area {
+            overflow: hidden;
+            width: 100%;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 5px;
+            opacity: 0.7;
+          }
+          .rating-area:not(:checked) > input {
+            display: none;
+          }
+          .rating-area:not(:checked) > label {
+            float: right;
+            width: 24px;
+            margin-right: 3px;
+            padding: 0;
+            cursor: pointer;
+            font-size: 24pt;
+            line-height: 50px;
+            color: lightgrey;
+            transition: all 0.2s;
+          }
+          .rating-area:not(:checked) > label:before {
+            content: "★";
+          }
+          .rating-area > input:checked ~ label {
+            color: gold;
+          }
+          .rating-area:not(:checked) > label:hover,
+          .rating-area:not(:checked) > label:hover ~ label {
+            color: gold;
+            transition: all 0.2s;
+          }
+          .rating-area > input:checked + label:hover,
+          .rating-area > input:checked + label:hover ~ label,
+          .rating-area > input:checked ~ label:hover,
+          .rating-area > input:checked ~ label:hover ~ label,
+          .rating-area > label:hover ~ input:checked ~ label {
+            color: gold;
+          }
+          .rate-area > label:active {
+            position: relative;
+          }
+
+          .favourite-btn {
+            color: white;
+            font-size: 22pt;
+            cursor: pointer;
+          }
+
+          .favourite-btn-filled {
+            color: rgb(209, 63, 63);
+            font-size: 22pt;
+            cursor: pointer;
+          }
+        }
         &:after {
           content: "";
           position: absolute;
@@ -479,7 +550,7 @@ body {
         }
       }
       .menu__item:hover {
-        transform: scale(1.03);
+        //transform: scale(1.03);
         box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
       }
       .menu__item:hover:before {

@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should match the snapshot 1`] = `
+<div
+  className="wrapper"
+  style={Object {}}
+>
+  <div
+    className="recipe"
+  >
+    <span
+      className="close"
+      onClick={[Function]}
+    />
+    <div
+      className="recipe__body"
+    >
+      <div
+        className="engreediants"
+      >
+        <span
+          className="body__name"
+        >
+          Engredients
+        </span>
+        <ul>
+          <li>
+            <span
+              className="counter"
+            >
+              1
+            </span>
+            <span
+              className="engreediant"
+            >
+              Test 1
+            </span>
+          </li>
+          <li>
+            <span
+              className="counter"
+            >
+              2
+            </span>
+            <span
+              className="engreediant"
+            >
+              Test 2
+            </span>
+          </li>
+          <li>
+            <span
+              className="counter"
+            >
+              3
+            </span>
+            <span
+              className="engreediant"
+            >
+              Test 3
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div
+        className="method"
+      >
+        <span
+          className="body__name"
+        >
+          Method
+        </span>
+        <div
+          className="method__text"
+        >
+          Test Method
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -14,7 +14,6 @@ export default function tokenInterceptor() {
 function getToken(): string | undefined {
     const token: string = localStorage.getItem("token");
     if (token) {
-        console.log(token);
         return token;
     } else {
         return undefined;

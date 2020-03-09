@@ -2,7 +2,7 @@ const Validator = require("validator");
 const isEmpty = require("is-empty");
 import IErrors from "../interfaces/IErrors";
 
-module.exports = function validatePasswordInputData(data: any) {
+export default function validatePasswordInputData(data: any) {
     let errors: IErrors = {};
 
     data.password = !isEmpty(data.password) ? data.password : "";

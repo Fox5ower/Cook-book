@@ -8,7 +8,27 @@
     "server": "nodemon ./dist/src/server.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "client-prod": "npm run build --prefix client"
+    "client-prod": "npm run build --prefix client",
+    "test": "jest --detectOpenHandles"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "testEnvironment": "node"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ],
+      "@babel/preset-typescript"
+    ]
   },
   "keywords": [
     "mern",
@@ -20,11 +40,13 @@
   "author": "Maxim Lisikov <max7im13@tut.by>",
   "license": "ISC",
   "dependencies": {
+    "@types/config": "0.0.36",
     "@types/mongoose": "^5.7.0",
     "@types/multer": "^1.4.0",
     "@types/node": "^13.5.0",
     "@types/react-router-dom": "^5.1.3",
     "@types/react-slick": "^0.23.4",
+    "@types/supertest": "^2.0.8",
     "bcryptjs": "^2.4.3",
     "config": "^3.2.5",
     "express": "^4.17.1",
@@ -41,10 +63,18 @@
     "validator": "^12.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.6",
+    "@babel/preset-typescript": "^7.8.3",
     "@types/express": "^4.17.2",
+    "@types/jest": "^25.1.4",
+    "axios": "^0.19.2",
+    "babel-jest": "^25.1.0",
     "concurrently": "^5.0.2",
     "jest": "^25.1.0",
     "nodemon": "^2.0.2",
+    "superagent": "^5.2.2",
+    "supertest": "^4.0.2",
     "typescript": "^3.7.5"
   }
 }

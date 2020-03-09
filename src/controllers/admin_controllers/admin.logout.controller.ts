@@ -2,9 +2,6 @@ import * as express from "express";
 import { Request, Response } from "express";
 import IControllerBase from "../../interfaces/IControllerBase";
 import TokenBlackList from "../../models/Token";
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const config = require("config");
 
 
 class AdminLogoutController implements IControllerBase {

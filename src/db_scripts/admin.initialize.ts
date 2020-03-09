@@ -6,8 +6,6 @@ export default async () => {
     const admin = await Admin.find()
     if (admin.length >= 1) {
         console.log("Admin already exists")
-        console.log(admin);
-
         return;
     } else {
         const admin = new Admin({

@@ -1,8 +1,7 @@
-import express from "express";
-import { Request, Response } from "express";
-import TokenBlackList from "../models/Token"
-const jwt = require("jsonwebtoken")
-const config = require("config")
+import { Response } from "express";
+import TokenBlackList from "../models/Token";
+const jwt = require("jsonwebtoken");
+const config = require("config");
 
 const tokenChecker = async (req: any, res: Response, next: any) => {
     var token = req.headers['access-token'];
