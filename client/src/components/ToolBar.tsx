@@ -56,6 +56,9 @@ class ToolBar extends Component<MyProps, MyState>{
                 el.classList.remove("choosedCategory");
             })
         }
+        this.props.update({
+            term: ""
+        })
     }
 
     dataSort = (e: any) => {

@@ -51,16 +51,18 @@ class MenuItem extends Component<MyProps, MyState> {
 
     render() {
         return (
-            <div className="menu__item" style={this.dynamicBackground}>
-                <SkeletonLoader style={this.state.mounting ? SkeletonStyles : { display: "none", transition: "all .3s" }} />
-                <div onClick={() => { this.props.toggleSlider(); this.props.setIndex(this.props.counter) }} className="menu__item__inner-container">
-                    <div className="memu__item__head-container">
-                        <span className="menu__item__name">{this.props.name}</span>
-                        <span className="menu__item__counter">{this.props.counter}</span>
+            <div className="menu__item" style={this.dynamicBackground} >
+                <div className="clicker" style={{ height: "100%", zIndex: 2, cursor: "pointer" }} onClick={() => { this.props.toggleSlider(); this.props.setIndex(this.props.counter) }}>
+                    <SkeletonLoader style={this.state.mounting ? SkeletonStyles : { display: "none", transition: "all .3s" }} />
+                    <div className="menu__item__inner-container">
+                        <div className="memu__item__head-container">
+                            <span className="menu__item__name">{this.props.name}</span>
+                            <span className="menu__item__counter">{this.props.counter}</span>
+                        </div>
+                        <br />
+                        <hr />
+                        <span className="menu__item__description">{this.props.description}</span>
                     </div>
-                    <br />
-                    <hr />
-                    <span className="menu__item__description">{this.props.description}</span>
                 </div>
                 <DishActions name={this.props.name} counter={this.props.counter} />
             </div>

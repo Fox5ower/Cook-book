@@ -30,10 +30,7 @@ const Searchbar: React.SFC<MyProps> = ({ term, data, filteredDish, update }) => 
                 term: value
             });
         }
-
-
-
-    };
+    }
 
     return (
         <div className="search-icon">
