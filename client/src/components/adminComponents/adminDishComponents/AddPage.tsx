@@ -1,4 +1,4 @@
-import React, { Component, SyntheticEvent, ButtonHTMLAttributes } from 'react';
+import React, { Component, SyntheticEvent } from 'react';
 import axios from "axios";
 import tokenInterceptor from '../../../middlewares/tokenInterceptor';
 import { Redirect } from 'react-router';

@@ -15,7 +15,7 @@ interface MyState {
 
 
 
-class DishDetailed2 extends Component<MyProps, MyState> {
+class DishDetailed extends Component<MyProps, MyState> {
 
     render() {
         return (
@@ -57,4 +57,4 @@ class DishDetailed2 extends Component<MyProps, MyState> {
 }
 
 
-export default DishDetailed2;
+export default DishDetailed;

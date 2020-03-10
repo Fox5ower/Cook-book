@@ -3,7 +3,7 @@ import axios from "axios";
 import { DEV_URL } from "../../App";
 import tokenInterceptor from "../../../middlewares/tokenInterceptor"
 import { Redirect } from "react-router";
-import Input from "../adminDishComponents/Input";
+import Input from "./Input";
 import resErrorHandler from "../../../services/res.error.handler";
 import { FormattedMessage } from "react-intl";
 import FormError from "../../FormError";
@@ -97,7 +97,7 @@ class Modal extends Component<MyProps, MyState> {
 
     render() {
         const { password, password2, email, name } = this.state;
-        if (this.props.isOpen === false) { return null };
+        if (this.props.isOpen === false) { return null }
         if (this.state.redirect === true) {
             localStorage.clear();
             return (

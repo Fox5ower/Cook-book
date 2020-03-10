@@ -4,7 +4,7 @@ import axios from "axios";
 import tokenInterceptor from "../../middlewares/tokenInterceptor"
 import { DEV_URL } from "../App";
 import IAdmin from "../../interfaces/IAdmin";
-import Modal from "./modalComponents/Modal";
+import Modal from "./adminDishComponents/Modal";
 import { FormattedMessage } from 'react-intl';
 import localizeRoute from '../../services/localize.route';
 

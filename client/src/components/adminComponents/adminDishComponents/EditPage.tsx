@@ -214,7 +214,7 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
                                 </label>
                                 <select form="form" name="category" id="category">
                                     <option value="none" disabled hidden selected>{category}</option>
-                                    {this.state.categories.map((category, i) => {
+                                    {this.state.categories.map((category) => {
                                         return (
                                             <option key={category._id} value={category.name}>{category.name}</option>
                                         )

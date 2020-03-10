@@ -1,11 +1,10 @@
-import React, { Component, SyntheticEvent } from 'react';
+import React, { Component } from 'react';
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { DEV_URL } from "../App";
 import inputValidator from "../../services/input.validator";
 import resErrorHandler from "../../services/res.error.handler";
-import { AiOutlineInfoCircle } from 'react-icons/ai';
 import FormError from '../FormError';
 import localizeRoute from '../../services/localize.route';
 

@@ -4,11 +4,12 @@ import { useTable, usePagination } from 'react-table'
 import { FaArrowLeft, FaArrowRight, FaEdit, FaTrash, FaChevronDown } from "react-icons/fa";
 import { FormattedMessage } from "react-intl";
 import localizeRoute from "../../../services/localize.route";
+import IDish from "../../../interfaces/IDish";
 
 interface MyProps {
     columns: any,
-    data: any,
-    onDeleteClick: any
+    data: Array<IDish>,
+    onDeleteClick: Function
 }
 
 const Table: React.FC<MyProps> = ({ columns, data, onDeleteClick }) => {

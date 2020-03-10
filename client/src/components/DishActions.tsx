@@ -19,7 +19,7 @@ interface MyState {
     }
 }
 
-class FavDishButton extends Component<MyProps, MyState> {
+class DishActions extends Component<MyProps, MyState> {
     constructor(props: MyProps) {
         super(props);
 
@@ -228,4 +228,4 @@ class FavDishButton extends Component<MyProps, MyState> {
 
 }
 
-export default FavDishButton; 
+export default DishActions; 
