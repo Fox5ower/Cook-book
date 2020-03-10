@@ -33,7 +33,7 @@ class ToolBar extends Component<MyProps, MyState>{
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         axios.get(`${DEV_URL}/categories/${getLocale()}`)
             .then((category) => {
                 this.setState({

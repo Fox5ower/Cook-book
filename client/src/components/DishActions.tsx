@@ -136,7 +136,7 @@ class DishActions extends Component<MyProps, MyState> {
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let object = getObject(this.props.name)
         object ?
             this.setState({

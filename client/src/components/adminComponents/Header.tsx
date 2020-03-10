@@ -37,7 +37,7 @@ class Header extends Component<MyProps, MyState> {
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         tokenInterceptor();
         axios.get(`${DEV_URL}/api/admin/${this.props.id}`)
             .then((admin) => {

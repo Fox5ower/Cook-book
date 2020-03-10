@@ -64,7 +64,7 @@ class Menu extends Component<MyProps, MyState> {
         })
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.setState({
             mounting: true
         })

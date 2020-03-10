@@ -36,7 +36,7 @@ class AddPage extends Component<MyProps, MyState> {
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         tokenInterceptor()
         axios.get(`${DEV_URL}/categories`)
             .then((category) => {

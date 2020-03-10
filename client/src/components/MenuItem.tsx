@@ -35,7 +35,7 @@ class MenuItem extends Component<MyProps, MyState> {
         backgroundImage: "url(" + this.props.image + ")"
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.setState({
             mounting: true
         })

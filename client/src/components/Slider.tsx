@@ -12,7 +12,8 @@ interface MyProps {
 }
 
 interface MyState {
-    x: number
+    x: number,
+    closeDescription: boolean
 }
 
 class Slider extends Component<MyProps, MyState>{
@@ -20,11 +21,12 @@ class Slider extends Component<MyProps, MyState>{
     constructor(props: MyProps) {
         super(props)
         this.state = {
-            x: (this.props.index - 1) * -100
+            x: (this.props.index - 1) * -100,
+            closeDescription: false
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         document.addEventListener("keydown", (e: any) => {
             if (e.keyCode === 37) {
                 this.goLeft()
@@ -35,14 +37,33 @@ class Slider extends Component<MyProps, MyState>{
     }
 
     goLeft() {
-        this.setState({
-            x: (this.state.x === 0) ? (-100 * (this.props.initialData.length - 1)) : this.state.x + 100
+        new Promise((resolve) => {
+            resolve(
+                this.setState({
+                    x: (this.state.x === 0) ? (-100 * (this.props.initialData.length - 1)) : this.state.x + 100,
+                    closeDescription: true
+                })
+            )
+        }).then(() => {
+            this.setState({
+                closeDescription: false
+            })
         })
+
     }
 
     goRight() {
-        this.setState({
-            x: (this.state.x === -100 * (this.props.initialData.length - 1)) ? 0 : this.state.x - 100
+        new Promise((resolve) => {
+            resolve(
+                this.setState({
+                    x: (this.state.x === -100 * (this.props.initialData.length - 1)) ? 0 : this.state.x - 100,
+                    closeDescription: true
+                })
+            )
+        }).then(() => {
+            this.setState({
+                closeDescription: false
+            })
         })
     }
 
@@ -53,7 +74,7 @@ class Slider extends Component<MyProps, MyState>{
                 {this.props.initialData.map((dish: IDish, i: number) => {
                     return (
                         <div className="slide" key={i} style={{ transform: `translateX(${this.state.x}%)` }}>
-                            <DishPage dish={dish} toggleSlider={this.props.toggleSlider.bind(this)}></DishPage>
+                            <DishPage closeDescription={this.state.closeDescription} dish={dish} toggleSlider={this.props.toggleSlider.bind(this)}></DishPage>
 
                             <button id="goLeft" onClick={this.goLeft.bind(this)}>
                                 <IconContext.Provider value={{ size: "3em" }}>

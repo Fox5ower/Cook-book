@@ -15,7 +15,8 @@ interface MyState {
 
 interface MyProps {
     dish: IDish,
-    toggleSlider: Function
+    toggleSlider: Function,
+    closeDescription: boolean
 }
 
 class DishPage extends Component<MyProps, MyState> {
@@ -49,13 +50,30 @@ class DishPage extends Component<MyProps, MyState> {
         })
     }
 
-    componentWillMount() {
+    closeDescription() {
+        if (this.state.showDescription) {
+            this.setState({
+                showDescription: false
+            })
+        }
+    }
+
+    UNSAFE_componentWillMount() {
         this.setState({
             dish: this.props.dish,
             dynamicImage: {
                 backgroundImage: "linear-gradient(45deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url(" + this.props.dish.image + ")"
             }
         })
+    }
+
+    UNSAFE_componentWillReceiveProps() {
+        if (this.state.showDescription && this.props.closeDescription) {
+            this.setState({
+                showDescription: false
+            })
+        }
+
     }
 
     render() {

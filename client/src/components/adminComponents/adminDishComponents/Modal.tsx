@@ -91,7 +91,7 @@ class Modal extends Component<MyProps, MyState> {
             resErrorHandler(errData)
         }
     }
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         tokenInterceptor();
     }
 

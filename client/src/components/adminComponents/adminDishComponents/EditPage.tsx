@@ -111,7 +111,7 @@ class EditPage extends Component<RouteComponentProps<any>, MyState> {
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         tokenInterceptor()
         console.log(this.props.match.params.name);
         axios.get(`${DEV_URL}/api/panel/edit/${this.props.match.params.name}`)

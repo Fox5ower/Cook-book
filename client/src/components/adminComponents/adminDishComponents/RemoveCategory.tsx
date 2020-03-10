@@ -29,7 +29,7 @@ class RemoveCategory extends Component<MyProps, MyState> {
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         tokenInterceptor()
     }
 

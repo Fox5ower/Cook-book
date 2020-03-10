@@ -32,7 +32,7 @@ class DishTable extends Component<MyProps, MyState> {
                 }))
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         axios.get(`${DEV_URL}/getdishes`)
             .then((dishes) => {
                 this.setState({
