@@ -43,5 +43,6 @@
     "admin.dish.category.placeholder": "Category",
     "admin.image.input.placeholder": "Choose img...",
     "dish.detailed.engredients": "Engredients",
-    "dish.detailed.method": "Method"
+    "dish.detailed.method": "Method",
+    "dishes.favourite": "Favourites"
 }

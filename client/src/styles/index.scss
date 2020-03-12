@@ -1,9 +1,22 @@
-//@import url("https://fonts.googleapis.com/css?family=Marck+Script&display=swap");
-
 @import url("https://fonts.googleapis.com/css?family=Poiret+One&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 
-@import url("./buttons.scss");
+@import "buttons";
+@import "_color";
+
+%flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+%flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 hr {
   margin: -5% 0 2% 0;
@@ -33,555 +46,11 @@ body {
     text-decoration: none;
   }
 
-  .main-page-container {
-    width: 100vw;
-    height: 100vh;
-    box-sizing: border-box;
-    padding: 30px;
-    padding-bottom: 0;
-    background-image: url("../img/main-page-bg.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    &.main-page-container * {
-      margin: 10px 0;
-    }
-
-    .main__header-name {
-      font-size: calc((100vw - 10px) / (1280 - 480) * (24 - 4) + 40px);
-    }
-
-    .main__text {
-      @media screen and (max-width: 1300px) {
-        width: 200px;
-        font-size: 1em;
-      }
-      font-size: 1.2em;
-      margin: 20px 0 20px 0px;
-      width: 400px;
-      text-align: left;
-      .text {
-        font-family: "Poiret One";
-        max-height: 200px;
-        font-size: 1.1em;
-      }
-    }
-
-    .main__page__footer {
-      @media screen and (max-width: 1115px) {
-        display: none;
-      }
-      font-family: "Montserrat";
-      font-size: 10pt;
-      color: rgba(255, 255, 255, 0.5);
-      width: 100%;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: flex-end;
-      box-sizing: border-box;
-
-      .socials {
-        margin: 0;
-        svg {
-          font-size: 18pt;
-          margin: 4px;
-          transition: all 0.3s;
-          cursor: pointer;
-        }
-
-        svg:hover {
-          color: rgb(255, 255, 255);
-        }
-      }
-    }
-  }
-
-  .menu-page-container {
-    width: 100%;
-    height: 100%;
-    background-image: url("../img/menu-page-bg.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-    overflow: hidden;
-
-    .nav-wrapper {
-      @media screen and (max-width: 1064px) {
-        position: absolute;
-        width: 100%;
-        left: 0;
-        top: 95%;
-        margin: 0;
-        opacity: 0.7;
-      }
-      position: relative;
-      height: 100%;
-      width: 30%;
-      z-index: 99;
-      transition: all 0.5s;
-      margin: 0 0 0 -26%;
-    }
-
-    .close {
-      // @media screen and (max-width: 1064px) {
-      //   left: 96%;
-      // }
-      position: absolute;
-      top: 10px;
-      left: 90%;
-      width: 32px;
-      height: 32px;
-      opacity: 0.5;
-      transition: opacity 0.2s, visibility 0.3s;
-      cursor: pointer;
-    }
-    .close:hover {
-      opacity: 1;
-    }
-    .close:before,
-    .close:after {
-      position: absolute;
-      left: 15px;
-      content: " ";
-      height: 25px;
-      width: 2px;
-      background-color: rgb(247, 225, 225);
-    }
-    .close:before {
-      transform: rotate(45deg);
-    }
-    .close:after {
-      transform: rotate(-45deg);
-    }
-
-    .close-unshown {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    .open {
-      // @media screen and (max-width: 1064px) {
-      //   left: 95.5%;
-      // }
-      position: absolute;
-      top: 2%;
-      left: 90.5%;
-      width: 32px;
-      height: 32px;
-      opacity: 0.5;
-      transition: opacity 0.2s, visibility 0.3s;
-      cursor: pointer;
-    }
-    .open:hover {
-      opacity: 1;
-    }
-    .open:before,
-    .open:after {
-      position: absolute;
-      left: 5px;
-      top: 0;
-      height: 2px;
-      content: "";
-      width: 25px;
-    }
-
-    .open:after {
-      margin-top: 6px;
-      height: 4px;
-      border-top: 2px solid rgb(247, 225, 225);
-      border-bottom: 2px solid rgb(247, 225, 225);
-    }
-
-    .open:before {
-      background-color: rgb(247, 225, 225);
-    }
-
-    .navbar-container {
-      @media screen and (max-width: 1064px) {
-        padding: 5px 30px;
-      }
-      width: 100%;
-      height: 100vh;
-      padding: 30px 35px;
-      box-sizing: border-box;
-      background-color: rgba(0, 0, 0, 0.9);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: flex-start;
-      transition: all 0.3s;
-
-      .navbar__header {
-        @media screen and (max-width: 1064px) {
-          font-size: 20pt;
-        }
-        font-size: 42pt;
-      }
-
-      .nav-container {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-
-        .category-container {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: flex-start;
-          position: relative;
-
-          .category {
-            @media screen and (max-width: 1064px) {
-              font-size: 18pt;
-            }
-            font-family: "Montserrat";
-            position: relative;
-            text-align: left;
-            font-size: 22pt;
-            width: 100%;
-            margin: 6px 0;
-            padding: 0;
-            color: white;
-            border: none;
-            background-color: transparent;
-            transition: all 0.2s;
-            cursor: pointer;
-          }
-
-          .category:hover {
-            text-shadow: 0px 0px 10px white;
-
-            &:before {
-              opacity: 1;
-            }
-          }
-
-          .category:focus {
-            color: rgb(255, 255, 255);
-          }
-
-          .category:before {
-            @media screen and (max-width: 1064px) {
-              font-size: 6pt;
-            }
-            content: "➤";
-            font-size: 12pt;
-            position: absolute;
-            top: 20%;
-            left: -11%;
-            color: white;
-            transition: all 0.3s;
-            opacity: 0;
-          }
-
-          .choosedCategory {
-            text-shadow: 0px 0px 15px white;
-          }
-        }
-
-        .search {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: flex-start;
-
-          .search-icon {
-            position: relative;
-            display: inline-block;
-            margin: 10px 6px 0 0;
-            cursor: pointer;
-
-            input {
-              color: white;
-              font-size: 13px;
-              background: transparent;
-              font-family: "Montserrat";
-              width: 10px;
-              height: 10px;
-              padding: 10px;
-              border: solid 2px white;
-              outline: none;
-              border-radius: 35px;
-              box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0);
-              transition: width 0.5s, box-shadow 0.2s;
-              cursor: pointer;
-            }
-
-            input:visited {
-              outline: none;
-            }
-
-            input::placeholder {
-              color: #efefef;
-              opacity: 0;
-            }
-
-            input:focus,
-            input:valid {
-              width: 13.5vw;
-              cursor: text;
-            }
-            input:focus::placeholder {
-              opacity: 1;
-            }
-            input:hover {
-              box-shadow: 0px 0px 10px white;
-            }
-          }
-
-          div.search-icon:after {
-            content: "";
-            background: white;
-            width: 2px;
-            height: 14px;
-            position: absolute;
-            top: 27px;
-            right: -1px;
-            border: none;
-            transform: rotate(135deg);
-          }
-        }
-
-        .line-divider {
-          width: 92%;
-          border-bottom: 1px solid white;
-          margin: 20px 0 10px 0;
-        }
-      }
-
-      .nav-hidden {
-        position: absolute;
-        top: 0;
-        left: -100%;
-      }
-
-      .socials-container {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        font-size: 1.5vw;
-        color: rgba(255, 255, 255, 0.5);
-
-        svg {
-          margin: 0 10px;
-          transition: 0.3s;
-          cursor: pointer;
-        }
-
-        svg:first-child {
-          margin-left: 0;
-        }
-
-        svg:hover {
-          color: rgba(255, 255, 255, 0.9);
-        }
-      }
-    }
-
-    .menu__container {
-      background-color: rgba(58, 58, 58, 0.8);
-      width: 100%;
-      max-height: 100vh;
-      min-height: 100vh;
-      box-sizing: border-box;
-      padding: 40px 0;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-start;
-      overflow-y: scroll;
-      scrollbar-width: none;
-
-      .menu-margin {
-        width: 100%;
-        height: 20px;
-      }
-
-      .menu__item {
-        background-size: cover;
-        position: relative;
-        margin: 5px;
-        padding: 30px 25px 5px 25px;
-        width: 320px;
-        min-width: 200px;
-        height: 310px;
-        border-radius: 1px;
-        border: 2px solid white;
-        transition: all 0.3s;
-        text-align: left;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        .menu__item__inner-container {
-          cursor: pointer;
-          .memu__item__head-container {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            .menu__item__name {
-              font-size: 2rem;
-              font-weight: 200;
-            }
-
-            .menu__item__counter {
-              font-size: 22pt;
-              font-style: italic;
-              color: rgba(255, 255, 255, 0.2);
-              display: flex;
-              align-items: center;
-            }
-          }
-
-          hr {
-            position: relative;
-            z-index: 2;
-            border: 1px solid white;
-            margin: 0 0 10px 0;
-          }
-
-          .menu__item__description {
-            position: relative;
-            z-index: 2;
-            font-family: "Montserrat";
-            font-size: 11pt;
-            font-weight: 100;
-          }
-        }
-        .dish-actions__container {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-          width: 100%;
-          height: 20%;
-          position: relative;
-          z-index: 10;
-
-          .rating-area {
-            overflow: hidden;
-            width: 100%;
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: row-reverse;
-            align-items: center;
-            justify-content: flex-end;
-            padding-bottom: 5px;
-            opacity: 0.7;
-          }
-          .rating-area:not(:checked) > input {
-            display: none;
-          }
-          .rating-area:not(:checked) > label {
-            float: right;
-            width: 24px;
-            margin-right: 3px;
-            padding: 0;
-            cursor: pointer;
-            font-size: 24pt;
-            line-height: 50px;
-            color: lightgrey;
-            transition: all 0.2s;
-          }
-          .rating-area:not(:checked) > label:before {
-            content: "★";
-          }
-          .rating-area > input:checked ~ label {
-            color: gold;
-          }
-          .rating-area:not(:checked) > label:hover,
-          .rating-area:not(:checked) > label:hover ~ label {
-            color: gold;
-            transition: all 0.2s;
-          }
-          .rating-area > input:checked + label:hover,
-          .rating-area > input:checked + label:hover ~ label,
-          .rating-area > input:checked ~ label:hover,
-          .rating-area > input:checked ~ label:hover ~ label,
-          .rating-area > label:hover ~ input:checked ~ label {
-            color: gold;
-          }
-          .rate-area > label:active {
-            position: relative;
-          }
-
-          .favourite-btn {
-            color: white;
-            font-size: 22pt;
-            cursor: pointer;
-          }
-
-          .favourite-btn-filled {
-            color: rgb(209, 63, 63);
-            font-size: 22pt;
-            cursor: pointer;
-          }
-        }
-        &:after {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: rgba(0, 0, 0, 0.4);
-          z-index: 1;
-        }
-      }
-      .menu__item:hover {
-        //transform: scale(1.03);
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
-      }
-      .menu__item:hover:before {
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        border-radius: 0;
-      }
-      .menu__item:before {
-        content: "";
-        position: absolute;
-        transition: all 0.4s;
-        background-color: rgba(0, 0, 0, 0.7);
-        top: 50%;
-        left: 50%;
-        border-radius: 300px;
-        height: 0%;
-        width: 0%;
-      }
-    }
-  }
-
   .admin__login-form-container {
     width: 100vw;
     height: 100vh;
     background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @extend %flex-column;
 
     .admin-login__form {
       font-family: "Montserrat";
@@ -649,7 +118,7 @@ body {
         }
 
         #input-invalid {
-          border-bottom: 1px solid red;
+          border-bottom: 1px solid $accent-color;
         }
       }
 
@@ -687,11 +156,8 @@ body {
       background: rgba(255, 255, 255, 0.05);
       padding: 1vw 0;
       box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.349);
-
-      display: flex;
-      flex-direction: row;
+      @extend %flex-row;
       justify-content: space-between;
-      align-items: center;
 
       .header__logo {
         font-family: "Poiret One";
@@ -724,9 +190,7 @@ body {
       }
 
       .header__admin-actions {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
+        @extend %flex-row;
         width: 33%;
         .miniature {
           width: 50px;
@@ -753,9 +217,7 @@ body {
 
         .actions {
           visibility: hidden;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
+          @extend %flex-column;
           align-items: space-between;
           z-index: 1;
           opacity: 0;
@@ -796,10 +258,7 @@ body {
       }
     }
     .table-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      @extend %flex-column;
 
       table {
         font-size: 0.9rem;
@@ -813,10 +272,7 @@ body {
           padding: 10px;
           width: 33%;
           .action-container {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
+            @extend %flex-row;
             .edit,
             .delete {
               margin: 0 10px;
@@ -849,10 +305,8 @@ body {
     }
 
     .add-btn-container {
-      display: flex;
-      flex-direction: row;
+      @extend %flex-row;
       justify-content: space-between;
-      align-items: center;
       width: 700px;
       margin: 30px 0 10px 0;
 
@@ -874,10 +328,7 @@ body {
     }
 
     .pagination {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
+      @extend %flex-row;
       background-color: rgba(0, 0, 0, 0.5);
       box-shadow: 0 0 18px black;
       color: white;
@@ -887,12 +338,10 @@ body {
       }
 
       .pagination-btn-container {
-        display: flex;
-        justify-content: center;
+        @extend %flex-row;
         align-items: flex-end;
         button {
-          display: flex;
-          justify-content: center;
+          @extend %flex-row;
           align-items: flex-end;
         }
         svg {
@@ -955,10 +404,7 @@ body {
       transform: translate(-50%, -50%);
       transition: all 0.4s;
       background: rgba(0, 0, 0, 0.9);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      @extend %flex-column;
 
       form {
         font-family: "Montserrat";
@@ -988,11 +434,8 @@ body {
           padding: 10px;
           width: 100%;
           box-sizing: border-box;
-          -webkit-box-sizing: border-box;
-          -moz-box-sizing: border-box;
           background-color: #fafafa;
           color: black;
-          -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
           box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
           margin-bottom: 15px;
           transition: all 0.3s;
@@ -1020,17 +463,14 @@ body {
     width: 100%;
     height: 100%;
     padding: 25px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @extend %flex-row;
 
     .dish-form {
       width: 45%;
       padding-bottom: 40px;
       display: flex;
-      flex-direction: column;
+      @extend %flex-column;
       justify-content: flex-start;
-      align-items: center;
       border-radius: 30px;
       background-color: rgba(0, 0, 0, 0.4);
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
@@ -1039,10 +479,7 @@ body {
 
       .dish-form__header {
         font-family: "Poiret One";
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        @extend %flex-column;
         margin-bottom: 0;
         font-size: 18pt;
         border-radius: 30px 30px 0 0;
@@ -1055,18 +492,12 @@ body {
       #form {
         overflow: hidden;
         position: relative;
-        //height: 680px;
 
         .en-fieldset {
           border: none;
           position: relative;
-          //top: 22%;
           left: 0;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          // padding: 0 80px;
+          @extend %flex-column;
           transition: all 0.3s;
 
           span {
@@ -1077,12 +508,8 @@ body {
         .ru-fieldset {
           border: none;
           position: absolute;
-          //top: -36%;
           left: 120%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+          @extend %flex-column;
           transition: all 0.3s;
           padding: 0 80px;
           span {
@@ -1103,10 +530,8 @@ body {
         .row-fieldset {
           width: 100%;
           border: none;
-          display: flex;
-          flex-direction: row;
+          @extend %flex-row;
           justify-content: flex-start;
-          align-items: center;
 
           .input-container:first-child {
             margin: 0;
@@ -1171,10 +596,7 @@ body {
         .column-fieldset {
           width: 100%;
           border: none;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+          @extend %flex-column;
 
           .label {
             position: absolute;
@@ -1265,10 +687,8 @@ body {
           .form-group {
             padding: 1em;
             margin: 0 1em;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
+            @extend %flex-row;
+
             .img-label {
               padding: 5px 30px;
               border: 1px solid rgb(255, 255, 255);
@@ -1341,10 +761,7 @@ body {
     }
 
     .recipe {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      @extend %flex-column;
       position: absolute;
       z-index: 100;
       width: 550px;
@@ -1354,10 +771,9 @@ body {
       .recipe__body {
         width: 80%;
         height: 75%;
-        display: flex;
-        flex-direction: column;
+        @extend %flex-column;
         justify-content: space-between;
-        align-items: left;
+        align-items: flex-start;
 
         .body__name {
           font-size: 42pt;
@@ -1427,11 +843,7 @@ body {
       position: relative;
       background-size: cover;
       background-repeat: no-repeat;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      @extend %flex-column;
 
       .menu-link {
         font-family: "Montserrat";
@@ -1453,8 +865,7 @@ body {
         padding: 20px 50px;
 
         .img-container {
-          display: flex;
-          flex-direction: row;
+          @extend %flex-row;
           justify-content: space-around;
           align-items: flex-end;
           width: 85vw;
@@ -1473,10 +884,8 @@ body {
           .short-description {
             color: white;
             height: 80vh;
-            display: flex;
-            flex-direction: column;
+            @extend %flex-column;
             justify-content: space-between;
-            align-items: center;
 
             span.name {
               font-size: 64pt;
@@ -1498,8 +907,8 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    display: flex;
-    align-items: center;
+    @extend %flex-row;
+    justify-content: flex-start;
     overflow: hidden;
 
     .slide {
@@ -1510,18 +919,13 @@ body {
   }
 
   #form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @extend %flex-column;
     padding: 10px 80px;
     .row-fieldset {
       width: 100%;
       border: none;
-      display: flex;
-      flex-direction: row;
+      @extend %flex-row;
       justify-content: flex-start;
-      align-items: center;
 
       .input-container:first-child {
         margin: 0;
@@ -1586,10 +990,7 @@ body {
     .column-fieldset {
       width: 100%;
       border: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      @extend %flex-column;
 
       .label {
         position: absolute;
@@ -1672,7 +1073,6 @@ body {
       }
     }
     .dish-img {
-      //width: 30%;
       max-height: 250px;
     }
 
@@ -1681,10 +1081,8 @@ body {
       .form-group {
         padding: 1em;
         margin: 0 1em;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+        @extend %flex-row;
+
         .img-label {
           padding: 5px 30px;
           border: 1px solid rgb(255, 255, 255);
@@ -1725,12 +1123,9 @@ input:required {
 }
 .error-container {
   visibility: hidden;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  @extend %flex-row;
   line-height: 1em;
-  color: rgb(209, 63, 63);
+  color: $accent-color;
   margin-bottom: 15px;
   margin-top: 5px;
 

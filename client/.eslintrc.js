@@ -1,4 +1,5 @@
 module.exports = {
+
     "env": {
         "browser": true,
         "es6": true,
@@ -26,6 +27,7 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
-        "no-unused-vars": "off"
+        "no-unused-vars": "off",
+        "react/prop-types": 0
     }
 };

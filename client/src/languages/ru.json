@@ -43,5 +43,6 @@
     "admin.dish.category.placeholder": "Категория",
     "admin.image.input.placeholder": "Выберите фото...",
     "dish.detailed.engredients": "Ингредиенты",
-    "dish.detailed.method": "Метод приготовления"
+    "dish.detailed.method": "Метод приготовления",
+    "dishes.favourite": "Любимые"
 }

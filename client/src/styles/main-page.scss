@@ -1,0 +1,69 @@
+.main-page-container {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 30px;
+  padding-bottom: 0;
+  background-image: url("../img/main-page-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  &.main-page-container * {
+    margin: 10px 0;
+  }
+
+  .main__header-name {
+    font-size: calc((100vw - 10px) / (1280 - 480) * (24 - 4) + 40px);
+  }
+
+  .main__text {
+    @media screen and (max-width: 1300px) {
+      width: 200px;
+      font-size: 1em;
+    }
+    font-size: 1.2em;
+    margin: 20px 0 20px 0px;
+    width: 400px;
+    text-align: left;
+    .text {
+      font-family: "Poiret One";
+      max-height: 200px;
+      font-size: 1.1em;
+    }
+  }
+
+  .main__page__footer {
+    @media screen and (max-width: 1115px) {
+      display: none;
+    }
+    font-family: "Montserrat";
+    font-size: 10pt;
+    color: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    box-sizing: border-box;
+
+    .socials {
+      margin: 0;
+      svg {
+        font-size: 18pt;
+        margin: 4px;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: rgb(255, 255, 255);
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
 export default interface IEstimation {
-    stars?: number;
-    isFavourite?: boolean
+  stars?: number
+  isFavourite?: boolean
 }
