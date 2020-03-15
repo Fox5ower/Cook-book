@@ -1,22 +1,22 @@
-import TokenBlackList from "../models/Token";
+import TokenBlackList from '../models/Token'
 
 export default async () => {
-    const tokenBlackList = await TokenBlackList.find()
-    if (tokenBlackList.length >= 1) {
-        console.log("Token Black List collection already exists")
+  const tokenBlackList = await TokenBlackList.find()
+  if (tokenBlackList.length >= 1) {
+    console.log('Token Black List collection already exists')
 
-        return;
+    return
+  } else {
+    const tokenBlackList = new TokenBlackList({
+      token: 'default',
+    })
+
+    const savedTokenBL = await tokenBlackList.save()
+
+    if (savedTokenBL) {
+      console.log({ 'Collection created: ': savedTokenBL })
     } else {
-        const tokenBlackList = new TokenBlackList({
-            token: "default"
-        });
-
-        const savedTokenBL = await tokenBlackList.save();
-
-        if (savedTokenBL) {
-            console.log({ "Collection created: ": savedTokenBL });
-        } else {
-            console.log({ message: "Something went wrong" })
-        }
+      console.log({ message: 'Something went wrong' })
     }
+  }
 }

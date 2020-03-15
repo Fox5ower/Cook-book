@@ -35,7 +35,6 @@
 //                     return res.status(401).json({ email: "Auth failed" });
 //                 }
 
-
 //                 bcrypt.compare(password, user.password)
 //                     .then((isMatch: any) => {
 //                         if (isMatch) {
