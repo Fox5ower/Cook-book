@@ -4,6 +4,7 @@ import adminInitializer from './db_scripts/admin.initialize'
 import dishInitializer from './db_scripts/dish.initialize'
 import tokenBLInitializer from './db_scripts/tokenBlackList.initialize'
 import categoryInitializer from './db_scripts/category.initialize'
+import AdminController from './controllers/admin_controllers/admin.controller'
 const mongoose = require('mongoose')
 
 class App {
@@ -25,7 +26,9 @@ class App {
       if (
         controller.name == 'AdminLoginController' ||
         controller.name == 'DishController' ||
-        controller.name == 'CategoryController'
+        controller.name == 'CategoryController' ||
+        controller.name == 'LoginController' ||
+        controller.name == 'RegisterController'
       ) {
         this.app.use('/', controller.router)
       } else {

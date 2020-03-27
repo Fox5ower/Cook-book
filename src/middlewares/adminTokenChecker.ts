@@ -3,13 +3,13 @@ import TokenBlackList from '../models/Token'
 const jwt = require('jsonwebtoken')
 const config = require('config')
 
-const tokenChecker = async (req: any, res: Response, next: any) => {
+const adminTokenChecker = async (req: any, res: Response, next: any) => {
   var token = req.headers['access-token']
 
   if (token) {
     console.log(token)
 
-    TokenBlackList.findOne({ token: token }, function(err: Error, obj: Object) {
+    TokenBlackList.findOne({ token: token }, function (err: Error, obj: Object) {
       if (obj) {
         res.send({
           message: 'No token Provided',
@@ -32,4 +32,4 @@ const tokenChecker = async (req: any, res: Response, next: any) => {
   }
 }
 
-module.exports = tokenChecker
+module.exports = adminTokenChecker
