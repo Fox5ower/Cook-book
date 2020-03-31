@@ -1,0 +1,136 @@
+@import "buttons";
+@import "_color";
+
+.user__auth__form {
+  box-shadow: 0 0 32px black;
+  fieldset {
+    border: none;
+  }
+
+  legend {
+    font-size: 1.4em;
+    color: white;
+    text-decoration: underline;
+  }
+
+  .label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px 0 0 5px;
+    transition: all 200ms;
+    opacity: 0.4;
+    cursor: text;
+  }
+
+  textarea {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-bottom: 1px solid rgb(192, 191, 191);
+    font-size: 15px;
+    margin: 0;
+    outline: 0;
+    resize: none;
+    height: 30px;
+    width: 100%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    background-color: transparent;
+    color: white;
+    font-family: "Montserrat";
+    margin-bottom: 20px;
+    transition: all 0.3s;
+    scrollbar-width: none;
+  }
+
+  textarea:focus {
+    border-color: rgb(255, 255, 255);
+  }
+
+  textarea:focus + .label,
+  textarea:valid + .label {
+    font-size: 75%;
+    transform: translate3d(0, -100%, 0);
+    opacity: 0.6;
+  }
+
+  .input-container {
+    position: relative;
+    width: 350px;
+
+    input[type="password"],
+    input[type="text"],
+    input[type="email"] {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-bottom: 1px solid rgb(192, 191, 191);
+      font-size: 15px;
+      margin: 0;
+      outline: 0;
+      padding: 10px 5px;
+      width: 100%;
+      box-sizing: border-box;
+      background-color: transparent;
+      color: white;
+      margin-bottom: 30px;
+      transition: all 0.3s;
+    }
+
+    label {
+      position: absolute;
+      top: 14%;
+      left: 1%;
+      opacity: 0.8;
+      cursor: text;
+      transition: all 0.2s;
+      pointer-events: none;
+    }
+
+    input[type="password"]:focus,
+    input[type="text"]:focus,
+    input[type="email"]:focus {
+      border-bottom: 1px solid rgb(255, 255, 255);
+    }
+
+    input[type="password"]:focus + label,
+    input[type="email"]:focus + label,
+    input[type="text"]:focus + label,
+    input[type="password"]:valid + label,
+    input[type="email"]:valid + label,
+    input[type="text"]:valid + label,
+    input[type="email"].visited + label,
+    input[type="password"].visited + label,
+    input[type="text"]:visited + label {
+      font-size: 75%;
+      transform: translate3d(0, -110%, 0);
+      opacity: 0.6;
+    }
+
+    #input-invalid {
+      border-bottom: 1px solid $accent-color;
+    }
+  }
+
+  input[type="submit"] {
+    position: relative;
+    display: block;
+    padding: 5px 39px 5px 39px;
+    color: rgba(0, 0, 0, 0.808);
+    margin: 0 auto;
+    background: #fafafa00;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    font-style: normal;
+    width: 50%;
+    margin-bottom: 10px;
+    border: 1px solid white;
+    transition: 300ms;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background: #fafafa60;
+    box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.5);
+  }
+}

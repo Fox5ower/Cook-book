@@ -52,7 +52,7 @@ class LoginController implements IControllerBase {
                                 (err: Error, token: string) => {
                                     res.json({
                                         success: true,
-                                        token: "Token: " + token
+                                        token: token
                                     })
                                 }
                             )

@@ -7,6 +7,7 @@ import Input from './Input'
 import resErrorHandler from '../../../services/res.error.handler'
 import { FormattedMessage } from 'react-intl'
 import FormError from '../../FormError'
+import localizeRoute from '../../../services/localize.route'
 
 interface MyProps {
   isOpen: boolean
@@ -102,7 +103,7 @@ class Modal extends Component<MyProps, MyState> {
     }
     if (this.state.redirect === true) {
       localStorage.clear()
-      return <Redirect to="/" />
+      return <Redirect to={localizeRoute("")} />
     }
     if (this.props.actionType === 'logout') {
       return (

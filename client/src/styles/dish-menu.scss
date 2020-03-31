@@ -1,5 +1,19 @@
 @import "_color";
 
+%flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+%flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .menu-page-container {
   width: 100%;
   height: 100%;
@@ -330,7 +344,7 @@
     max-height: 100vh;
     min-height: 100vh;
     box-sizing: border-box;
-    padding: 40px 0;
+    padding: 25px 0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -339,6 +353,40 @@
     transition: all 0.3s;
     overflow-y: scroll;
     scrollbar-width: thin;
+
+    .buttons__container {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 55px;
+      margin-bottom: 20px;
+      font-size: 14pt;
+
+      .link-button,
+      .auth-buttons {
+        z-index: 2;
+        transition: all 0.3s;
+        @extend %flex-row;
+
+        .login-btn,
+        .register-btn {
+          margin: 0 10px;
+          cursor: pointer;
+          &:hover {
+            text-shadow: 0 0 10px white;
+          }
+        }
+
+        .login-btn {
+          margin-right: 0;
+        }
+      }
+      .link-button:hover {
+        text-shadow: 0 0 10px white;
+      }
+    }
 
     .menu-margin {
       width: 100%;

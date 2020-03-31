@@ -9,17 +9,17 @@
   .lang-en,
   .lang-ru {
     font-family: "Montserrat";
-    color: grey;
-    font-size: 10pt;
+    color: rgb(207, 207, 207);
+    font-size: 11pt;
     position: absolute;
-    z-index: 9999;
-    top: 12px;
-    right: 45px;
+    z-index: 0;
+    top: 370%;
+    right: 8.5%;
     cursor: pointer;
   }
 
   .lang-en {
-    right: 70px;
+    right: calc(8.5% - 25px);
   }
 
   .checked {
