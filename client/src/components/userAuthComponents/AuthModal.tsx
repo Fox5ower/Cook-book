@@ -1,7 +1,9 @@
 import React, { Component } from "react"
-import Input from "../adminComponents/adminDishComponents/Input";
+import axios from "axios"
 import "../../styles/input.scss"
 import inputValidator from "../../services/input.validator";
+import { DEV_URL } from "../App";
+import resErrorHandler from "../../services/res.error.handler";
 
 interface MyProps {
     isOpened: boolean
@@ -10,10 +12,10 @@ interface MyProps {
 }
 
 interface MyState {
-    modalFor: string,
     email: string,
     password: string,
-    name: string
+    name: string,
+    password2: string
 }
 
 class AuthModal extends Component<MyProps, MyState> {
@@ -22,10 +24,10 @@ class AuthModal extends Component<MyProps, MyState> {
         super(props);
 
         this.state = {
-            modalFor: "",
             name: "",
             email: "",
-            password: ""
+            password: "",
+            password2: ""
         }
 
     }
@@ -43,25 +45,74 @@ class AuthModal extends Component<MyProps, MyState> {
                 this.setState({ email: e.currentTarget.value })
             } else if (e.currentTarget.name === 'password') {
                 this.setState({ password: e.currentTarget.value })
+            } else if (e.currentTarget.name === 'password2') {
+                this.setState({ password2: e.currentTarget.value })
             } else if (e.currentTarget.name === 'name') {
                 this.setState({ name: e.currentTarget.value })
             }
         }
     }
 
+    submitHandler = (e: React.FormEvent<HTMLInputElement>) => {
+        e.preventDefault()
+        if (this.props.initiator === "login") {
+            if (this.state.email && this.state.password) {
+                axios
+                    .post(`${DEV_URL}/login`, this.state)
+                    .then(res => {
+                        if (res.status === 200) {
+                            localStorage.setItem('token', res.data.token)
+                            this.toggleModal()
+                        }
+                    })
+                    .catch(function (error) {
+                        if (error.response) {
+                            resErrorHandler(error.response.data)
+                        } else {
+                            let errData = {
+                                message: 'Something is wrong. Try again',
+                            }
+                            resErrorHandler(errData)
+                        }
+                    })
+            } else {
+                let errData = {
+                    message: 'All fields are required',
+                }
+                resErrorHandler(errData)
+            }
+        } else if (this.props.initiator === "register") {
+            if (this.state.email && this.state.password && this.state.name) {
+                axios
+                    .post(`${DEV_URL}/register`, this.state)
+                    .then(res => {
+                        if (res.status === 200) {
+                            localStorage.setItem('token', res.data.token)
+                            this.toggleModal()
+                        }
+                    })
+                    .catch(function (error) {
+                        if (error.response) {
+                            resErrorHandler(error.response.data)
+                        } else {
+                            let errData = {
+                                message: 'Something is wrong. Try again',
+                            }
+                            resErrorHandler(errData)
+                        }
+                    })
+            } else {
+                let errData = {
+                    message: 'All fields are required',
+                }
+                resErrorHandler(errData)
+            }
+        }
+    }
     componentDidUpdate(prevProps: MyProps) {
         if (prevProps.isOpened !== this.props.isOpened) {
             if (this.props.isOpened === true) {
                 document.querySelector(".overlay").classList.add("showing");
-                if (this.props.initiator === "login") {
-                    this.setState({
-                        modalFor: "Login"
-                    })
-                } else if (this.props.initiator === "register") {
-                    this.setState({
-                        modalFor: "Register"
-                    })
-                }
             } else {
                 document.querySelector(".overlay").classList.remove("showing");
             }
@@ -69,7 +120,8 @@ class AuthModal extends Component<MyProps, MyState> {
     }
 
     render() {
-        const { email, password, name } = this.state
+        const { email, password, password2, name } = this.state
+        const modalFor = this.props.initiator ? this.props.initiator : ""
         if (this.props.initiator === "login") {
             return (
                 <>
@@ -78,7 +130,7 @@ class AuthModal extends Component<MyProps, MyState> {
                             <div className="close" onClick={() => this.toggleModal()}></div>
                         </div>
                         <form action="" className="user__auth__form">
-                            <legend>{this.state.modalFor}</legend>
+                            <legend>Login</legend>
                             <fieldset>
                                 <div className="input-container">
                                     <input
@@ -106,7 +158,7 @@ class AuthModal extends Component<MyProps, MyState> {
                                         Password
                                     </label>
                                 </div>
-                                <input type="submit" value={this.state.modalFor} />
+                                <input type="submit" value={"Sign In"} onClick={this.submitHandler} />
                             </fieldset>
                         </form>
                     </div>
@@ -121,7 +173,7 @@ class AuthModal extends Component<MyProps, MyState> {
                             <div className="close" onClick={() => this.toggleModal()}></div>
                         </div>
                         <form action="" className="user__auth__form">
-                            <legend>{this.state.modalFor}</legend>
+                            <legend>Register</legend>
                             <fieldset>
                                 <div className="input-container">
                                     <input
@@ -162,7 +214,20 @@ class AuthModal extends Component<MyProps, MyState> {
                                         Password
                                     </label>
                                 </div>
-                                <input type="submit" value={this.state.modalFor} />
+                                <div className="input-container">
+                                    <input
+                                        type="password"
+                                        name="password2"
+                                        value={password2}
+                                        onChange={this.changeHandler}
+                                        maxLength={20}
+                                        required
+                                    />
+                                    <label className="label" htmlFor="password">
+                                        Confirm password
+                                    </label>
+                                </div>
+                                <input type="submit" value={"Sign Up"} onClick={this.submitHandler} />
                             </fieldset>
                         </form>
                     </div>

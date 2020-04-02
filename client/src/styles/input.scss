@@ -2,6 +2,7 @@
 @import "_color";
 
 .user__auth__form {
+  font-family: "Poiret One";
   box-shadow: 0 0 32px black;
   fieldset {
     border: none;
@@ -37,7 +38,6 @@
     box-sizing: border-box;
     background-color: transparent;
     color: white;
-    font-family: "Montserrat";
     margin-bottom: 20px;
     transition: all 0.3s;
     scrollbar-width: none;
@@ -112,6 +112,7 @@
   }
 
   input[type="submit"] {
+    font-family: "Poiret One";
     position: relative;
     display: block;
     padding: 5px 39px 5px 39px;
