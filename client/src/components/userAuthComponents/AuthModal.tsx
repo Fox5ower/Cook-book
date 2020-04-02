@@ -3,6 +3,7 @@ import axios from "axios"
 import "../../styles/input.scss"
 import inputValidator from "../../services/input.validator";
 import { DEV_URL } from "../App";
+import FormError from '../FormError'
 import resErrorHandler from "../../services/res.error.handler";
 
 interface MyProps {
@@ -115,6 +116,13 @@ class AuthModal extends Component<MyProps, MyState> {
                 document.querySelector(".overlay").classList.add("showing");
             } else {
                 document.querySelector(".overlay").classList.remove("showing");
+                this.setState({
+                    name: "",
+                    email: "",
+                    password: "",
+                    password2: ""
+                })
+                resErrorHandler("")
             }
         }
     }
@@ -131,6 +139,7 @@ class AuthModal extends Component<MyProps, MyState> {
                         </div>
                         <form action="" className="user__auth__form">
                             <legend>Login</legend>
+                            <FormError />
                             <fieldset>
                                 <div className="input-container">
                                     <input
@@ -174,6 +183,7 @@ class AuthModal extends Component<MyProps, MyState> {
                         </div>
                         <form action="" className="user__auth__form">
                             <legend>Register</legend>
+                            <FormError />
                             <fieldset>
                                 <div className="input-container">
                                     <input
