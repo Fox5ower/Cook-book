@@ -5,11 +5,14 @@ import inputValidator from "../../services/input.validator";
 import { DEV_URL } from "../App";
 import FormError from '../FormError'
 import resErrorHandler from "../../services/res.error.handler";
+import { FormattedMessage } from "react-intl";
+import setUser from "../../services/setUser";
 
 interface MyProps {
-    isOpened: boolean
-    initiator: string
-    toggleModal: any
+    isOpened: boolean,
+    initiator: string,
+    toggleModal: any,
+    update: Function
 }
 
 interface MyState {
@@ -63,6 +66,13 @@ class AuthModal extends Component<MyProps, MyState> {
                     .then(res => {
                         if (res.status === 200) {
                             localStorage.setItem('token', res.data.token)
+                            setUser(res.data.userName);
+                            this.setState({
+                                name: res.data.userName
+                            })
+                            this.props.update({
+                                userName: res.data.userName
+                            })
                             this.toggleModal()
                         }
                     })
@@ -88,7 +98,14 @@ class AuthModal extends Component<MyProps, MyState> {
                     .post(`${DEV_URL}/register`, this.state)
                     .then(res => {
                         if (res.status === 200) {
-                            localStorage.setItem('token', res.data.token)
+                            localStorage.setItem('token', res.data.token);
+                            setUser(this.state.name);
+                            this.setState({
+                                name: this.state.name
+                            })
+                            this.props.update({
+                                userName: this.state.name
+                            })
                             this.toggleModal()
                         }
                     })
@@ -129,7 +146,6 @@ class AuthModal extends Component<MyProps, MyState> {
 
     render() {
         const { email, password, password2, name } = this.state
-        const modalFor = this.props.initiator ? this.props.initiator : ""
         if (this.props.initiator === "login") {
             return (
                 <>
@@ -138,7 +154,9 @@ class AuthModal extends Component<MyProps, MyState> {
                             <div className="close" onClick={() => this.toggleModal()}></div>
                         </div>
                         <form action="" className="user__auth__form">
-                            <legend>Login</legend>
+                            <legend>
+                                <FormattedMessage id="user.auth.login" defaultMessage="Login" />
+                            </legend>
                             <FormError />
                             <fieldset>
                                 <div className="input-container">
@@ -151,7 +169,7 @@ class AuthModal extends Component<MyProps, MyState> {
                                         required
                                     />
                                     <label className="label" htmlFor="email">
-                                        Email
+                                        <FormattedMessage id="user.auth.email" defaultMessage="Email" />
                                     </label>
                                 </div>
                                 <div className="input-container">
@@ -164,10 +182,18 @@ class AuthModal extends Component<MyProps, MyState> {
                                         required
                                     />
                                     <label className="label" htmlFor="password">
-                                        Password
+                                        <FormattedMessage id="user.auth.password" defaultMessage="Password" />
                                     </label>
                                 </div>
-                                <input type="submit" value={"Sign In"} onClick={this.submitHandler} />
+                                <FormattedMessage id="user.auth.signin.button" defaultMessage="Sign In">
+                                    {(placeholder: string) => (
+                                        <input
+                                            type="submit"
+                                            value={placeholder}
+                                            onClick={this.submitHandler}
+                                        />
+                                    )}
+                                </FormattedMessage>
                             </fieldset>
                         </form>
                     </div>
@@ -182,7 +208,9 @@ class AuthModal extends Component<MyProps, MyState> {
                             <div className="close" onClick={() => this.toggleModal()}></div>
                         </div>
                         <form action="" className="user__auth__form">
-                            <legend>Register</legend>
+                            <legend>
+                                <FormattedMessage id="user.auth.register" defaultMessage="Register" />
+                            </legend>
                             <FormError />
                             <fieldset>
                                 <div className="input-container">
@@ -195,7 +223,7 @@ class AuthModal extends Component<MyProps, MyState> {
                                         required
                                     />
                                     <label className="label" htmlFor="name">
-                                        Name
+                                        <FormattedMessage id="user.auth.name" defaultMessage="Name" />
                                     </label>
                                 </div>
                                 <div className="input-container">
@@ -208,7 +236,7 @@ class AuthModal extends Component<MyProps, MyState> {
                                         required
                                     />
                                     <label className="label" htmlFor="email">
-                                        Email
+                                        <FormattedMessage id="user.auth.email" defaultMessage="Email" />
                                     </label>
                                 </div>
                                 <div className="input-container">
@@ -221,7 +249,7 @@ class AuthModal extends Component<MyProps, MyState> {
                                         required
                                     />
                                     <label className="label" htmlFor="password">
-                                        Password
+                                        <FormattedMessage id="user.auth.password" defaultMessage="Password" />
                                     </label>
                                 </div>
                                 <div className="input-container">
@@ -234,10 +262,19 @@ class AuthModal extends Component<MyProps, MyState> {
                                         required
                                     />
                                     <label className="label" htmlFor="password">
-                                        Confirm password
+                                        <FormattedMessage id="user.auth.confirm" defaultMessage="Confirm Password" />
                                     </label>
                                 </div>
-                                <input type="submit" value={"Sign Up"} onClick={this.submitHandler} />
+                                <FormattedMessage id="user.auth.signup.button" defaultMessage="Sign Up">
+                                    {(placeholder: string) => (
+                                        <input
+                                            type="submit"
+                                            value={placeholder}
+                                            onClick={this.submitHandler}
+                                        />
+                                    )}
+                                </FormattedMessage>
+
                             </fieldset>
                         </form>
                     </div>

@@ -2,7 +2,7 @@ const Validator = require('validator')
 const isEmpty = require('is-empty')
 import IErrors from '../interfaces/IErrors'
 
-module.exports = function validateLoginInput(data: any) {
+export default function validateLoginInput(data: any) {
   let errors: IErrors = {}
 
   data.email = !isEmpty(data.email) ? data.email : ''

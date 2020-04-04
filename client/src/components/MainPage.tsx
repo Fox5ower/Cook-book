@@ -10,6 +10,8 @@ import { FormattedMessage } from 'react-intl'
 import localizeRoute from '../services/localize.route'
 import '../styles/main-page.scss'
 import AuthModal from './userAuthComponents/AuthModal'
+import AuthMiniature from './userAuthComponents/AuthMiniature'
+import getToken from '../services/getToken'
 
 interface MyProps {
 
@@ -17,7 +19,8 @@ interface MyProps {
 
 interface MyState {
   isOpened: boolean;
-  initiator: string
+  initiator: string;
+  userName: string;
 }
 
 class MainPage extends Component<MyProps, MyState> {
@@ -27,8 +30,13 @@ class MainPage extends Component<MyProps, MyState> {
 
     this.state = {
       isOpened: false,
-      initiator: ""
+      initiator: "",
+      userName: ""
     }
+  }
+
+  update(config: MyState) {
+    this.setState(config);
   }
 
   toggleModal(name: string | null) {
@@ -40,6 +48,15 @@ class MainPage extends Component<MyProps, MyState> {
     } else {
       this.setState({
         isOpened: !this.state.isOpened,
+      })
+    }
+  }
+
+  UNSAFE_componentWillMount() {
+    const userName = localStorage.getItem("user");
+    if (userName && localStorage.getItem("token")) {
+      this.setState({
+        userName: userName
       })
     }
   }
@@ -56,24 +73,7 @@ class MainPage extends Component<MyProps, MyState> {
               <FormattedMessage id="main.header" defaultMessage="Cook-Book" />
             </span>
 
-            <div className="main__header__auth">
-              <div className="header__admin-actions">
-                <div className="miniature">
-                  Login
-                  <div className="actions">
-                    You can login if you already have an account
-                    <div className="main__button auth-button" onClick={() => this.toggleModal("login")}>
-                      Login
-                    </div>
-                    Or register a new account
-                    <div className="main__button auth-button" onClick={() => this.toggleModal("register")}>
-                      Register
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="empty__half"></div>
-            </div>
+            <AuthMiniature toggleModal={this.toggleModal.bind(this)} name={this.state.userName} />
 
           </div>
           <div className="main__text">
@@ -110,7 +110,7 @@ class MainPage extends Component<MyProps, MyState> {
             </div>
           </div>
         </div>
-        <AuthModal isOpened={isOpened} initiator={this.state.initiator} toggleModal={this.toggleModal.bind(this)}>
+        <AuthModal isOpened={isOpened} initiator={this.state.initiator} toggleModal={this.toggleModal.bind(this)} update={this.update.bind(this)}>
         </AuthModal>
       </>
     )

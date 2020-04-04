@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
 const User = require("../models/User");
-const validateLoginInput = require("../validation/login.validation");
+import validateLoginInput from '../validation/login.validation'
 
 class LoginController implements IControllerBase {
     public path = "/login";
@@ -52,7 +52,8 @@ class LoginController implements IControllerBase {
                                 (err: Error, token: string) => {
                                     res.json({
                                         success: true,
-                                        token: token
+                                        token: token,
+                                        userName: user.name
                                     })
                                 }
                             )

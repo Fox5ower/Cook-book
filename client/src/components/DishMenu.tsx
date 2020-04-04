@@ -83,6 +83,10 @@ class Menu extends Component<MyProps, MyState> {
     }
   }
 
+  update(config: MyState) {
+    this.setState(config);
+  }
+
   UNSAFE_componentWillMount() {
     this.setState({
       mounting: true,
@@ -186,7 +190,7 @@ class Menu extends Component<MyProps, MyState> {
               <div className="menu-margin"></div>
             </div>
           </div>
-          <AuthModal isOpened={isOpened} initiator={this.state.initiator} toggleModal={this.toggleModal.bind(this)}>
+          <AuthModal isOpened={isOpened} initiator={this.state.initiator} toggleModal={this.toggleModal.bind(this)} update={this.update.bind(this)}>
           </AuthModal>
         </>
       )
