@@ -46,6 +46,7 @@
     "dish.detailed.method": "Метод приготовления",
     "dishes.favourite": "Любимые",
     "user.auth.login": "Вход",
+    "user.auth.logout": "Выйти",
     "user.auth.register": "Регистрация",
     "user.auth.email": "Email",
     "user.auth.name": "Имя",
@@ -54,5 +55,6 @@
     "user.auth.signup.button": "Отправить",
     "user.auth.signin.button": "Войти",
     "user.auth.login.text": "Вы можете войти если у вас уже есть аккаунт",
-    "user.auth.register.text": "Или зарегистрировать новый"
+    "user.auth.register.text": "Или зарегистрировать новый",
+    "user.action.main.page": "На Главную ⮌"
 }

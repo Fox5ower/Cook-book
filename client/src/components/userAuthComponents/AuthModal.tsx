@@ -71,7 +71,8 @@ class AuthModal extends Component<MyProps, MyState> {
                                 name: res.data.userName
                             })
                             this.props.update({
-                                userName: res.data.userName
+                                userName: res.data.userName,
+                                token: res.data.token
                             })
                             this.toggleModal()
                         }
@@ -98,13 +99,14 @@ class AuthModal extends Component<MyProps, MyState> {
                     .post(`${DEV_URL}/register`, this.state)
                     .then(res => {
                         if (res.status === 200) {
-                            localStorage.setItem('token', res.data.token);
-                            setUser(this.state.name);
+                            localStorage.setItem('token', res.data.token)
+                            setUser(res.data.userName);
                             this.setState({
-                                name: this.state.name
+                                name: res.data.userName
                             })
                             this.props.update({
-                                userName: this.state.name
+                                userName: res.data.userName,
+                                token: res.data.token
                             })
                             this.toggleModal()
                         }

@@ -12,20 +12,23 @@ import getLocale from '../services/get.locale'
 import localizeRoute from "../services/localize.route"
 import '../styles/dish-menu.scss'
 import AuthModal from './userAuthComponents/AuthModal'
+import DishMenuUserActions from "./DishMenuUserActions"
 
 interface MyProps {
   dishes: Array<IDish>
 }
 
 interface MyState {
-  dishes: Array<IDish>
-  term: string
-  showSlider: boolean
-  index: number
-  showNav: boolean
-  mounting: boolean
-  isOpened: boolean;
-  initiator: string
+  dishes: Array<IDish>,
+  term: string,
+  showSlider: boolean,
+  index: number,
+  showNav: boolean,
+  mounting: boolean,
+  isOpened: boolean,
+  initiator: string,
+  userName: string,
+  token: string
 }
 
 class Menu extends Component<MyProps, MyState> {
@@ -42,7 +45,9 @@ class Menu extends Component<MyProps, MyState> {
       showNav: true,
       mounting: false,
       isOpened: false,
-      initiator: ''
+      initiator: '',
+      userName: localStorage.getItem("user") || "",
+      token: localStorage.getItem("token") || ""
     }
   }
 
@@ -88,6 +93,15 @@ class Menu extends Component<MyProps, MyState> {
   }
 
   UNSAFE_componentWillMount() {
+    const userName = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    if (userName && localStorage.getItem("token")) {
+      this.setState({
+        userName: userName,
+        token: token
+      })
+    }
+
     this.setState({
       mounting: true,
     })
@@ -155,23 +169,7 @@ class Menu extends Component<MyProps, MyState> {
               </div>
             </div>
             <div className="menu__container">
-              <div className="buttons__container">
-
-                <div className="link-button">
-                  <Link to={localizeRoute('')}>
-                    Main Page ⮌
-            </Link>
-                </div>
-                <div className="auth-buttons">
-                  <div className="register-btn" onClick={() => this.toggleModal("register")}>
-                    Register
-                    </div>
-                    |
-                    <div className="login-btn" onClick={() => this.toggleModal("login")}>
-                    Login
-                      </div>
-                </div>
-              </div>
+              <DishMenuUserActions toggleModal={this.toggleModal.bind(this)} name={this.state.userName} token={this.state.token} />
               {dishes.map((dish, i) => (
                 <MenuItem
                   key={dish._id}

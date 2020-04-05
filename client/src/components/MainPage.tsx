@@ -21,6 +21,7 @@ interface MyState {
   isOpened: boolean;
   initiator: string;
   userName: string;
+  token: string
 }
 
 class MainPage extends Component<MyProps, MyState> {
@@ -31,7 +32,8 @@ class MainPage extends Component<MyProps, MyState> {
     this.state = {
       isOpened: false,
       initiator: "",
-      userName: ""
+      userName: localStorage.getItem("user") || "",
+      token: localStorage.getItem("token") || ""
     }
   }
 
@@ -54,9 +56,11 @@ class MainPage extends Component<MyProps, MyState> {
 
   UNSAFE_componentWillMount() {
     const userName = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
     if (userName && localStorage.getItem("token")) {
       this.setState({
-        userName: userName
+        userName: userName,
+        token: token
       })
     }
   }
@@ -73,7 +77,7 @@ class MainPage extends Component<MyProps, MyState> {
               <FormattedMessage id="main.header" defaultMessage="Cook-Book" />
             </span>
 
-            <AuthMiniature toggleModal={this.toggleModal.bind(this)} name={this.state.userName} />
+            <AuthMiniature toggleModal={this.toggleModal.bind(this)} name={this.state.userName} token={this.state.token} />
 
           </div>
           <div className="main__text">

@@ -46,6 +46,7 @@
     "dish.detailed.method": "Method",
     "dishes.favourite": "Favourites",
     "user.auth.login": "Login",
+    "user.auth.logout": "Logout",
     "user.auth.register": "Register",
     "user.auth.email": "Email",
     "user.auth.name": "Name",
@@ -54,5 +55,6 @@
     "user.auth.signup.button": "Sign Up",
     "user.auth.signin.button": "Sign In",
     "user.auth.login.text": "You can login if you already have an account",
-    "user.auth.register.text": "Or register new account"
+    "user.auth.register.text": "Or register new account",
+    "user.action.main.page": "Main Page ⮌"
 }

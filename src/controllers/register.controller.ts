@@ -2,6 +2,8 @@ import * as express from "express";
 import { Request, Response } from "express";
 import IControllerBase from "../interfaces/IControllerBase";
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("config");
 const User = require("../models/User");
 const validateRegisterInput = require("../validation/register.validation");
 
@@ -41,8 +43,28 @@ class RegisterController implements IControllerBase {
                             if (err) throw err;
                             newUser.password = hash;
                             newUser.save()
-                                .then((user: any) => res.json(user))
-                                .catch((err: Error) => console.log(err));
+                                .then(() => {
+                                    const payload = {
+                                        id: newUser.id,
+                                        name: newUser.name
+                                    };
+
+                                    jwt.sign(
+                                        payload,
+                                        config.get("secretOrKey"),
+                                        {
+                                            expiresIn: 14400
+                                        },
+                                        (err: Error, token: string) => {
+                                            res.json({
+                                                success: true,
+                                                token: token,
+                                                userName: newUser.name
+                                            })
+                                        }
+                                    )
+
+                                })
                         })
                     })
                 }
