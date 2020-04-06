@@ -44,7 +44,7 @@ class AdminLoginController implements IControllerBase {
 
           jwt.sign(
             payload,
-            config.get('adminSecretOrKey'),
+            config.get('secretOrKey'),
             {
               expiresIn: 1440,
             },

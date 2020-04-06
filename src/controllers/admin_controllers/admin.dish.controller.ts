@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 import IControllerBase from '../../interfaces/IControllerBase'
 const Dish = require('../../models/Dish')
 const Category = require('../../models/Category')
-const adminTokenChecker = require('../../middlewares/adminTokenChecker')
+import tokenChecker from '../../middlewares/tokenChecker'
 const multer = require('multer')
 
 const storage = multer.diskStorage({
@@ -40,7 +40,7 @@ class AdminDishController implements IControllerBase {
   }
 
   public initRoutes() {
-    this.router.use(adminTokenChecker)
+    this.router.use(tokenChecker)
     this.router.post(`${this.path}/add`, upload.single('image'), this.addDish)
     this.router.post(`${this.path}/add_category`, this.addCategory)
     this.router.delete(`${this.path}/remove_category/:name`, this.removeCategory)

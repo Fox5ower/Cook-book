@@ -14,6 +14,7 @@ import ClientRoutesController from './controllers/client.routes.controller'
 import express from 'express'
 import config from 'config'
 import path from 'path'
+import DishActionsController from './controllers/dish.actions.controller'
 
 const app = new App({
   port: config.get('port'),
@@ -28,6 +29,7 @@ const app = new App({
     new AdminLogoutController(),
     new CategoryController(),
     new ClientRoutesController(),
+    new DishActionsController()
   ],
 
   middlewares: [

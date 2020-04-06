@@ -47,7 +47,7 @@ class LoginController implements IControllerBase {
                                 payload,
                                 config.get("secretOrKey"),
                                 {
-                                    expiresIn: 14400
+                                    expiresIn: 1440
                                 },
                                 (err: Error, token: string) => {
                                     res.json({
@@ -55,6 +55,7 @@ class LoginController implements IControllerBase {
                                         token: token,
                                         userName: user.name
                                     })
+                                    req.headers['access-token'] = token
                                 }
                             )
                         } else {

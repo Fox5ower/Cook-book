@@ -5,7 +5,7 @@ import validatePasswordInputData from '../../validation/admin.password.validatio
 import validateInformationInputData from '../../validation/admin.info.validation'
 const bcrypt = require('bcryptjs')
 const Admin = require('../../models/Admin')
-const adminTokenChecker = require('../../middlewares/adminTokenChecker')
+import tokenChecker from '../../middlewares/tokenChecker'
 
 class AdminController implements IControllerBase {
   public path = '/admin'
@@ -16,7 +16,7 @@ class AdminController implements IControllerBase {
   }
 
   public initRoutes() {
-    this.router.use(adminTokenChecker)
+    this.router.use(tokenChecker)
     this.router.get(`${this.path}`, this.index)
     this.router.get(`${this.path}/:adminId`, this.specificAdmin)
     this.router.put(`${this.path}/password`, this.adminChangePassword)

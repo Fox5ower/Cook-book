@@ -9,7 +9,7 @@ const tokenChecker = (req: any, res: Response, next: any) => {
     if (token) {
         jwt.verify(token, config.get("secretOrKey"), (err: Error, decoded: string) => {
             if (err) {
-                return res.json({ message: "invalid token" });
+                return res.json({ message: "invalid user token" });
             } else {
                 req.decoded = decoded;
                 next()
@@ -22,4 +22,4 @@ const tokenChecker = (req: any, res: Response, next: any) => {
     }
 }
 
-module.exports = tokenChecker
+export default tokenChecker;

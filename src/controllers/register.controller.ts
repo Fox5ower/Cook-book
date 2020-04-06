@@ -61,9 +61,9 @@ class RegisterController implements IControllerBase {
                                                 token: token,
                                                 userName: newUser.name
                                             })
+                                            req.headers['access-token'] = token
                                         }
                                     )
-
                                 })
                         })
                     })

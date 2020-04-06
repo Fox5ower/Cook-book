@@ -13,6 +13,11 @@ const AdminSchema = new Schema({
     type: String,
     required: true,
   },
+  role: {
+    type: String,
+    default: "admin",
+    required: true
+  },
   date: {
     type: Date,
     default: Date.now,
