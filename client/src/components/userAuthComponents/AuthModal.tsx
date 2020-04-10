@@ -7,6 +7,7 @@ import FormError from '../FormError'
 import resErrorHandler from "../../services/res.error.handler";
 import { FormattedMessage } from "react-intl";
 import setUser from "../../services/setUser";
+import setToken from "../../services/setToken";
 
 interface MyProps {
     isOpened: boolean,
@@ -65,8 +66,8 @@ class AuthModal extends Component<MyProps, MyState> {
                     .post(`${DEV_URL}/login`, this.state)
                     .then(res => {
                         if (res.status === 200) {
-                            localStorage.setItem('token', res.data.token)
-                            setUser(res.data.userName);
+                            setToken(res.data.token);
+                            setUser(res.data.userName, res.data.id);
                             this.setState({
                                 name: res.data.userName
                             })
@@ -100,7 +101,7 @@ class AuthModal extends Component<MyProps, MyState> {
                     .then(res => {
                         if (res.status === 200) {
                             localStorage.setItem('token', res.data.token)
-                            setUser(res.data.userName);
+                            setUser(res.data.userName, res.data.id);
                             this.setState({
                                 name: res.data.userName
                             })

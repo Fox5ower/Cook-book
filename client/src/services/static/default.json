@@ -1,3 +1,4 @@
 {
-    "adminSecretOrKey": "AdminSecret"
+    "adminSecretOrKey": "AdminSecret",
+    "secretOrKey": "secret"
 }

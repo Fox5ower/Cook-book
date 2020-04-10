@@ -14,6 +14,9 @@ interface MyProps {
   toggleSlider: Function
   setIndex: Function
   counter: number
+  userName: string,
+  token: string
+  updateLikes: Function
 }
 
 interface MyState {
@@ -77,7 +80,7 @@ class MenuItem extends Component<MyProps, MyState> {
             </span>
           </div>
         </div>
-        <DishActions name={this.props.name} counter={this.props.counter} />
+        <DishActions name={this.props.name} id={this.props._id} counter={this.props.counter} userName={this.props.userName} token={this.props.token} updateLikes={this.props.updateLikes.bind(this)} />
       </div>
     )
   }

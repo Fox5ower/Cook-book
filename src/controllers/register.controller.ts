@@ -59,7 +59,8 @@ class RegisterController implements IControllerBase {
                                             res.json({
                                                 success: true,
                                                 token: token,
-                                                userName: newUser.name
+                                                userName: newUser.name,
+                                                id: user.id
                                             })
                                             req.headers['access-token'] = token
                                         }

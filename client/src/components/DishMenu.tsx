@@ -13,6 +13,8 @@ import localizeRoute from "../services/localize.route"
 import '../styles/dish-menu.scss'
 import AuthModal from './userAuthComponents/AuthModal'
 import DishMenuUserActions from "./DishMenuUserActions"
+import ILike from '../interfaces/ILike'
+import tokenInterceptor from '../middlewares/tokenInterceptor'
 
 interface MyProps {
   dishes: Array<IDish>
@@ -28,7 +30,8 @@ interface MyState {
   isOpened: boolean,
   initiator: string,
   userName: string,
-  token: string
+  token: string,
+  likes: Array<ILike>
 }
 
 class Menu extends Component<MyProps, MyState> {
@@ -46,6 +49,7 @@ class Menu extends Component<MyProps, MyState> {
       mounting: false,
       isOpened: false,
       initiator: '',
+      likes: [],
       userName: localStorage.getItem("user") || "",
       token: localStorage.getItem("token") || ""
     }
@@ -92,6 +96,28 @@ class Menu extends Component<MyProps, MyState> {
     this.setState(config);
   }
 
+  logout() {
+    this.setState({
+      userName: "",
+      token: ""
+    })
+    this.toggleModal("login");
+  }
+
+  updateLikes() {
+    axios
+      .get(`${DEV_URL}/api/user/likes`)
+      .then((likes) => {
+        if (likes.data.message === "invalid user token") {
+          this.logout()
+        } else {
+          this.setState({
+            likes: likes.data.like
+          })
+        }
+      })
+  }
+
   UNSAFE_componentWillMount() {
     const userName = localStorage.getItem("user");
     const token = localStorage.getItem("token");
@@ -105,13 +131,26 @@ class Menu extends Component<MyProps, MyState> {
     this.setState({
       mounting: true,
     })
-    axios.get(`${DEV_URL}/getdishes/${getLocale()}`).then(dishes => {
-      this.initialData = dishes.data.dish
+    axios
+      .get(`${DEV_URL}/getdishes/${getLocale()}`).then(dishes => {
+        this.initialData = dishes.data.dish
 
-      this.setState({
-        dishes: this.initialData,
+        this.setState({
+          dishes: this.initialData,
+        })
       })
-    })
+    tokenInterceptor()
+    axios
+      .get(`${DEV_URL}/api/user/likes`)
+      .then((likes) => {
+        if (likes.data.message === "invalid user token") {
+          this.logout()
+        } else {
+          this.setState({
+            likes: likes.data.like
+          })
+        }
+      })
   }
 
   componentDidUpdate() {
@@ -123,7 +162,7 @@ class Menu extends Component<MyProps, MyState> {
   }
 
   render() {
-    const { dishes, isOpened } = this.state
+    const { dishes, isOpened, likes } = this.state
     if (!this.state.showSlider) {
       return (
         <>
@@ -165,6 +204,7 @@ class Menu extends Component<MyProps, MyState> {
                   data={this.initialData}
                   update={this.updateData.bind(this)}
                   initialState={this.initialData}
+                  likes={likes}
                 />
               </div>
             </div>
@@ -183,6 +223,9 @@ class Menu extends Component<MyProps, MyState> {
                   toggleSlider={this.toggleSlider.bind(this)}
                   counter={i + 1}
                   setIndex={this.setIndex.bind(this)}
+                  userName={this.state.userName}
+                  token={this.state.token}
+                  updateLikes={this.updateLikes.bind(this)}
                 ></MenuItem>
               ))}
               <div className="menu-margin"></div>

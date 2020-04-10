@@ -18,6 +18,30 @@ class AdminLoginController implements IControllerBase {
 
   public initRoutes() {
     this.router.post(`${this.path}`, this.login)
+    this.router.post(`${this.path}/check`, this.check)
+  }
+
+  check = async (req: Request, res: Response) => {
+    const token = req.body.token;
+
+    const dec = jwt.verify(
+      token,
+      config.secretOrKey,
+      (err: Error, decoded: any) => {
+        if (decoded) {
+          console.log(decoded);
+          Admin.findOne({ _id: decoded.id })
+            .then((admin: any) => {
+              console.log(admin)
+              if (admin) {
+                res.status(200).json({ isToken: true, id: decoded.id })
+              }
+            })
+        } else {
+          res.status(401).json({ isToken: false })
+        }
+      }
+    )
   }
 
   login = async (req: Request, res: Response) => {
@@ -40,6 +64,8 @@ class AdminLoginController implements IControllerBase {
           const payload = {
             id: admin.id,
             name: admin.name,
+            password: admin.password,
+            email: admin.email
           }
 
           jwt.sign(
@@ -52,6 +78,7 @@ class AdminLoginController implements IControllerBase {
               res.json({
                 success: true,
                 token: token,
+                id: admin.id
               })
               req.headers['access-token'] = token
             }

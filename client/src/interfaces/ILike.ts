@@ -1,5 +1,5 @@
 interface ILike {
-    action: boolean
+    action: string
     dish_id: string
     user_id: string
 }

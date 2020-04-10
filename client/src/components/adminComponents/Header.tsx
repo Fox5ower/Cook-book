@@ -59,12 +59,16 @@ class Header extends Component<MyProps, MyState> {
     }))
   }
 
+  logout() {
+    localStorage.removeItem("token");
+  }
+
   render() {
     return (
       <>
         <div className="pannel__header">
           <div className="header__logo">
-            <Link to={'/'}>
+            <Link to={'/'} onClick={this.logout}>
               <FormattedMessage
                 id="admin.header.link"
                 defaultMessage="Cook-Book"

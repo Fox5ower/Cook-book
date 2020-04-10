@@ -7,14 +7,17 @@ import inputValidator from '../../services/input.validator'
 import resErrorHandler from '../../services/res.error.handler'
 import FormError from '../FormError'
 import localizeRoute from '../../services/localize.route'
+import logout from '../../services/user.logout'
 
-interface MyProps {}
+interface MyProps { }
 
 interface MyState {
   email: string
   password: string
   redirect: boolean
   invalid: boolean
+  isToken: boolean
+  id: string
 }
 
 class Login extends Component<MyProps, MyState> {
@@ -26,6 +29,8 @@ class Login extends Component<MyProps, MyState> {
       password: '',
       redirect: false,
       invalid: false,
+      isToken: false,
+      id: ""
     }
   }
 
@@ -42,16 +47,17 @@ class Login extends Component<MyProps, MyState> {
 
   submitHandler = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault()
+    logout();
     if (this.state.email && this.state.password) {
       axios
         .post(`${DEV_URL}/admin/login`, this.state)
         .then(res => {
           if (res.status === 200) {
             localStorage.setItem('token', res.data.token)
-            this.setState({ redirect: true })
+            this.setState({ redirect: true, isToken: true, id: res.data.id })
           }
         })
-        .catch(function(error) {
+        .catch(function (error) {
           if (error.response) {
             resErrorHandler(error.response.data)
           } else {
@@ -76,7 +82,7 @@ class Login extends Component<MyProps, MyState> {
   render() {
     const { email, password, redirect } = this.state
     if (redirect) {
-      return <Redirect to={localizeRoute('admin')} />
+      return <Redirect to={localizeRoute(`admin/?isToken=${this.state.isToken}&id=${this.state.id}`)} />
     }
     return (
       <div className="admin__login-form-container">

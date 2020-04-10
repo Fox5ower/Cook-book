@@ -257,6 +257,7 @@ class Modal extends Component<MyProps, MyState> {
   logout(e: SyntheticEvent) {
     e.preventDefault()
     let token: string = localStorage.getItem('token')
+    localStorage.removeItem("token");
     axios.post(`${DEV_URL}/api/admin/logout`, token).then(res => {
       if (res.status === 200) {
         this.setState({

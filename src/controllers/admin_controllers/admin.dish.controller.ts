@@ -2,6 +2,7 @@ import * as express from 'express'
 import { Request, Response } from 'express'
 import IControllerBase from '../../interfaces/IControllerBase'
 const Dish = require('../../models/Dish')
+const Like = require("../../models/Like")
 const Category = require('../../models/Category')
 import tokenChecker from '../../middlewares/tokenChecker'
 const multer = require('multer')
@@ -84,10 +85,17 @@ class AdminDishController implements IControllerBase {
     const removedDish = await Dish.deleteMany({ name: req.params.name })
 
     if (removedDish) {
-      res.json({ 'Removed dish: ': removedDish.name })
+      const removedLike = await Like.deleteMany({ dish_id: removedDish.id });
+      if (removedLike) {
+        res.json({ message: "Removed Dish and Likes" })
+      } else {
+        res.status(401).json({ message: 'Something went wrong' })
+      }
     } else {
       res.status(401).json({ message: 'Something went wrong' })
     }
+
+
   }
 
   removeCategory = async (req: Request, res: Response, next: any) => {

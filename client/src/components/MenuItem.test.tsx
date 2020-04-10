@@ -20,9 +20,9 @@ const fakeDish = {
   image: '/test-image',
 }
 
-const toggleSlider = (): void => {}
+const toggleSlider = (): void => { }
 
-const setIndex = (): void => {}
+const setIndex = (): void => { }
 
 it('Should renders without crashing', () => {
   render(
@@ -37,6 +37,8 @@ it('Should renders without crashing', () => {
       toggleSlider={toggleSlider}
       counter={1}
       setIndex={setIndex}
+      userName={"Name"}
+      token={"token"}
     />
   )
 })
@@ -54,6 +56,8 @@ it('Should renders correctly with given props', () => {
       toggleSlider={toggleSlider}
       counter={1}
       setIndex={setIndex}
+      userName={"Name"}
+      token={"token"}
     />
   )
 
@@ -77,6 +81,8 @@ it('Should match the snapshot', () => {
         toggleSlider={toggleSlider}
         counter={1}
         setIndex={setIndex}
+        userName={"Name"}
+        token={"token"}
       />
     )
     .toJSON()

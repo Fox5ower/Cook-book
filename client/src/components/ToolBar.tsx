@@ -14,12 +14,14 @@ import {
 import { FaVk } from 'react-icons/fa'
 import getLocale from '../services/get.locale'
 import getObject from '../services/localStorage/get.object'
+import ILike from '../interfaces/ILike'
 
 interface MyProps {
   term: string
   data: Array<IDish>
   update: Function
   initialState: Array<IDish>
+  likes: Array<ILike>
 }
 
 interface MyState {
@@ -27,6 +29,7 @@ interface MyState {
   value: string
   filteredDish: Array<IDish>
   keys: Array<string>
+  user_id: string
 }
 
 class ToolBar extends Component<MyProps, MyState> {
@@ -38,6 +41,7 @@ class ToolBar extends Component<MyProps, MyState> {
       value: '',
       filteredDish: [],
       keys: Object.keys(localStorage),
+      user_id: localStorage.getItem("user_id")
     }
 
     this.favDataSort = this.favDataSort.bind(this)
@@ -101,41 +105,33 @@ class ToolBar extends Component<MyProps, MyState> {
 
   favDataSort(e: any) {
     e.preventDefault()
-    new Promise(resolve => {
-      resolve(
-        this.setState({
-          keys: Object.keys(localStorage),
-        })
-      )
-    }).then(() => {
-      const filter = this.props.data.filter((dish: IDish) => {
-        let storageObject = getObject(dish.name)
-        if (storageObject) {
-          if (
-            storageObject['isFavourite'] !== null &&
-            storageObject['isFavourite'] !== false
-          )
-            return this.state.keys.includes(dish.name) ? dish.name : undefined
-        }
-      })
-      this.setState({
-        filteredDish: filter,
-      })
 
-      this.props.update({
-        dishes: filter,
-      })
-
-      let favBtn = document.getElementById('favBtn')
-
-      if (favBtn) {
-        let unchoosedArr = document.querySelectorAll('.category')
-        unchoosedArr.forEach(el => {
-          el.classList.remove('choosedCategory')
-        })
-        favBtn.classList.add('choosedCategory')
-      }
+    const filteredLikes = this.props.likes.filter((like: ILike) => {
+      return like.user_id === this.state.user_id && like.action === "true"
     })
+
+    const filter = this.props.data.filter((dish: IDish) => {
+      return filteredLikes.find(like => like.dish_id === dish._id);
+    })
+
+    this.setState({
+      filteredDish: filter,
+    })
+
+    this.props.update({
+      dishes: filter,
+    })
+
+    let favBtn = document.getElementById('favBtn')
+
+    if (favBtn) {
+      let unchoosedArr = document.querySelectorAll('.category')
+      unchoosedArr.forEach(el => {
+        el.classList.remove('choosedCategory')
+      })
+      favBtn.classList.add('choosedCategory')
+    }
+    // })
   }
 
   render() {
